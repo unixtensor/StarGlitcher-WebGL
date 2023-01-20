@@ -50,7 +50,7 @@ UI_V.set_POS(Object_1, {
 	NEW_Y: w_y
 })
 UI_V.set_POS(BottomBar_2, {
-    NEW_Y: w_y-100
+    NEW_Y: w_y-120
 })
 // ---
 
@@ -64,17 +64,17 @@ function UI_FPS() {
 	setTimeout(() => {
 		delta+=1
 		UI_V.set_POS_Rel(Object_1, {
-			NEW_X: lerp(P_O1.X-900, 30*Math.cos(delta/150), .5),
-			NEW_Y: lerp(P_O1.Y-800, (30/2)*Math.sin(delta/150), .5)
+			NEW_X: lerp(P_O1.X-900, 10*Math.cos(delta/150), .5),
+			NEW_Y: lerp(P_O1.Y-800, 20*Math.sin(delta/150), .5)
 		})
 		UI_V.set_ROT(Object_1, {
 			RAD: rad(5*Math.cos(delta/200))
 		})
 		UI_V.set_ROT(BottomBar, {
-			RAD: rad(.5*Math.cos(delta/80))
+			RAD: rad(.7*Math.cos(delta/150))
 		})
 		UI_V.set_ROT(BottomBar_2, {
-			RAD: rad(.5*Math.sin(delta/80))
+			RAD: rad(.7*Math.sin(delta/150))
 		})
 		UI_V.set_ROT(Bottom_Rect, {
 			RAD: rad(-delta/4)
