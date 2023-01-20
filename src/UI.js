@@ -1,12 +1,14 @@
 import * as UI_V from './Modules/UI-Vector.js'
 import * as cMath from './Modules/cMath.js'
+import * as FilterColor from './Modules/Filter-Color.js'
 
 const Object_1 = document.getElementById("Object-1")
+const Object_2 = document.getElementById("Object-2")
 
 // UI Element Resizing
-const BottomBar   = document.getElementById("Bottom-Bar")
-const BottomBar_2 = document.getElementById("Bottom-Bar-2")
-const Bottom_Rect = document.getElementById("Bottom-Rect")
+const BottomBar     = document.getElementById("Bottom-Bar")
+const BottomBar_2   = document.getElementById("Bottom-Bar-2")
+const Bottom_Rect   = document.getElementById("Bottom-Rect")
 const Bottom_Rect_2 = document.getElementById("Bottom-Rect-2")
 
 window.onresize = () => {
@@ -17,16 +19,16 @@ window.onresize = () => {
     BottomBar_2.style.width = w_x+'px'
 
     // These do not require UI_V.set_POS_Rel.
-    UI_V.set_POS(Bottom_Rect, {
-        NEW_X: w_x/2.03,
-        NEW_Y: w_y-BottomBar.offsetHeight*2.2
-    })
-    UI_V.set_POS(Bottom_Rect_2, {
-        NEW_X: w_x/2.07,
-        NEW_Y: w_y-Bottom_Rect_2.offsetHeight*1.5
-    })
+	UI_V.set_POS(Bottom_Rect, {
+		NEW_X: w_x/2.03,
+		NEW_Y: w_y-BottomBar.offsetHeight*2.7
+	})
+	UI_V.set_POS(Bottom_Rect_2, {
+		NEW_X: w_x/2.08,
+		NEW_Y: w_y-Bottom_Rect_2.offsetHeight*1.8
+	})
     UI_V.set_POS(BottomBar_2, {
-        NEW_Y: w_y-100
+        NEW_Y: w_y-120,
     })
 }
 
@@ -39,14 +41,14 @@ BottomBar_2.style.width = w_x+'px'
 
 UI_V.set_POS(Bottom_Rect, {
 	NEW_X: w_x/2.03,
-	NEW_Y: w_y-BottomBar.offsetHeight*2.2
+	NEW_Y: w_y-BottomBar.offsetHeight*2.7
 })
 UI_V.set_POS(Bottom_Rect_2, {
-	NEW_X: w_x/2.07,
-	NEW_Y: w_y-Bottom_Rect_2.offsetHeight*1.5
+	NEW_X: w_x/2.08,
+	NEW_Y: w_y-Bottom_Rect_2.offsetHeight*1.8
 })
-UI_V.set_POS(Object_1, {
-	NEW_X: w_x,
+UI_V.set_POS(Object_2, {
+	NEW_X: w_x+30,
 	NEW_Y: w_y
 })
 UI_V.set_POS(BottomBar_2, {
@@ -64,12 +66,16 @@ function UI_FPS() {
 	setTimeout(() => {
 		delta+=1
 		UI_V.set_POS_Rel(Object_1, {
-			NEW_X: lerp(P_O1.X-900, 10*Math.cos(delta/150), .5),
-			NEW_Y: lerp(P_O1.Y-800, 20*Math.sin(delta/150), .5)
+			NEW_X: lerp(P_O1.X, 10*Math.cos(delta/150)-450, .5),
+			NEW_Y: lerp(P_O1.Y, 10*Math.sin(delta/150)-650, .5)
 		})
 		UI_V.set_ROT(Object_1, {
-			RAD: rad(5*Math.cos(delta/200))
+			RAD: rad(3*Math.cos(delta/200))
 		})
+		// UI_V.set_POS_Rel(Object_2, {
+		// 	NEW_X: lerp(P_O1.X, (10*Math.cos(delta/150)), .5),
+		// 	NEW_Y: lerp(P_O1.Y, (10*Math.sin(delta/150)), .5)
+		// })
 		UI_V.set_ROT(BottomBar, {
 			RAD: rad(.7*Math.cos(delta/150))
 		})

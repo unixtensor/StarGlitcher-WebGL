@@ -30,7 +30,7 @@ export function set_POS(OBJ, C_DATA) {
 
 	OBJ.style.left = C_DATA.NEW_X+'px'
 	OBJ.style.top  = C_DATA.NEW_Y+'px'
-	OBJ.style.position = 'absolute'
+	OBJ.style.position = 'absolute !important'
 
 	return {X: C_DATA.NEW_X, Y: C_DATA.NEW_Y}
 }
@@ -50,12 +50,12 @@ export function set_ROT(OBJ, R_DATA) {
 }
 
 /**
-* set_POS_Rel (OBJ, C_DATA)
-* @function
-* @param {HTMLElement} OBJ - An HTML Element, should always be a div. 
-* @param {Object} C_DATA   - Coordinate/Vector DATA, where in space will the element appear? {NEW_X: ?, NEW_Y: ?} (Placed relative with the browser size [∆-win_Offset=3])
-* @returns
-*/
+ * set_POS_Rel (OBJ, C_DATA)
+ * @function
+ * @param {HTMLElement} OBJ - An HTML Element, should always be a div. 
+ * @param {Object} C_DATA   - Coordinate/Vector DATA, where in space will the element appear? {NEW_X: ?, NEW_Y: ?} (Placed relative with the browser size [∆-win_Offset=3])
+ * @returns
+ */
 export function set_POS_Rel(OBJ, C_DATA) {
 	const P = get_POS(OBJ)
 	C_DATA.NEW_X = Shared.s_Circuit(C_DATA.NEW_X, P.X)
@@ -65,7 +65,7 @@ export function set_POS_Rel(OBJ, C_DATA) {
 	const w_yM = window.innerHeight-win_Offset-C_DATA.NEW_Y
 	OBJ.style.left = w_xM+'px'
 	OBJ.style.top  = w_yM+'px'
-	OBJ.style.position = 'absolute'
+	OBJ.style.position = 'absolute !important'
 
 	return {X: w_xM, Y: w_yM}
 }
