@@ -41,7 +41,7 @@ window.onresize = () => {
     })
     UI_V.set_POS(Object_2, {
         NEW_X: w_x/2.5,
-        NEW_Y: (w_y-BottomBar.offsetHeight*2.2)+65
+        NEW_Y: w_y-BottomBar.offsetHeight
     })
 }
 
@@ -68,12 +68,10 @@ UI_V.set_POS(Bottom_Rect_2, {
 })
 UI_V.set_POS(Object_2, {
 	NEW_X: w_x/2.5,
-	NEW_Y: (w_y-BottomBar.offsetHeight*2.2)+65
+	NEW_Y: w_y-BottomBar.offsetHeight
 })
 // ---
 
-const lerp = cMath.lerp
-const rad = cMath.rad
 const P_O1 = UI_V.get_POS(Object_1)
 const P_O2 = UI_V.get_POS(Object_2)
 let delta = 0
@@ -82,30 +80,30 @@ function UI_FPS() {
 	setTimeout(() => {
 		delta+=1
 		UI_V.set_POS(Object_1, {
-			NEW_X: lerp(P_O1.X, 10*Math.cos(delta/150), .5),
-			NEW_Y: lerp(P_O1.Y, 10*Math.sin(delta/150), .5)
+			NEW_X: cMath.lerp(P_O1.X, P_O1.X+Math.cos(delta/150)*30, .5),
+			NEW_Y: cMath.lerp(P_O1.Y, P_O1.Y+Math.sin(delta/250)*20, .5)
 		})
 		UI_V.set_ROT(Object_1, {
-			RAD: rad(3*Math.cos(delta/200))
+			RAD: cMath.rad(3*Math.cos(delta/200))
 		})
 		UI_V.set_POS(Object_2, {
-			NEW_X: lerp(P_O2.X, 10*Math.cos(delta/150), .5),
-			NEW_Y: lerp(P_O2.Y, 10*Math.sin(delta/150), .5)
+			NEW_X: cMath.lerp(P_O2.X, P_O2.X+Math.sin(delta/350)*30, .5),
+			NEW_Y: cMath.lerp(P_O2.Y, P_O2.Y+Math.cos(delta/450)*20, .5)
 		})
         UI_V.set_ROT(Object_2, {
-			RAD: rad(3*Math.sin(delta/200))
+			RAD: cMath.rad(3*Math.sin(delta/200))
 		})
 		UI_V.set_ROT(BottomBar, {
-			RAD: rad(.6*Math.cos(delta/150))
+			RAD: cMath.rad(.6*Math.cos(delta/150))
 		})
 		UI_V.set_ROT(BottomBar_2, {
-			RAD: rad(.6*Math.sin(delta/150))
+			RAD: cMath.rad(.6*Math.sin(delta/150))
 		})
 		UI_V.set_ROT(Bottom_Rect, {
-			RAD: rad(-delta/4)
+			RAD: cMath.rad(-delta/4)
 		})
         UI_V.set_ROT(Bottom_Rect_2, {
-			RAD: rad(delta/4)
+			RAD: cMath.rad(delta/4)
 		})
 
 		UI_FPS()

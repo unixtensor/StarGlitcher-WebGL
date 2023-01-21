@@ -9,9 +9,11 @@ export let win_Offset = 3 // Usually a good offset for browser true size is 3
  * @returns 
  */
 export function get_POS(OBJ) {
+    const Rect = OBJ.getBoundingClientRect()
 	return {
-		X: OBJ.style.left,
-		Y: OBJ.style.top
+		X: Rect.x,
+		Y: Rect.y,
+        Rect: Rect
 	}
 }
 
@@ -23,9 +25,8 @@ export function get_POS(OBJ) {
  * @returns 
  */
 export function set_POS(OBJ, C_DATA) {
-	const P = get_POS(OBJ)
-	C_DATA.NEW_X = Shared.s_Circuit(C_DATA.NEW_X, P.X)
-	C_DATA.NEW_Y = Shared.s_Circuit(C_DATA.NEW_Y, P.Y)
+	C_DATA.NEW_X = Shared.s_Circuit(C_DATA.NEW_X, get_POS(OBJ).X)
+	C_DATA.NEW_Y = Shared.s_Circuit(C_DATA.NEW_Y, get_POS(OBJ).Y)
 
 	OBJ.style.left = C_DATA.NEW_X+'px'
 	OBJ.style.top  = C_DATA.NEW_Y+'px'
@@ -56,9 +57,8 @@ export function set_ROT(OBJ, R_DATA) {
  * @returns
  */
 export function set_POS_Rel(OBJ, C_DATA) {
-	const P = get_POS(OBJ)
-	C_DATA.NEW_X = Shared.s_Circuit(C_DATA.NEW_X, P.X)
-	C_DATA.NEW_Y = Shared.s_Circuit(C_DATA.NEW_Y, P.Y)
+	C_DATA.NEW_X = Shared.s_Circuit(C_DATA.NEW_X, get_POS(OBJ).X)
+	C_DATA.NEW_Y = Shared.s_Circuit(C_DATA.NEW_Y, get_POS(OBJ).Y)
 
 	const w_xM = window.innerWidth-win_Offset-C_DATA.NEW_X
 	const w_yM = window.innerHeight-win_Offset-C_DATA.NEW_Y
