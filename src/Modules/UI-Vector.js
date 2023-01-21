@@ -50,13 +50,13 @@ export function set_ROT(OBJ, R_DATA) {
 }
 
 /**
- * set_POS_Rel (OBJ, C_DATA)
+ * set_POS_Relative (OBJ, C_DATA)
  * @function
  * @param {HTMLElement} OBJ - An HTML Element, should always be a div. 
  * @param {Object} C_DATA   - Coordinate/Vector DATA, where in space will the element appear? {NEW_X: ?, NEW_Y: ?} (Placed relative with the browser size [∆-win_Offset=3])
  * @returns
  */
-export function set_POS_Rel(OBJ, C_DATA) {
+export function set_POS_Relative(OBJ, C_DATA) {
 	C_DATA.NEW_X = Shared.s_Circuit(C_DATA.NEW_X, get_POS(OBJ).X)
 	C_DATA.NEW_Y = Shared.s_Circuit(C_DATA.NEW_Y, get_POS(OBJ).Y)
 

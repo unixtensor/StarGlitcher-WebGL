@@ -79,7 +79,7 @@ let delta = 0
 function UI_FPS() {
 	setTimeout(() => {
 		delta+=1
-		UI_V.set_POS(Object_1, {
+		UI_V.set_POS_Relative(Object_1, {
 			NEW_X: cMath.lerp(P_O1.X, P_O1.X+Math.cos(delta/150)*30, .5),
 			NEW_Y: cMath.lerp(P_O1.Y, P_O1.Y+Math.sin(delta/250)*20, .5)
 		})
