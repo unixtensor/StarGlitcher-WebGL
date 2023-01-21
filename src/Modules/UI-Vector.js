@@ -9,10 +9,9 @@ export let win_Offset = 3 // Usually a good offset for browser true size is 3
  * @returns 
  */
 export function get_POS(OBJ) {
-    const BoundingRect = OBJ.getBoundingClientRect()
 	return {
-		X: BoundingRect.left,
-		Y: BoundingRect.top
+		X: OBJ.style.left,
+		Y: OBJ.style.top
 	}
 }
 

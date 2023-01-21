@@ -1,8 +1,10 @@
 /*
-  A module that uses a hacky way of getting PNG's to be colored with CSS.
+    Module that uses a hacky way of getting PNG's to be colored with CSS.
 
-  https://stackoverflow.com/questions/42966641/how-to-transform-black-into-any-given-color-using-only-css-filters/43960991#43960991
+    https://stackoverflow.com/questions/42966641/how-to-transform-black-into-any-given-color-using-only-css-filters/43960991#43960991
 */
+
+import * as cMath from './cMath.js'
 
 class Color {
   constructor(r, g, b) {
@@ -145,12 +147,7 @@ class Color {
   }
 
   clamp(value) {
-    if (value > 255) {
-      value = 255;
-    } else if (value < 0) {
-      value = 0;
-    }
-    return value;
+    return cMath.E_clamp(0, value, 255);
   }
 }
 
