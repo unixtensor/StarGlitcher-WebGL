@@ -2,6 +2,8 @@ import * as Shared from './Shared.js'
 
 export let win_Offset = 3 // Usually a good offset for browser true size is 3
 
+// The function return's have support for Pascal Case and lower camel case.
+
 /**
  * get_POS (OBJ, C_DATA)
  * @function
@@ -11,9 +13,9 @@ export let win_Offset = 3 // Usually a good offset for browser true size is 3
 export function get_POS(OBJ) {
     const Rect = OBJ.getBoundingClientRect()
 	return {
-		X: Rect.x,
-		Y: Rect.y,
-        Rect: Rect
+		X: Rect.x, x: Rect.x,
+		Y: Rect.y, y: Rect.y,
+        Rect: Rect, rect: Rect
 	}
 }
 
@@ -30,9 +32,12 @@ export function set_POS(OBJ, C_DATA) {
 
 	OBJ.style.left = C_DATA.NEW_X+'px'
 	OBJ.style.top  = C_DATA.NEW_Y+'px'
-	OBJ.style.position = 'absolute !important'
+	OBJ.style.position = 'absolute'
 
-	return {X: C_DATA.NEW_X, Y: C_DATA.NEW_Y}
+	return {
+        X: C_DATA.NEW_X, x: C_DATA.NEW_X,
+        Y: C_DATA.NEW_Y, y: C_DATA.NEW_Y
+    }
 }
 
 /**
@@ -46,7 +51,9 @@ export function set_ROT(OBJ, R_DATA) {
 	R_DATA.RAD = Shared.s_Circuit(R_DATA.RAD, '0')
 	OBJ.style.transform = 'rotate('+R_DATA.RAD+'rad)'
 
-	return {R: R_DATA.RAD}
+	return {
+        R: R_DATA.RAD, r: R_DATA.RAD
+    }
 }
 
 /**
@@ -64,7 +71,10 @@ export function set_POS_Relative(OBJ, C_DATA) {
 	const w_yM = window.innerHeight-win_Offset-C_DATA.NEW_Y
 	OBJ.style.left = w_xM+'px'
 	OBJ.style.top  = w_yM+'px'
-	OBJ.style.position = 'absolute !important'
+	OBJ.style.position = 'absolute'
 
-	return {X: w_xM, Y: w_yM}
+	return {
+        X: w_xM, x: w_xM,
+        Y: w_yM, y: w_yM
+    }
 }
