@@ -23,9 +23,9 @@ export let GlitcherHexagonSpiked  = document.getElementById("GlitcherHexagonSpik
 const GlitchMode = document.getElementById("Text-GlitcherMode")
 
 // This must be called before animations and placing - Note to self for later
-// document.querySelectorAll("div, h1, img").forEach((value) => {
-//     value.style.display = "block"
-// })
+document.querySelectorAll("div, h1, img").forEach((value) => {
+    value.style.display = "block"
+})
 
 // Pre-Init Sizing
 // Object's (Animating UI frames) are not needed here since they rely using relative positioning inside their fps loop.
