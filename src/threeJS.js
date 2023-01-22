@@ -1,6 +1,4 @@
-import * as THREE from './three.js/build/three'
-
-console.log("test")
+import * as THREE from './three.js/build/three.js'
 
 const Scene = new THREE.Scene()
 const Camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, .1, 1000)
