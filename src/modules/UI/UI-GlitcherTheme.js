@@ -1,5 +1,5 @@
-import * as UI from '../UI.js'
-import * as FilterColor from './Filter-Color.js'
+import * as UI from '../../UI.js'
+import { Color, Solver } from './Filter-Color.js'
 
 export function ChangeModeOfGlitch(DATA_PROPS) {
     const P_Color = DATA_PROPS.PrimaryColor
@@ -25,10 +25,10 @@ export function ChangeModeOfGlitch(DATA_PROPS) {
     UI.Text_GlitcherMode.innerHTML = DATA_PROPS.Name.toUpperCase()
 
     // Turn PNG's colorful
-    const P_Color_filter_c = new FilterColor.Color(P_Color[0], P_Color[1], P_Color[2])
-    const S_Color_filter_c = new FilterColor.Color(S_Color[0], S_Color[1], S_Color[2])
-    const P_Color_filter   = new FilterColor.Solver(P_Color_filter_c).solve()
-    const S_Color_filter   = new FilterColor.Solver(S_Color_filter_c).solve()
+    const P_Color_filter_c = new Color(P_Color[0], P_Color[1], P_Color[2])
+    const S_Color_filter_c = new Color(S_Color[0], S_Color[1], S_Color[2])
+    const P_Color_filter   = new Solver(P_Color_filter_c).solve()
+    const S_Color_filter   = new Solver(S_Color_filter_c).solve()
 
     UI.GlitcherShards.style.filter         = S_Color_filter.filter
     UI.GlitcherShards2.style.filter        = P_Color_filter.filter

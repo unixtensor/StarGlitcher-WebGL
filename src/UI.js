@@ -1,7 +1,7 @@
-import * as UI_V from './Modules/UI-Vector.js'
-import * as cMath from './Modules/cMath.js'
-import * as ModesOfGlitch from './Modules/ModesOfGlitch.js'
-import * as UIGlitcherTheme from './Modules/UI-GlitcherTheme.js'
+import * as UI_V from './modules/UI/UI-Vector.js'
+import * as cMath from './modules/cMath.js'
+import * as ModesOfGlitch from './modules/ModesOfGlitch.js'
+import * as UIGlitcherTheme from './modules/UI/UI-GlitcherTheme.js'
 
 export let Object_1 = document.getElementById("Object-1")
 export let Object_2 = document.getElementById("Object-2")
@@ -19,6 +19,8 @@ export let GlitcherShards2        = document.getElementById("GlitcherShards2")
 export let GlitcherSparkle        = document.getElementById("GlitcherSparkle")
 export let GlitcherHexagonBorders = document.getElementById("GlitcherHexagonBorders")
 export let GlitcherHexagonSpiked  = document.getElementById("GlitcherHexagonSpiked")
+
+export let SpinRate = 1
 
 const GlitchMode = document.getElementById("Text-GlitcherMode")
 
@@ -115,52 +117,51 @@ UI_V.set_POS(GlitcherHexagonSpiked, {
 let delta = 0
 
 function UI_FPS() {
-	setTimeout(() => {
-        const l = GlitchMode.innerHTML.length
-        delta+=1
-		UI_V.set_POS_Relative(Object_1, {
-			NEW_X: cMath.lerp((1400-(l+100)), Math.cos(delta/130)*20, .5),
-			NEW_Y: cMath.lerp(250, Math.sin(delta/230)*10, .5)
-		})
-		UI_V.set_ROT(Object_1, {
-			RAD: cMath.rad(3*Math.cos(delta/200))
-		})
-		UI_V.set_POS_Relative(Object_2, {
-			NEW_X: cMath.lerp(w_x+400, Math.sin(delta/350)*20, .5),
-			NEW_Y: cMath.lerp(310,     Math.cos(delta/230)*15, .5)
-		})
-        UI_V.set_ROT(Object_2, {
-			RAD: cMath.rad(3*Math.sin(delta/150))
-		})
-		UI_V.set_ROT(BottomBar, {
-			RAD: cMath.rad(.8*Math.cos(delta/100))
-		})
-		UI_V.set_ROT(BottomBar_2, {
-			RAD: cMath.rad(.8*Math.sin(delta/100))
-		})
-		UI_V.set_ROT(Bottom_Rect, {
-			RAD: cMath.rad(-delta/4)
-		})
-        UI_V.set_ROT(Bottom_Rect_2, {
-			RAD: cMath.rad(delta/4)
-		})
-        UI_V.set_ROT(GlitcherShards, {
-            RAD: cMath.rad(delta/7)
-        })
-        UI_V.set_ROT(GlitcherShards2, {
-            RAD: cMath.rad(-delta/7)
-        })
-        UI_V.set_ROT(GlitcherSparkle, {
-            RAD: cMath.rad(delta/7)
-        })
-        UI_V.set_ROT(GlitcherHexagonBorders, {
-            RAD: cMath.rad(delta/7)
-        })
-        UI_V.set_ROT(GlitcherHexagonSpiked, {
-            RAD: cMath.rad(-delta/7)
-        })
-		UI_FPS()
-	}, 1)
+    requestAnimationFrame(UI_FPS)
+    delta+=1
+
+    const l = GlitchMode.innerHTML.length
+    UI_V.set_POS_Relative(Object_1, {
+        NEW_X: cMath.lerp((1400-(l+100)), Math.cos(delta/80)*20, .5),
+        NEW_Y: cMath.lerp(250, Math.sin(delta/80)*10, .5)
+    })
+    UI_V.set_ROT(Object_1, {
+        RAD: cMath.rad(3*Math.cos(delta/100))
+    })
+    UI_V.set_POS_Relative(Object_2, {
+        NEW_X: cMath.lerp(w_x+400, Math.sin(delta/80)*20, .5),
+        NEW_Y: cMath.lerp(310, Math.cos(delta/80)*15, .5)
+    })
+    UI_V.set_ROT(Object_2, {
+        RAD: cMath.rad(3*Math.sin(delta/200))
+    })
+    UI_V.set_ROT(BottomBar, {
+        RAD: cMath.rad(.8*Math.cos(delta/80))
+    })
+    UI_V.set_ROT(BottomBar_2, {
+        RAD: cMath.rad(.8*Math.sin(delta/80))
+    })
+    UI_V.set_ROT(Bottom_Rect, {
+        RAD: cMath.rad(-(delta*SpinRate)/3)
+    })
+    UI_V.set_ROT(Bottom_Rect_2, {
+        RAD: cMath.rad((delta*SpinRate)/3)
+    })
+    UI_V.set_ROT(GlitcherShards, {
+        RAD: cMath.rad((delta*SpinRate)/5)
+    })
+    UI_V.set_ROT(GlitcherShards2, {
+        RAD: cMath.rad(-(delta*SpinRate)/5)
+    })
+    UI_V.set_ROT(GlitcherSparkle, {
+        RAD: cMath.rad((delta*SpinRate)/5)
+    })
+    UI_V.set_ROT(GlitcherHexagonBorders, {
+        RAD: cMath.rad((delta*SpinRate)/5)
+    })
+    UI_V.set_ROT(GlitcherHexagonSpiked, {
+        RAD: cMath.rad(-(delta*SpinRate)/5)
+    })
 }
 
 UI_FPS()

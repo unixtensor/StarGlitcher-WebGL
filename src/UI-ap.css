@@ -1,18 +1,17 @@
 :root {
-    --stroke-outline: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
     --__NULL_MODE:     rgb(0,0,0);
     --__NULL_MODE_a:   rgb(0,0,0,.5);
     --__NULL_MODE_ALT: rgb(255,255,255);
     --__NULL_MODE_ALT_a: rgba(255,255,255,.5)
 }
 html, body {
-    background-color: rgb(25,25,25);
+    background-color: black;
     overflow: hidden !important;
 }
 div, img {
     position: absolute !important;
-    user-select: none !important;
-    pointer-events: none !important;
+    user-select: none;
+    pointer-events: none;
 }
 h1 {
     font-family: 'Press Start 2P', cursive;
