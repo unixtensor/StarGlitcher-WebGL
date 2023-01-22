@@ -1,70 +1,105 @@
 :root {
     --stroke-outline: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
 
-    --__Mode_Mayhem:     rgb(200,0,0);
-    --__Mode_Mayhem_a:   rgba(200,0,0,.5);
-    --__Mode_Mayhem_ALT: rgb(0,0,0);
-    --__Mode_Mayhem_ALT_a: rgba(0,0,0,.5)
+    --__NULL_MODE:     rgb(0,0,0);
+    --__NULL_MODE_a:   rgb(0,0,0,.5);
+    --__NULL_MODE_ALT: rgb(255,255,255);
+    --__NULL_MODE_ALT_a: rgba(255,255,255,.5)
 }
 html, body {
     background-color: rgb(25,25,25);
     overflow: hidden !important;
 }
-p, h1 {
+div, img {
+    position: absolute !important;
+    user-select: none !important;
+    pointer-events: none !important;
+}
+h1 {
     font-family: 'Press Start 2P', cursive;
-    color: white;
-    text-shadow: var(--stroke-outline);
     text-align: center;
     user-select: none;
 }
-div {
-    position: absolute !important
-}
+
 .Anim-Object {
     width: 400px;
     height: 150px;
 }
-#Bottom-Bar {
-    border: 2px solid var(--__Mode_Mayhem_ALT);
-    background-color: var(--__Mode_Mayhem_a);
-    bottom: 0;
-    left: 0;
-    height: 150px;
-}
-#Bottom-Bar-2 {
-    border: 2px solid var(--__Mode_Mayhem_a);
-    background-color: var(--__Mode_Mayhem_ALT_a);
-    bottom: 0;
-    left: 0;
-    height: 100px;
-}
-#Bottom-Rect {
-    background-color: var(--__Mode_Mayhem_ALT_a);
-    border: 3px solid var(--__Mode_Mayhem);
-    height: 45px;
-    width: 45px;
-}
-#Bottom-Rect-2 {
-    background-color: var(--__Mode_Mayhem_ALT_a);
-    border: 3px solid var(--__Mode_Mayhem);
-    height: 90px;
-    width: 90px;
-}
+
 #Object-1 {
-    background-color: transparent;
     height: 80px;
     width: 500px;
     right: 0;
     bottom: 0;
 }
 #Object-2 {
-    background-color: transparent;
     height: 100px;
     width: 500px;
     right: 0;
     left: 0;
     bottom: 0;
 }
+#Text-GlitcherMode {
+    color: var(--__NULL_MODE);
+    text-shadow: -3px 0 var(--__NULL_MODE_ALT), 0 3px var(--__NULL_MODE_ALT), 3px 0 var(--__NULL_MODE_ALT), 0 -3px var(--__NULL_MODE_ALT);
+}
+#Text-StarGlitcher {
+    color: var(--__NULL_MODE_ALT);
+    text-shadow: -3px 0 var(--__NULL_MODE), 0 3px var(--__NULL_MODE), 3px 0 var(--__NULL_MODE), 0 -3px var(--__NULL_MODE);
+}
+#Bottom-Bar {
+    border: 2px solid var(--__NULL_MODE_ALT);
+    background-color: var(--__NULL_MODE_a);
+    bottom: 0;
+    left: 0;
+    height: 150px;
+}
+#Bottom-Bar-2 {
+    border: 2px solid var(--__NULL_MODE);
+    background-color: var(--__NULL_MODE_ALT_a);
+    bottom: 0;
+    left: 0;
+    height: 100px;
+}
+#Bottom-Rect {
+    background-color: var(--__NULL_MODE_ALT_a);
+    border: 3px solid var(--__NULL_MODE);
+    height: 45px;
+    width: 45px;
+}
+#Bottom-Rect-2 {
+    background-color: var(--__NULL_MODE_ALT_a);
+    border: 3px solid var(--__NULL_MODE);
+    height: 90px;
+    width: 90px;
+}
 #GlitcherShards {
+    width: 1000px;
+    opacity: .2;
+    right: 0;
+    bottom: 0;
+}
+#GlitcherSparkle {
+    width: 900px;
+    opacity: .2;
+    right: 0;
+    bottom: 0
+}
+#GlitcherShards2 {
+    width: 800px;
+    opacity: 1;
+    right: 0;
+    bottom: 0;
+}
+#GlitcherHexagonBorders {
+    width: 700px;
+    opacity: .5;
+    right: 0;
+    bottom: 0;
+}
+#GlitcherHexagonSpiked {
     width: 500px;
+    opacity: .5;
+    right: 0;
+    bottom: 0;
 }

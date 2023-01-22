@@ -24,6 +24,7 @@
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%,-50%);
+                z-index: 99999;
                 position: absolute
             }
         </style>
@@ -42,13 +43,17 @@
     <div class="Anim-Object" id="Bottom-Rect"   style="z-index: 4;"></div>
     <div class="Anim-Object" id="Bottom-Rect-2" style="z-index: 3;"></div>
     <div class="Anim-Object" id="Object-1"      style="z-index: 5;">
-        <h1>Glitcher Mode</h1>
+        <h1 id="Text-GlitcherMode">Glitcher Mode</h1>
     </div>
     <div class="Anim-Object" id="Object-2" style="z-index: 5;">
-        <h1>Star Glitcher</h1>
+        <h1 id="Text-StarGlitcher">Star Glitcher</h1>
     </div>
     <!--UI Images-->
-    <!-- <img src="./assets/StarGlitcher/GlitcherShards.png" alt="" id="GlitcherShards"> -->
+    <img src="./assets/StarGlitcher/Black/GlitcherShards.png" alt="" id="GlitcherShards">
+    <img src="./assets/StarGlitcher/Black/Sparkle.png" alt="" id="GlitcherSparkle">
+    <img src="./assets/StarGlitcher/Black/JSAB_HexagonSpiked.png" alt="" id="GlitcherHexagonSpiked">
+    <img src="./assets/StarGlitcher/Black/JSAB_HexagonBorders.png" alt="" id="GlitcherHexagonBorders">
+    <img src="./assets/StarGlitcher/Black/GlitcherShards.png" alt="" id="GlitcherShards2">
     <!---->
     <script src="./UI.js" type="module"></script>
 </body>

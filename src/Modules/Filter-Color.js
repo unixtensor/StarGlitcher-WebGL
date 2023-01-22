@@ -4,9 +4,7 @@
     https://stackoverflow.com/questions/42966641/how-to-transform-black-into-any-given-color-using-only-css-filters/43960991#43960991
 */
 
-import * as cMath from './cMath.js'
-
-class Color {
+export class Color {
   constructor(r, g, b) {
     this.set(r, g, b);
   }
@@ -147,11 +145,16 @@ class Color {
   }
 
   clamp(value) {
-    return cMath.E_clamp(0, value, 255);
+    if (value > 255) {
+      value = 255;
+    } else if (value < 0) {
+      value = 0;
+    }
+    return value;
   }
 }
 
-class Solver {
+export class Solver {
   constructor(target, baseColor) {
     this.target = target;
     this.targetHSL = target.hsl();
@@ -274,53 +277,6 @@ class Solver {
     function fmt(idx, multiplier = 1) {
       return Math.round(filters[idx] * multiplier);
     }
-    return `filter: invert(${fmt(0)}%) sepia(${fmt(1)}%) saturate(${fmt(2)}%) hue-rotate(${fmt(3, 3.6)}deg) brightness(${fmt(4)}%) contrast(${fmt(5)}%);`;
+    return `invert(${fmt(0)}%) sepia(${fmt(1)}%) saturate(${fmt(2)}%) hue-rotate(${fmt(3, 3.6)}deg) brightness(${fmt(4)}%) contrast(${fmt(5)}%)`;
   }
 }
-
-export function hexToRgb(hex) {
-  // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
-  const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-  hex = hex.replace(shorthandRegex, (m, r, g, b) => {
-    return r + r + g + g + b + b;
-  });
-
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result
-    ? [
-      parseInt(result[1], 16),
-      parseInt(result[2], 16),
-      parseInt(result[3], 16),
-    ]
-    : null;
-}
-
-// $(document).ready(() => {
-//   $('button.execute').click(() => {
-//     const rgb = hexToRgb($('input.target').val());
-//     if (rgb.length !== 3) {
-//       alert('Invalid format!');
-//       return;
-//     }
-
-//     const color = new Color(rgb[0], rgb[1], rgb[2]);
-//     const solver = new Solver(color);
-//     const result = solver.solve();
-
-//     let lossMsg;
-//     if (result.loss < 1) {
-//       lossMsg = 'This is a perfect result.';
-//     } else if (result.loss < 5) {
-//       lossMsg = 'The is close enough.';
-//     } else if (result.loss < 15) {
-//       lossMsg = 'The color is somewhat off. Consider running it again.';
-//     } else {
-//       lossMsg = 'The color is extremely off. Run it again!';
-//     }
-
-//     $('.realPixel').css('background-color', color.toString());
-//     $('.filterPixel').attr('style', result.filter);
-//     $('.filterDetail').text(result.filter);
-//     $('.lossDetail').html(`Loss: ${result.loss.toFixed(1)}. <b>${lossMsg}</b>`);
-//   });
-// });

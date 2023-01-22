@@ -32,7 +32,7 @@ export function set_POS(OBJ, C_DATA) {
 
 	OBJ.style.left = C_DATA.NEW_X+'px'
 	OBJ.style.top  = C_DATA.NEW_Y+'px'
-	OBJ.style.position = 'absolute'
+    OBJ.style.setProperty("position", "absolute", "important")
 
 	return {
         X: C_DATA.NEW_X, x: C_DATA.NEW_X,
@@ -71,7 +71,7 @@ export function set_POS_Relative(OBJ, C_DATA) {
 	const w_yM = window.innerHeight-win_Offset-C_DATA.NEW_Y
 	OBJ.style.left = w_xM+'px'
 	OBJ.style.top  = w_yM+'px'
-	OBJ.style.position = 'absolute'
+    OBJ.style.setProperty("position", "absolute", "important")
 
 	return {
         X: w_xM, x: w_xM,
