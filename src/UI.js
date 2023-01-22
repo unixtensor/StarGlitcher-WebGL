@@ -20,6 +20,13 @@ export let GlitcherSparkle        = document.getElementById("GlitcherSparkle")
 export let GlitcherHexagonBorders = document.getElementById("GlitcherHexagonBorders")
 export let GlitcherHexagonSpiked  = document.getElementById("GlitcherHexagonSpiked")
 
+const GlitchMode = document.getElementById("Text-GlitcherMode")
+
+// This must be called before animations and placing - Note to self for later
+// document.querySelectorAll("div, h1, img").forEach((value) => {
+//     value.style.display = "block"
+// })
+
 // Pre-Init Sizing
 // Object's (Animating UI frames) are not needed here since they rely using relative positioning inside their fps loop.
 let w_x = window.innerWidth-UI_V.win_Offset
@@ -109,10 +116,11 @@ let delta = 0
 
 function UI_FPS() {
 	setTimeout(() => {
-		delta+=1
+        const l = GlitchMode.innerHTML.length
+        delta+=1
 		UI_V.set_POS_Relative(Object_1, {
-			NEW_X: cMath.lerp(980, Math.cos(delta/130)*20, .5),
-			NEW_Y: cMath.lerp(200, Math.sin(delta/230)*10, .5)
+			NEW_X: cMath.lerp((1400-(l+100)), Math.cos(delta/130)*20, .5),
+			NEW_Y: cMath.lerp(250, Math.sin(delta/230)*10, .5)
 		})
 		UI_V.set_ROT(Object_1, {
 			RAD: cMath.rad(3*Math.cos(delta/200))
@@ -156,5 +164,4 @@ function UI_FPS() {
 }
 
 UI_FPS()
-
 UIGlitcherTheme.ChangeModeOfGlitch(ModesOfGlitch.default[0])

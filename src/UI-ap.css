@@ -1,6 +1,5 @@
 :root {
     --stroke-outline: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
-
     --__NULL_MODE:     rgb(0,0,0);
     --__NULL_MODE_a:   rgb(0,0,0,.5);
     --__NULL_MODE_ALT: rgb(255,255,255);
@@ -28,7 +27,7 @@ h1 {
 
 #Object-1 {
     height: 80px;
-    width: 500px;
+    width: 1000px;
     right: 0;
     bottom: 0;
 }
@@ -40,6 +39,7 @@ h1 {
     bottom: 0;
 }
 #Text-GlitcherMode {
+    font-size: 40px;
     color: var(--__NULL_MODE);
     text-shadow: -3px 0 var(--__NULL_MODE_ALT), 0 3px var(--__NULL_MODE_ALT), 3px 0 var(--__NULL_MODE_ALT), 0 -3px var(--__NULL_MODE_ALT);
 }
@@ -102,4 +102,8 @@ h1 {
     opacity: .5;
     right: 0;
     bottom: 0;
+}
+
+div, h1, img {
+    display: none;
 }
