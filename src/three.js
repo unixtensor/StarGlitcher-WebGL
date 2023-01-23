@@ -5,7 +5,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 const Scene = new THREE.Scene()
 const Camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, .1, 1000)
 
-const Renderer = new THREE.WebGLRenderer({antialias: true})
+const Renderer = new THREE.WebGLRenderer({antialias: false})
 Renderer.setPixelRatio(window.devicePixelRatio)
 Renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(Renderer.domElement)
