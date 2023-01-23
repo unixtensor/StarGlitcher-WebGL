@@ -4,7 +4,7 @@
     https://stackoverflow.com/questions/42966641/how-to-transform-black-into-any-given-color-using-only-css-filters/43960991#43960991
 */
 
-export class Color {
+class Color {
   constructor(r, g, b) {
     this.set(r, g, b);
   }
@@ -154,7 +154,7 @@ export class Color {
   }
 }
 
-export class Solver {
+class Solver {
   constructor(target, baseColor) {
     this.target = target;
     this.targetHSL = target.hsl();
@@ -279,4 +279,9 @@ export class Solver {
     }
     return `invert(${fmt(0)}%) sepia(${fmt(1)}%) saturate(${fmt(2)}%) hue-rotate(${fmt(3, 3.6)}deg) brightness(${fmt(4)}%) contrast(${fmt(5)}%)`;
   }
+}
+
+export function ColorPNG(R, G, B) {
+    const pColor = new Color(R, G, B)
+    return new Solver(pColor).solve().filter
 }

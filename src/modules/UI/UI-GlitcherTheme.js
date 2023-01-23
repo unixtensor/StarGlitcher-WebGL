@@ -1,5 +1,5 @@
 import * as UI from '../../UI.js'
-import { Color, Solver } from './Filter-Color.js'
+import * as FilterColor from './Filter-Color.js'
 
 export function ChangeModeOfGlitch(DATA_PROPS) {
     const P_Color = DATA_PROPS.PrimaryColor
@@ -25,14 +25,13 @@ export function ChangeModeOfGlitch(DATA_PROPS) {
     UI.Text_GlitcherMode.innerHTML = DATA_PROPS.Name.toUpperCase()
 
     // Turn PNG's colorful
-    const P_Color_filter_c = new Color(P_Color[0], P_Color[1], P_Color[2])
-    const S_Color_filter_c = new Color(S_Color[0], S_Color[1], S_Color[2])
-    const P_Color_filter   = new Solver(P_Color_filter_c).solve()
-    const S_Color_filter   = new Solver(S_Color_filter_c).solve()
+    const P_Color_filter = FilterColor.ColorPNG(P_Color[0], P_Color[1], P_Color[2])
+    const S_Color_filter = FilterColor.ColorPNG(S_Color[0], S_Color[1], S_Color[2])
+    console.log(P_Color_filter)
 
-    UI.GlitcherShards.style.filter         = S_Color_filter.filter
-    UI.GlitcherShards2.style.filter        = P_Color_filter.filter
-    UI.GlitcherSparkle.style.filter        = S_Color_filter.filter
-    UI.GlitcherHexagonBorders.style.filter = S_Color_filter.filter
-    UI.GlitcherHexagonSpiked.style.filter  = P_Color_filter.filter
+    UI.GlitcherShards.style.filter         = S_Color_filter
+    UI.GlitcherShards2.style.filter        = P_Color_filter
+    UI.GlitcherSparkle.style.filter        = S_Color_filter
+    UI.GlitcherHexagonBorders.style.filter = S_Color_filter
+    UI.GlitcherHexagonSpiked.style.filter  = P_Color_filter
 }
