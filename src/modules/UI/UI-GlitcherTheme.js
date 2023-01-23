@@ -27,7 +27,6 @@ export function ChangeModeOfGlitch(DATA_PROPS) {
     // Turn PNG's colorful
     const P_Color_filter = FilterColor.ColorPNG(P_Color[0], P_Color[1], P_Color[2])
     const S_Color_filter = FilterColor.ColorPNG(S_Color[0], S_Color[1], S_Color[2])
-    console.log(P_Color_filter)
 
     UI.GlitcherShards.style.filter         = S_Color_filter
     UI.GlitcherShards2.style.filter        = P_Color_filter
