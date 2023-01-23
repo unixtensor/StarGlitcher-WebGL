@@ -1,4 +1,4 @@
-import * as Shared from '../Shared.js'
+import * as Shared from '../Shared'
 
 export let win_Offset = 3 // Usually a good offset for browser true size is 3
 
