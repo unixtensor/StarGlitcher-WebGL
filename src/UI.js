@@ -33,7 +33,8 @@ document.querySelectorAll("div, h1, img").forEach((value) => {
 // Object's (Animating UI frames) are not needed here since they rely using relative positioning inside their fps loop.
 let w_x = window.innerWidth-UI_V.win_Offset
 let w_y = window.innerHeight-UI_V.win_Offset
-window.onresize = () => {
+
+window.addEventListener("resize", () => {
 	w_x = window.innerWidth-UI_V.win_Offset
 	w_y = window.innerHeight-UI_V.win_Offset
 
@@ -74,7 +75,7 @@ window.onresize = () => {
         NEW_X: w_x-350,
         NEW_Y: w_y-350
     })
-}
+})
 BottomBar.style.width = w_x+'px'
 BottomBar_2.style.width = w_x+'px'
 
@@ -148,21 +149,21 @@ function UI_FPS() {
         RAD: cMath.rad((delta*SpinRate)/3)
     })
     UI_V.set_ROT(GlitcherShards, {
-        RAD: cMath.rad((delta*SpinRate)/5)
+        RAD: cMath.rad((delta*SpinRate)/4)
     })
     UI_V.set_ROT(GlitcherShards2, {
-        RAD: cMath.rad(-(delta*SpinRate)/5)
+        RAD: cMath.rad(-(delta*SpinRate)/4)
     })
     UI_V.set_ROT(GlitcherSparkle, {
-        RAD: cMath.rad((delta*SpinRate)/5)
+        RAD: cMath.rad((delta*SpinRate)/4)
     })
     UI_V.set_ROT(GlitcherHexagonBorders, {
-        RAD: cMath.rad((delta*SpinRate)/5)
+        RAD: cMath.rad((delta*SpinRate)/4)
     })
     UI_V.set_ROT(GlitcherHexagonSpiked, {
-        RAD: cMath.rad(-(delta*SpinRate)/5)
+        RAD: cMath.rad(-(delta*SpinRate)/4)
     })
 }
 
 UI_FPS()
-UIGlitcherTheme.ChangeModeOfGlitch(ModesOfGlitch.default[0])
+UIGlitcherTheme.ChangeModeOfGlitch(ModesOfGlitch.default[1])
