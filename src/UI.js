@@ -38,8 +38,8 @@ window.addEventListener("resize", () => {
 	w_x = window.innerWidth-UI_V.win_Offset
 	w_y = window.innerHeight-UI_V.win_Offset
 
-	BottomBar.style.width = w_x+'px'
-    BottomBar_2.style.width = w_x+'px'
+	BottomBar.style.width   = `${w_x}px`
+    BottomBar_2.style.width = `${w_x}px`
 
     UI_V.set_POS(BottomBar, {
         NEW_Y: w_y-50,
@@ -76,8 +76,8 @@ window.addEventListener("resize", () => {
         NEW_Y: w_y-350
     })
 })
-BottomBar.style.width = w_x+'px'
-BottomBar_2.style.width = w_x+'px'
+BottomBar.style.width   = `${w_x}px`
+BottomBar_2.style.width = `${w_x}px`
 
 UI_V.set_POS(BottomBar, {
     NEW_Y: w_y-50,

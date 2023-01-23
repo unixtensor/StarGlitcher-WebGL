@@ -30,8 +30,8 @@ export function set_POS(OBJ, C_DATA) {
 	C_DATA.NEW_X = Shared.s_Circuit(C_DATA.NEW_X, get_POS(OBJ).X)
 	C_DATA.NEW_Y = Shared.s_Circuit(C_DATA.NEW_Y, get_POS(OBJ).Y)
 
-	OBJ.style.left = C_DATA.NEW_X+'px'
-	OBJ.style.top  = C_DATA.NEW_Y+'px'
+	OBJ.style.left = `${C_DATA.NEW_X}px`
+	OBJ.style.top =  `${C_DATA.NEW_Y}px`
     OBJ.style.setProperty("position", "absolute", "important")
 
 	return {
@@ -49,7 +49,8 @@ export function set_POS(OBJ, C_DATA) {
  */
 export function set_ROT(OBJ, R_DATA) {
 	R_DATA.RAD = Shared.s_Circuit(R_DATA.RAD, '0')
-	OBJ.style.transform = 'rotate('+R_DATA.RAD+'rad)'
+	
+	OBJ.style.transform = `rotate(${R_DATA.RAD}rad)`
 
 	return {
         R: R_DATA.RAD, r: R_DATA.RAD
@@ -69,8 +70,8 @@ export function set_POS_Relative(OBJ, C_DATA) {
 
 	const w_xM = window.innerWidth-win_Offset-C_DATA.NEW_X
 	const w_yM = window.innerHeight-win_Offset-C_DATA.NEW_Y
-	OBJ.style.left = w_xM+'px'
-	OBJ.style.top  = w_yM+'px'
+	OBJ.style.left = `${w_xM}px`
+	OBJ.style.top  = `${w_yM}px`
     OBJ.style.setProperty("position", "absolute", "important")
 
 	return {
