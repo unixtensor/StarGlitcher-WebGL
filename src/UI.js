@@ -1,7 +1,7 @@
-import * as UI_V from './modules/UI/UI-Vector.js'
-import * as cMath from './modules/cMath.js'
-import * as ModesOfGlitch from './modules/ModesOfGlitch.js'
-import * as UIGlitcherTheme from './modules/UI/UI-GlitcherTheme.js'
+import * as UI_V from './modules/UI/UI-Vector'
+import * as cMath from './modules/cMath'
+import * as ModesOfGlitch from './modules/ModesOfGlitch'
+import * as UIGlitcherTheme from './modules/UI/UI-GlitcherTheme'
 
 export let Object_1 = document.getElementById("Object-1")
 export let Object_2 = document.getElementById("Object-2")

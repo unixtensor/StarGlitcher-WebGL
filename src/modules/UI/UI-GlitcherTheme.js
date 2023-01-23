@@ -1,5 +1,5 @@
-import * as UI from '../../UI.js'
-import * as FilterColor from './Filter-Color.js'
+import * as UI from '../../UI'
+import * as FilterColor from './Filter-Color'
 
 export function ChangeModeOfGlitch(DATA_PROPS) {
     const P_Color = DATA_PROPS.PrimaryColor
@@ -25,6 +25,7 @@ export function ChangeModeOfGlitch(DATA_PROPS) {
     UI.Text_GlitcherMode.innerHTML = DATA_PROPS.Name.toUpperCase()
 
     // Turn PNG's colorful
+    // Uncaught ReferenceError: can't access lexical declaration 'Color' before initialization
     const P_Color_filter = FilterColor.ColorPNG(P_Color[0], P_Color[1], P_Color[2])
     const S_Color_filter = FilterColor.ColorPNG(S_Color[0], S_Color[1], S_Color[2])
 
