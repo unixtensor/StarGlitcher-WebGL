@@ -41,77 +41,77 @@ window.addEventListener("resize", () => {
 	BottomBar.style.width   = `${w_x}px`
     BottomBar_2.style.width = `${w_x}px`
 
-    UI_V.set_POS(BottomBar, {
-        NEW_Y: w_y-50,
+    UI_V.Vector2(BottomBar, {
+        Y: w_y-50,
     })
-    UI_V.set_POS(BottomBar_2, {
-        NEW_Y: w_y-140
+    UI_V.Vector2(BottomBar_2, {
+        Y: w_y-140
     })
-    UI_V.set_POS(Bottom_Rect, {
-        NEW_X: w_x/2.03,
-        NEW_Y: w_y-BottomBar.offsetHeight*1.1
+    UI_V.Vector2(Bottom_Rect, {
+        X: w_x/2.03,
+        Y: w_y-BottomBar.offsetHeight*1.1
     })
-    UI_V.set_POS(Bottom_Rect_2, {
-        NEW_X: w_x/2.07,
-        NEW_Y: w_y-BottomBar.offsetHeight*1.3
+    UI_V.Vector2(Bottom_Rect_2, {
+        X: w_x/2.07,
+        Y: w_y-BottomBar.offsetHeight*1.3
     })
-    UI_V.set_POS(GlitcherShards, {
-        NEW_X: w_x-600,
-        NEW_Y: w_y-580
+    UI_V.Vector2(GlitcherShards, {
+        X: w_x-600,
+        Y: w_y-580
     })
-    UI_V.set_POS(GlitcherShards2, {
-        NEW_X: w_x-500,
-        NEW_Y: w_y-480
+    UI_V.Vector2(GlitcherShards2, {
+        X: w_x-500,
+        Y: w_y-480
     })
-    UI_V.set_POS(GlitcherSparkle, {
-        NEW_X: w_x-550,
-        NEW_Y: w_y-550
+    UI_V.Vector2(GlitcherSparkle, {
+        X: w_x-550,
+        Y: w_y-550
     })
-    UI_V.set_POS(GlitcherHexagonBorders, {
-        NEW_X: w_x-450,
-        NEW_Y: w_y-450
+    UI_V.Vector2(GlitcherHexagonBorders, {
+        X: w_x-450,
+        Y: w_y-450
     })
-    UI_V.set_POS(GlitcherHexagonSpiked, {
-        NEW_X: w_x-350,
-        NEW_Y: w_y-350
+    UI_V.Vector2(GlitcherHexagonSpiked, {
+        X: w_x-350,
+        Y: w_y-350
     })
 })
 BottomBar.style.width   = `${w_x}px`
 BottomBar_2.style.width = `${w_x}px`
 
-UI_V.set_POS(BottomBar, {
-    NEW_Y: w_y-50,
+UI_V.Vector2(BottomBar, {
+    Y: w_y-50,
 })
-UI_V.set_POS(BottomBar_2, {
-    NEW_Y: w_y-140
+UI_V.Vector2(BottomBar_2, {
+    Y: w_y-140
 })
-UI_V.set_POS(Bottom_Rect, {
-	NEW_X: w_x/2.03,
-	NEW_Y: w_y-BottomBar.offsetHeight*1.1
+UI_V.Vector2(Bottom_Rect, {
+	X: w_x/2.03,
+	Y: w_y-BottomBar.offsetHeight*1.1
 })
-UI_V.set_POS(Bottom_Rect_2, {
-	NEW_X: w_x/2.07,
-	NEW_Y: w_y-BottomBar.offsetHeight*1.3
+UI_V.Vector2(Bottom_Rect_2, {
+	X: w_x/2.07,
+	Y: w_y-BottomBar.offsetHeight*1.3
 })
-UI_V.set_POS(GlitcherShards, {
-    NEW_X: w_x-600,
-    NEW_Y: w_y-580
+UI_V.Vector2(GlitcherShards, {
+    X: w_x-600,
+    Y: w_y-580
 })
-UI_V.set_POS(GlitcherShards2, {
-    NEW_X: w_x-500,
-    NEW_Y: w_y-480
+UI_V.Vector2(GlitcherShards2, {
+    X: w_x-500,
+    Y: w_y-480
 })
-UI_V.set_POS(GlitcherSparkle, {
-    NEW_X: w_x-550,
-    NEW_Y: w_y-550
+UI_V.Vector2(GlitcherSparkle, {
+    X: w_x-550,
+    Y: w_y-550
 })
-UI_V.set_POS(GlitcherHexagonBorders, {
-    NEW_X: w_x-450,
-    NEW_Y: w_y-450
+UI_V.Vector2(GlitcherHexagonBorders, {
+    X: w_x-450,
+    Y: w_y-450
 })
-UI_V.set_POS(GlitcherHexagonSpiked, {
-    NEW_X: w_x-350,
-    NEW_Y: w_y-350
+UI_V.Vector2(GlitcherHexagonSpiked, {
+    X: w_x-350,
+    Y: w_y-350
 })
 // ---
 
@@ -121,46 +121,46 @@ function UI_FPS() {
      setTimeout(() => {
         delta+=1
         const l = GlitchMode.innerHTML.length
-        UI_V.set_POS_Relative(Object_1, {
-            NEW_X: cMath.lerp((1400-(l+100)), Math.cos(delta/80)*20, .5),
-            NEW_Y: cMath.lerp(250, Math.sin(delta/80)*10, .5)
+        UI_V.Vector2rel(Object_1, {
+            X: cMath.lerp((1400-(l+100)), Math.cos(delta/80)*20, .5),
+            Y: cMath.lerp(250, Math.sin(delta/80)*10, .5)
         })
-        UI_V.set_ROT(Object_1, {
-            RAD: cMath.rad(3*Math.cos(delta/100))
+        UI_V.Rotate_RAD(Object_1, {
+            R: cMath.rad(3*Math.cos(delta/100))
         })
-        UI_V.set_POS_Relative(Object_2, {
-            NEW_X: cMath.lerp(w_x+400, Math.sin(delta/80)*20, .5),
-            NEW_Y: cMath.lerp(310, Math.cos(delta/80)*15, .5)
+        UI_V.Vector2rel(Object_2, {
+            X: cMath.lerp(w_x+400, Math.sin(delta/80)*20, .5),
+            Y: cMath.lerp(310, Math.cos(delta/80)*15, .5)
         })
-        UI_V.set_ROT(Object_2, {
-            RAD: cMath.rad(3*Math.sin(delta/200))
+        UI_V.Rotate_RAD(Object_2, {
+            R: cMath.rad(3*Math.sin(delta/200))
         })
-        UI_V.set_ROT(BottomBar, {
-            RAD: cMath.rad(.8*Math.cos(delta/80))
+        UI_V.Rotate_RAD(BottomBar, {
+            R: cMath.rad(.8*Math.cos(delta/80))
         })
-        UI_V.set_ROT(BottomBar_2, {
-            RAD: cMath.rad(.8*Math.sin(delta/80))
+        UI_V.Rotate_RAD(BottomBar_2, {
+            R: cMath.rad(.8*Math.sin(delta/80))
         })
-        UI_V.set_ROT(Bottom_Rect, {
-            RAD: cMath.rad(-(delta*SpinRate)/3)
+        UI_V.Rotate_RAD(Bottom_Rect, {
+            R: cMath.rad(-(delta*SpinRate)/3)
         })
-        UI_V.set_ROT(Bottom_Rect_2, {
-            RAD: cMath.rad((delta*SpinRate)/3)
+        UI_V.Rotate_RAD(Bottom_Rect_2, {
+            R: cMath.rad((delta*SpinRate)/3)
         })
-        UI_V.set_ROT(GlitcherShards, {
-            RAD: cMath.rad((delta*SpinRate)/4)
+        UI_V.Rotate_RAD(GlitcherShards, {
+            R: cMath.rad((delta*SpinRate)/4)
         })
-        UI_V.set_ROT(GlitcherShards2, {
-            RAD: cMath.rad(-(delta*SpinRate)/4)
+        UI_V.Rotate_RAD(GlitcherShards2, {
+            R: cMath.rad(-(delta*SpinRate)/4)
         })
-        UI_V.set_ROT(GlitcherSparkle, {
-            RAD: cMath.rad((delta*SpinRate)/4)
+        UI_V.Rotate_RAD(GlitcherSparkle, {
+            R: cMath.rad((delta*SpinRate)/4)
         })
-        UI_V.set_ROT(GlitcherHexagonBorders, {
-            RAD: cMath.rad((delta*SpinRate)/4)
+        UI_V.Rotate_RAD(GlitcherHexagonBorders, {
+            R: cMath.rad((delta*SpinRate)/4)
         })
-        UI_V.set_ROT(GlitcherHexagonSpiked, {
-            RAD: cMath.rad(-(delta*SpinRate)/4)
+        UI_V.Rotate_RAD(GlitcherHexagonSpiked, {
+            R: cMath.rad(-(delta*SpinRate)/4)
         })
         UI_FPS()
     }, 1)
