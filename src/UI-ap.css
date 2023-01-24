@@ -52,6 +52,7 @@ h1 {
     bottom: 0;
     left: 0;
     height: 150px;
+    z-index: 2;
 }
 #Bottom-Bar-2 {
     border: 2px solid var(--__NULL_MODE);
@@ -59,18 +60,21 @@ h1 {
     bottom: 0;
     left: 0;
     height: 100px;
+    z-index: 3;
 }
 #Bottom-Rect {
     background-color: var(--__NULL_MODE_ALT_a);
     border: 3px solid var(--__NULL_MODE);
     height: 45px;
     width: 45px;
+    z-index: 5;
 }
 #Bottom-Rect-2 {
     background-color: var(--__NULL_MODE_ALT_a);
     border: 3px solid var(--__NULL_MODE);
     height: 90px;
     width: 90px;
+    z-index: 4;
 }
 #GlitcherShards {
     width: 1000px;
