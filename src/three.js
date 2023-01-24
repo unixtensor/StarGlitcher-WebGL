@@ -20,24 +20,29 @@ const AxesHelper = new THREE.AxesHelper(20)
 Scene.add(AxesHelper)
 
 // Star Glitcher assets
+let Wing = './assets/3D/gltf/Wing.gltf'
+let Wings = {Left: [], Right: []}
 const GLTF_Importer = new GLTFLoader()
 
-GLTF_Importer.load('./assets/3D/gltf/Wing.gltf', (gltf_obj) => {
-    const Material = new THREE.MeshStandardMaterial({color: 0xff0000})
-    const gltf_Mesh = gltf_obj.scene
-
-    gltf_Mesh.traverse((obj) => {
-        if (obj.isMesh) {
-            obj.material = Material
-        }
+async function CreateWing(Side) {
+    let Object
+    const LoadWing = new Promise((resolve, reason) => {
+        GLTF_Importer.load(Wing, (gltf_obj) => {
+            const Material = new THREE.MeshStandardMaterial({color: 0xff0000})
+            const gltf_Mesh = gltf_obj.scene
+            
+            Object = gltf_obj
+            gltf_Mesh.traverse((obj) => {
+                if (obj.isMesh) {
+                    obj.material = Material
+                }
+            })
+            Scene.add(gltf_Mesh)
+        }) 
     })
-    Scene.add(gltf_Mesh)
-})
-
-let Wings = {
-    Left: [],
-    Right: []
+    return Object
 }
+const Wing1 = await CreateWing(Wings.Left)
 // --
 
 Camera.position.set(-20.4, 4.7, 0.1)
