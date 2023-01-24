@@ -122,45 +122,45 @@ function UI_FPS() {
         delta+=1
         const l = GlitchMode.innerHTML.length
         UI_V.Vector2rel(Object_1, {
-            X: cMath.lerp((1400-(l+100)), Math.cos(delta/80)*20, .5),
-            Y: cMath.lerp(250, Math.sin(delta/80)*10, .5)
+            X: cMath.lerp((1400-(l+100)), Math.cos(delta/120)*20, .5),
+            Y: cMath.lerp(250, Math.sin(delta/120)*10, .5)
         })
         UI_V.Rotate_RAD(Object_1, {
             R: cMath.rad(3*Math.cos(delta/100))
         })
         UI_V.Vector2rel(Object_2, {
-            X: cMath.lerp(w_x+400, Math.sin(delta/80)*20, .5),
-            Y: cMath.lerp(310, Math.cos(delta/80)*15, .5)
+            X: cMath.lerp(w_x+400, Math.sin(delta/200)*20, .5),
+            Y: cMath.lerp(310, Math.cos(delta/200)*15, .5)
         })
         UI_V.Rotate_RAD(Object_2, {
             R: cMath.rad(3*Math.sin(delta/200))
         })
         UI_V.Rotate_RAD(BottomBar, {
-            R: cMath.rad(.8*Math.cos(delta/80))
+            R: cMath.rad(.8*Math.cos(delta/120))
         })
         UI_V.Rotate_RAD(BottomBar_2, {
-            R: cMath.rad(.8*Math.sin(delta/80))
+            R: cMath.rad(.8*Math.sin(delta/120))
         })
         UI_V.Rotate_RAD(Bottom_Rect, {
-            R: cMath.rad(-(delta*SpinRate)/3)
+            R: cMath.rad(-(delta*SpinRate)/4)
         })
         UI_V.Rotate_RAD(Bottom_Rect_2, {
-            R: cMath.rad((delta*SpinRate)/3)
+            R: cMath.rad((delta*SpinRate)/4)
         })
         UI_V.Rotate_RAD(GlitcherShards, {
-            R: cMath.rad((delta*SpinRate)/4)
+            R: cMath.rad((delta*SpinRate)/6)
         })
         UI_V.Rotate_RAD(GlitcherShards2, {
-            R: cMath.rad(-(delta*SpinRate)/4)
+            R: cMath.rad(-(delta*SpinRate)/6)
         })
         UI_V.Rotate_RAD(GlitcherSparkle, {
-            R: cMath.rad((delta*SpinRate)/4)
+            R: cMath.rad((delta*SpinRate)/6)
         })
         UI_V.Rotate_RAD(GlitcherHexagonBorders, {
-            R: cMath.rad((delta*SpinRate)/4)
+            R: cMath.rad((delta*SpinRate)/6)
         })
         UI_V.Rotate_RAD(GlitcherHexagonSpiked, {
-            R: cMath.rad(-(delta*SpinRate)/4)
+            R: cMath.rad(-(delta*SpinRate)/6)
         })
         UI_FPS()
     }, 1)
