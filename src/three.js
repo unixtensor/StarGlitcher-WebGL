@@ -11,43 +11,48 @@ Renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(Renderer.domElement)
 
 const GridHelper = new THREE.GridHelper(200, 50)
-Scene.add(GridHelper)
-
 const AmbientLight = new THREE.AmbientLight(0xffffff)
-Scene.add(AmbientLight)
-
 const AxesHelper = new THREE.AxesHelper(20)
-Scene.add(AxesHelper)
+
+const Controls = new OrbitControls(Camera, Renderer.domElement)
 
 // Star Glitcher assets
 let Wing = './assets/3D/gltf/Wing.gltf'
 let Wings = {Left: [], Right: []}
 const GLTF_Importer = new GLTFLoader()
 
-async function CreateWing(Side) {
-    let Object
-    const LoadWing = new Promise((resolve, reason) => {
-        GLTF_Importer.load(Wing, (gltf_obj) => {
-            const Material = new THREE.MeshStandardMaterial({color: 0xff0000})
-            const gltf_Mesh = gltf_obj.scene
-            
-            Object = gltf_obj
-            gltf_Mesh.traverse((obj) => {
-                if (obj.isMesh) {
-                    obj.material = Material
-                }
-            })
-            Scene.add(gltf_Mesh)
-        }) 
+GLTF_Importer.load(Wing, (gltf_obj) => {
+    const Material = new THREE.MeshStandardMaterial({color: 0xff0000})
+    const gltf_Mesh = gltf_obj.scene
+    
+    gltf_Mesh.traverse((obj) => {
+        if (obj.isMesh) {
+            obj.material = Material
+        }
     })
-    return Object
-}
-const Wing1 = await CreateWing(Wings.Left)
+    Scene.add(gltf_Mesh)
+})
+
+GLTF_Importer.load(Wing, (gltf_obj) => {
+    const Material = new THREE.MeshStandardMaterial({color: 0xff0000})
+    const gltf_Mesh = gltf_obj.scene
+    
+    gltf_Mesh.traverse((obj) => {
+        if (obj.isMesh) {
+            obj.material = Material
+        }
+    })
+    Scene.add(gltf_Mesh)
+})
 // --
 
-Camera.position.set(-20.4, 4.7, 0.1)
+Scene.add(
+    GridHelper,
+    AmbientLight,
+    AxesHelper
+)
 
-const Controls = new OrbitControls(Camera, Renderer.domElement)
+Camera.position.set(-20.4, 4.7, 0.1)
 
 Renderer.setAnimationLoop((deltaTime) => {
     Controls.update()

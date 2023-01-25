@@ -8,5 +8,10 @@ export default {
         Name: 'Purity',
         PrimaryColor: [255,255,255],
         SecondaryColor: [0,255,255]
+    },
+    [2]: {
+        Name: 'SHD',
+        PrimaryColor: [191,229,255],
+        SecondaryColor: [255,102,204]
     }
 }
