@@ -29,6 +29,7 @@ h1 {
     width: 1000px;
     right: 0;
     bottom: 0;
+    z-index: 5;
 }
 #Object-2 {
     height: 100px;
@@ -36,6 +37,7 @@ h1 {
     right: 0;
     left: 0;
     bottom: 0;
+    z-index: 5;
 }
 #Text-GlitcherMode {
     font-size: 40px;
