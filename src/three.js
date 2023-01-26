@@ -2,25 +2,26 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
-const Scene = new THREE.Scene()
-const Camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, .1, 1000)
-
 const Renderer = new THREE.WebGLRenderer({antialias: false})
 Renderer.setPixelRatio(window.devicePixelRatio)
 Renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(Renderer.domElement)
 
-const GridHelper = new THREE.GridHelper(200, 50)
+const Scene  = new THREE.Scene()
+const Camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, .1, 1000)
+
+const GridHelper   = new THREE.GridHelper(200, 50)
 const AmbientLight = new THREE.AmbientLight(0xffffff)
-const AxesHelper = new THREE.AxesHelper(20)
+const AxesHelper   = new THREE.AxesHelper(20)
 
 const Controls = new OrbitControls(Camera, Renderer.domElement)
 
 // Star Glitcher assets
-let Wing = './assets/3D/gltf/Wing.gltf'
-let Wings = {Left: [], Right: []}
+const Wing = './assets/3D/gltf/Wing.gltf'
 const GLTF_Importer = new GLTFLoader()
 
+let Wings = {Left: [], Right: []}
+
 GLTF_Importer.load(Wing, (gltf_obj) => {
     const Material = new THREE.MeshStandardMaterial({color: 0xff0000})
     const gltf_Mesh = gltf_obj.scene
@@ -28,6 +29,8 @@ GLTF_Importer.load(Wing, (gltf_obj) => {
     gltf_Mesh.traverse((obj) => {
         if (obj.isMesh) {
             obj.material = Material
+
+            Wings.Left.push(obj)
         }
     })
     Scene.add(gltf_Mesh)
@@ -40,10 +43,14 @@ GLTF_Importer.load(Wing, (gltf_obj) => {
     gltf_Mesh.traverse((obj) => {
         if (obj.isMesh) {
             obj.material = Material
+
+            Wings.Left.push(obj)
         }
     })
     Scene.add(gltf_Mesh)
 })
+
+
 // --
 
 Scene.add(
