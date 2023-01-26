@@ -3,24 +3,24 @@ import * as cMath from './modules/cMath'
 import * as ModesOfGlitch from './modules/ModesOfGlitch'
 import * as UIGlitcherTheme from './modules/UI/UI-GlitcherTheme'
 
-export let Object_1 = document.getElementById("Object-1")
-export let Object_2 = document.getElementById("Object-2")
+const Object_1 = document.getElementById("Object-1")
+const Object_2 = document.getElementById("Object-2")
 
-export let Text_GlitcherMode = document.getElementById("Text-GlitcherMode")
-export let Text_StarGlitcher = document.getElementById("Text-StarGlitcher")
+const Text_GlitcherMode = document.getElementById("Text-GlitcherMode")
+const Text_StarGlitcher = document.getElementById("Text-StarGlitcher")
 
-export let BottomBar     = document.getElementById("Bottom-Bar")
-export let BottomBar_2   = document.getElementById("Bottom-Bar-2")
-export let Bottom_Rect   = document.getElementById("Bottom-Rect")
-export let Bottom_Rect_2 = document.getElementById("Bottom-Rect-2")
+const BottomBar     = document.getElementById("Bottom-Bar")
+const BottomBar_2   = document.getElementById("Bottom-Bar-2")
+const Bottom_Rect   = document.getElementById("Bottom-Rect")
+const Bottom_Rect_2 = document.getElementById("Bottom-Rect-2")
 
-export let GlitcherShards         = document.getElementById("GlitcherShards")
-export let GlitcherShards2        = document.getElementById("GlitcherShards2")
-export let GlitcherSparkle        = document.getElementById("GlitcherSparkle")
-export let GlitcherHexagonBorders = document.getElementById("GlitcherHexagonBorders")
-export let GlitcherHexagonSpiked  = document.getElementById("GlitcherHexagonSpiked")
+const GlitcherShards         = document.getElementById("GlitcherShards")
+const GlitcherShards2        = document.getElementById("GlitcherShards2")
+const GlitcherSparkle        = document.getElementById("GlitcherSparkle")
+const GlitcherHexagonBorders = document.getElementById("GlitcherHexagonBorders")
+const GlitcherHexagonSpiked  = document.getElementById("GlitcherHexagonSpiked")
 
-export let SpinRate = 1
+const SpinRate = 1
 
 const GlitchMode = document.getElementById("Text-GlitcherMode")
 
@@ -113,6 +113,8 @@ UI_V.Vector2(GlitcherHexagonSpiked, {
     X: w_x-350,
     Y: w_y-350
 })
+
+document.addEventListener('contextmenu', event => event.preventDefault())
 // ---
 
 let delta = 0
@@ -168,3 +170,19 @@ function UI_FPS() {
 
 UI_FPS()
 UIGlitcherTheme.ChangeModeOfGlitch(ModesOfGlitch.default[2])
+
+export {
+    Object_1,
+    Object_2,
+    Text_GlitcherMode,
+    Text_StarGlitcher,
+    BottomBar,
+    BottomBar_2,
+    Bottom_Rect,
+    Bottom_Rect_2,
+    GlitcherShards,
+    GlitcherShards2,
+    GlitcherSparkle,
+    GlitcherHexagonBorders,
+    GlitcherHexagonSpiked
+}

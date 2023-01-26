@@ -18,39 +18,42 @@ const Controls = new OrbitControls(Camera, Renderer.domElement)
 
 // Star Glitcher assets
 const Wing = './assets/3D/gltf/Wing.gltf'
+const Assets = {
+    WingsLeft: [],
+    WingsRight: [],
+    Ring: null
+}
+const WingColor = 0xff0000 //Default Mayhem mode color
+
 const GLTF_Importer = new GLTFLoader()
-
-let Wings = {Left: [], Right: []}
-
-GLTF_Importer.load(Wing, (gltf_obj) => {
-    const Material = new THREE.MeshStandardMaterial({color: 0xff0000})
-    const gltf_Mesh = gltf_obj.scene
-    
-    gltf_Mesh.traverse((obj) => {
-        if (obj.isMesh) {
-            obj.material = Material
-
-            Wings.Left.push(obj)
-        }
-    })
-    Scene.add(gltf_Mesh)
+await GLTF_Importer.loadAsync(Wing, (e) => {
+    console.log(e)
 })
+function CreateWing(LeftSided) {
+    let GLTF_Scene = null
+    GLTF_Importer.load(Wing, (gltf_obj) => {
+        GLTF_Scene = gltf_obj.scene
 
-GLTF_Importer.load(Wing, (gltf_obj) => {
-    const Material = new THREE.MeshStandardMaterial({color: 0xff0000})
-    const gltf_Mesh = gltf_obj.scene
-    
-    gltf_Mesh.traverse((obj) => {
-        if (obj.isMesh) {
-            obj.material = Material
-
-            Wings.Left.push(obj)
+        let Side = null
+        if (LeftSided) {
+            Side = Assets.WingsLeft
+        } else {
+            Side = Assets.WingsRight
         }
+        GLTF_Scene.traverse((Object) => {
+            if (Object.isMesh) {
+                Object.material = new THREE.MeshStandardMaterial({color: WingColor})
+                Object.position.z = 3
+                Side.push(Object)
+            }
+        })
+        Scene.add(GLTF_Scene)
     })
-    Scene.add(gltf_Mesh)
-})
+    return GLTF_Scene
+}
 
-
+const Wing1 = CreateWing(WingColor)
+console.log(Wing1)
 // --
 
 Scene.add(
@@ -71,3 +74,7 @@ window.addEventListener("resize", () => {
     Camera.updateProjectionMatrix()
     Renderer.setSize(window.innerWidth, window.innerHeight)
 })
+
+export {
+    Assets
+}
