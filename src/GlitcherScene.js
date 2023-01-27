@@ -1,8 +1,13 @@
 import * as THREE from 'three'
-import { OrbitControls } from 'three/addons/controls/OrbitControls';
-import { CreateImport } from './modules/three/GLTFImport';
+import { OrbitControls } from 'three/addons/controls/OrbitControls'
+import { CreateImport } from './modules/three/GLTFImport'
+// Engine
+import { RootObject } from './modules/three/rhpidEngine/rE_Root'
+import {} from './modules/three/rhpidEngine/rE_RootBind'
 
-const Renderer = new THREE.WebGLRenderer({antialias: false})
+const Renderer = new THREE.WebGLRenderer({
+    antialias: false
+})
 Renderer.setPixelRatio(window.devicePixelRatio)
 Renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(Renderer.domElement)
@@ -15,7 +20,7 @@ const AmbientLight = new THREE.AmbientLight(0xffffff)
 const AxesHelper   = new THREE.AxesHelper(20)
 
 const Controls = new OrbitControls(Camera, Renderer.domElement)
-Controls.enablePan = false
+Controls.enablePan   = false
 Controls.maxDistance = 150
 Controls.minDistance = 5
 
@@ -24,7 +29,7 @@ const GLTFImport = new CreateImport(Scene)
 const Assets = {
     WingsLeft: [],
     WingsRight: [],
-    Ring: null
+    Ring: null                             
 }
 const DEF_ModeColor = 0xff0000 //Mayhem
 
@@ -60,7 +65,6 @@ async function CreateRing(Color) {
         Object: RingObject
     }
 }
-
 const Ring  = await CreateRing(DEF_ModeColor)
 const Wing1 = await CreateWing(DEF_ModeColor)
 const Wing2 = await CreateWing(DEF_ModeColor)
@@ -68,6 +72,10 @@ const Wing3 = await CreateWing(DEF_ModeColor)
 const Wing4 = await CreateWing(DEF_ModeColor, true)
 const Wing5 = await CreateWing(DEF_ModeColor, true)
 const Wing6 = await CreateWing(DEF_ModeColor, true)
+
+//Create the mover for the player character
+const Mover = new RootObject(Scene, Camera).Create()
+
 
 Ring.Object.rotation.z = Math.PI/2
 Ring.Object.position.y = 1.5
