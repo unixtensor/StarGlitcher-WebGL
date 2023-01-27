@@ -169,7 +169,7 @@ function UI_FPS() {
 }
 
 UI_FPS()
-UIGlitcherTheme.ChangeModeOfGlitch(ModeOfGlitch[2])
+UIGlitcherTheme.ChangeModeOfGlitch(ModeOfGlitch[0])
 
 export {
     Object_1,
