@@ -23,36 +23,31 @@ const Assets = {
     WingsRight: [],
     Ring: null
 }
-const WingColor = 0xff0000 //Default Mayhem mode color
-
 const GLTF_Importer = new GLTFLoader()
-await GLTF_Importer.loadAsync(Wing, (e) => {
-    console.log(e)
-})
-function CreateWing(LeftSided) {
-    let GLTF_Scene = null
-    GLTF_Importer.load(Wing, (gltf_obj) => {
-        GLTF_Scene = gltf_obj.scene
+const WingColor = 0xff0000 //Mayhem
 
-        let Side = null
-        if (LeftSided) {
-            Side = Assets.WingsLeft
-        } else {
-            Side = Assets.WingsRight
-        }
-        GLTF_Scene.traverse((Object) => {
-            if (Object.isMesh) {
-                Object.material = new THREE.MeshStandardMaterial({color: WingColor})
-                Object.position.z = 3
-                Side.push(Object)
-            }
+async function CreateWing(LeftSided) {
+    const Asset = new Promise((resolve, reject) => {
+        GLTF_Importer.load(Wing, (gltf_obj) => {
+            let Side = LeftSided && Assets.WingsLeft || Assets.WingRight
+            
+            gltf_obj.scene.traverse((Object) => {
+                if (Object.isMesh) {
+                    Object.material = new THREE.MeshStandardMaterial({color: WingColor})
+
+                    Object.position.z = 3
+                    Side.push(Object)
+                }
+            })
+            Scene.add(gltf_obj.scene)
+            resolve(gltf_obj)
         })
-        Scene.add(GLTF_Scene)
     })
-    return GLTF_Scene
+    Asset.catch((reason) => console.error(reason))
+    return Asset
 }
 
-const Wing1 = CreateWing(WingColor)
+const Wing1 = await CreateWing(WingColor)
 console.log(Wing1)
 // --
 
