@@ -15,6 +15,9 @@ const AmbientLight = new THREE.AmbientLight(0xffffff)
 const AxesHelper   = new THREE.AxesHelper(20)
 
 const Controls = new OrbitControls(Camera, Renderer.domElement)
+Controls.enablePan = false
+Controls.maxDistance = 150
+Controls.minDistance = 5
 
 // Star Glitcher assets
 const GLTFImport = new CreateImport(Scene)
