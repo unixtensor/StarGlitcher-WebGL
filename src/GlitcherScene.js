@@ -21,7 +21,7 @@ const AxesHelper   = new THREE.AxesHelper(20)
 
 const Controls = new OrbitControls(Camera, Renderer.domElement)
 Controls.enablePan   = false
-Controls.maxDistance = 150
+Controls.maxDistance = 200
 Controls.minDistance = 5
 
 // Star Glitcher assets
@@ -29,12 +29,12 @@ const GLTFImport = new CreateImport(Scene)
 const Assets = {
     WingsLeft: [],
     WingsRight: [],
-    Ring: null                             
+    Ring: null
 }
 const DEF_ModeColor = 0xff0000 //Mayhem
 
 async function CreateWing(Color, LeftSided) {
-    const WingGLTF = await GLTFImport.GLTF('./assets/3D/gltf/Wing.gltf')
+    const WingGLTF = await GLTFImport.GLTF('/public/3D/gltf/Wing.gltf')
     const Side = LeftSided && Assets.WingsLeft || Assets.WingsRight
     let WingObject = null
 
@@ -52,7 +52,7 @@ async function CreateWing(Color, LeftSided) {
 }
 
 async function CreateRing(Color) {
-    const RingGLTF = await GLTFImport.GLTF('./assets/3D/gltf/Ring.gltf')
+    const RingGLTF = await GLTFImport.GLTF('/public/3D/gltf/Ring.gltf')
     let RingObject = null
 
     RingGLTF.scene.traverse((Object) => {
@@ -65,21 +65,25 @@ async function CreateRing(Color) {
         Object: RingObject
     }
 }
-const Ring  = await CreateRing(DEF_ModeColor)
-const Wing1 = await CreateWing(DEF_ModeColor)
-const Wing2 = await CreateWing(DEF_ModeColor)
-const Wing3 = await CreateWing(DEF_ModeColor)
-const Wing4 = await CreateWing(DEF_ModeColor, true)
-const Wing5 = await CreateWing(DEF_ModeColor, true)
-const Wing6 = await CreateWing(DEF_ModeColor, true)
+
+async function CreateWings() {
+    const Ring  = await CreateRing(DEF_ModeColor)
+    const Wing1 = await CreateWing(DEF_ModeColor)
+    const Wing2 = await CreateWing(DEF_ModeColor)
+    const Wing3 = await CreateWing(DEF_ModeColor)
+    const Wing4 = await CreateWing(DEF_ModeColor, true)
+    const Wing5 = await CreateWing(DEF_ModeColor, true)
+    const Wing6 = await CreateWing(DEF_ModeColor, true)
+    Ring.Object.rotation.z = Math.PI/2
+    Ring.Object.position.y = 1.5
+    Ring.Object.scale.set(3,3,3)
+}
+CreateWings()
 
 //Create the mover for the player character
-const Mover = new RootObject(Scene, Camera).Create()
+const Mover = new RootObject(Scene).Create()
 
 
-Ring.Object.rotation.z = Math.PI/2
-Ring.Object.position.y = 1.5
-Ring.Object.scale.set(3,3,3)
 // --
 
 Scene.add(

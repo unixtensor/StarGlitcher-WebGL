@@ -3,9 +3,8 @@ import * as THREE from 'three'
 export let Root = null
 
 export class RootObject {
-	constructor(SCENE, CAMERA) {
+	constructor(SCENE) {
 		this.SCENE = SCENE
-		this.CAMERA = CAMERA
 	}
 	Create() {
 		if (Root == null) {
@@ -20,5 +19,5 @@ export class RootObject {
 		console.warn("Root is already created on the engine level, Skipping. \n Root creation is traced to \"class RootObject.\"")
 		return Root
 	}
-
+	
 }

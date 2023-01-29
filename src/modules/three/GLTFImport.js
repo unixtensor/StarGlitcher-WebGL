@@ -7,7 +7,7 @@ export class CreateImport {
         this.SCENE = SCENE
     }
     async GLTF(GLTF_FILE) {
-        const Asset = new Promise((resolve, reject) => {
+        const Asset = new Promise((resolve, _) => {
             GLTF_Loader.load(GLTF_FILE, (gltf_obj) => {
                 this.SCENE.add(gltf_obj.scene)
                 resolve(gltf_obj)
