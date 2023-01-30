@@ -1,7 +1,7 @@
 import * as UI_V from '/modules/UI/UI-Vector'
-import * as cMath from '/modules/cMath'
 import * as UIGlitcherTheme from '/modules/UI/UI-GlitcherTheme'
 import { ModeOfGlitch } from '/modules/ModesOfGlitch'
+import { cMath } from '/modules/cMath'
 
 const Object_1 = document.getElementById("Object-1")
 const Object_2 = document.getElementById("Object-2")
@@ -20,9 +20,10 @@ const GlitcherSparkle        = document.getElementById("GlitcherSparkle")
 const GlitcherHexagonBorders = document.getElementById("GlitcherHexagonBorders")
 const GlitcherHexagonSpiked  = document.getElementById("GlitcherHexagonSpiked")
 
-const SpinRate = 1
-
 const GlitchMode = document.getElementById("Text-GlitcherMode")
+
+const SpinRate = 1
+const cMathUtils = new cMath()
 
 // This must be called before animations and placing - Note to self for later
 document.querySelectorAll("div, h1, img").forEach((value) => {
@@ -124,45 +125,45 @@ function UI_FPS() {
         delta+=1
         const l = GlitchMode.innerHTML.length
         UI_V.Vector2rel(Object_1, {
-            X: cMath.lerp((1400-(l+100)), Math.cos(delta/120)*20, .5),
-            Y: cMath.lerp(250, Math.sin(delta/120)*10, .5)
+            X: cMathUtils.lerp((1400-(l+100)), Math.cos(delta/120)*20, .5),
+            Y: cMathUtils.lerp(250, Math.sin(delta/120)*10, .5)
         })
         UI_V.Rotate_RAD(Object_1, {
-            R: cMath.rad(3*Math.cos(delta/100))
+            R: cMathUtils.rad(3*Math.cos(delta/100))
         })
         UI_V.Vector2rel(Object_2, {
-            X: cMath.lerp(w_x+400, Math.sin(delta/200)*20, .5),
-            Y: cMath.lerp(310, Math.cos(delta/200)*15, .5)
+            X: cMathUtils.lerp(w_x+400, Math.sin(delta/200)*20, .5),
+            Y: cMathUtils.lerp(310, Math.cos(delta/200)*15, .5)
         })
         UI_V.Rotate_RAD(Object_2, {
-            R: cMath.rad(3*Math.sin(delta/200))
+            R: cMathUtils.rad(3*Math.sin(delta/200))
         })
         UI_V.Rotate_RAD(BottomBar, {
-            R: cMath.rad(.8*Math.cos(delta/120))
+            R: cMathUtils.rad(.8*Math.cos(delta/120))
         })
         UI_V.Rotate_RAD(BottomBar_2, {
-            R: cMath.rad(.8*Math.sin(delta/120))
+            R: cMathUtils.rad(.8*Math.sin(delta/120))
         })
         UI_V.Rotate_RAD(Bottom_Rect, {
-            R: cMath.rad(-(delta*SpinRate)/4)
+            R: cMathUtils.rad(-(delta*SpinRate)/4)
         })
         UI_V.Rotate_RAD(Bottom_Rect_2, {
-            R: cMath.rad((delta*SpinRate)/4)
+            R: cMathUtils.rad((delta*SpinRate)/4)
         })
         UI_V.Rotate_RAD(GlitcherShards, {
-            R: cMath.rad((delta*SpinRate)/6)
+            R: cMathUtils.rad((delta*SpinRate)/6)
         })
         UI_V.Rotate_RAD(GlitcherShards2, {
-            R: cMath.rad(-(delta*SpinRate)/6)
+            R: cMathUtils.rad(-(delta*SpinRate)/6)
         })
         UI_V.Rotate_RAD(GlitcherSparkle, {
-            R: cMath.rad((delta*SpinRate)/6)
+            R: cMathUtils.rad((delta*SpinRate)/6)
         })
         UI_V.Rotate_RAD(GlitcherHexagonBorders, {
-            R: cMath.rad((delta*SpinRate)/6)
+            R: cMathUtils.rad((delta*SpinRate)/6)
         })
         UI_V.Rotate_RAD(GlitcherHexagonSpiked, {
-            R: cMath.rad(-(delta*SpinRate)/6)
+            R: cMathUtils.rad(-(delta*SpinRate)/6)
         })
         UI_FPS()
     }, 1)
