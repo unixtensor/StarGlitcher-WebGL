@@ -1,34 +1,48 @@
-import * as UI_V from '/modules/UI/UI-Vector'
+import * as UI_V            from '/modules/UI/UI-Vector'
 import * as UIGlitcherTheme from '/modules/UI/UI-GlitcherTheme'
-import { ModeOfGlitch } from '/modules/ModesOfGlitch'
-import { cMath } from '/modules/cMath'
+import { ModeOfGlitch }     from '/modules/ModesOfGlitch'
+import { cMath }            from '/modules/cMath'
+import Stats                from 'three/examples/jsm/libs/stats.module'
 
-const Object_1 = document.getElementById("Object-1")
-const Object_2 = document.getElementById("Object-2")
-
-const Text_GlitcherMode = document.getElementById("Text-GlitcherMode")
-const Text_StarGlitcher = document.getElementById("Text-StarGlitcher")
-
-const BottomBar     = document.getElementById("Bottom-Bar")
-const BottomBar_2   = document.getElementById("Bottom-Bar-2")
-const Bottom_Rect   = document.getElementById("Bottom-Rect")
-const Bottom_Rect_2 = document.getElementById("Bottom-Rect-2")
-
+const Object_1               = document.getElementById("Object-1")
+const Object_2               = document.getElementById("Object-2")
+const Text_GlitcherMode      = document.getElementById("Text-GlitcherMode")
+const Text_StarGlitcher      = document.getElementById("Text-StarGlitcher")
+const BottomBar              = document.getElementById("Bottom-Bar")
+const BottomBar_2            = document.getElementById("Bottom-Bar-2")
+const Bottom_Rect            = document.getElementById("Bottom-Rect")
+const Bottom_Rect_2          = document.getElementById("Bottom-Rect-2")
 const GlitcherShards         = document.getElementById("GlitcherShards")
 const GlitcherShards2        = document.getElementById("GlitcherShards2")
 const GlitcherSparkle        = document.getElementById("GlitcherSparkle")
 const GlitcherHexagonBorders = document.getElementById("GlitcherHexagonBorders")
 const GlitcherHexagonSpiked  = document.getElementById("GlitcherHexagonSpiked")
+const GlitchMode             = document.getElementById("Text-GlitcherMode")
 
-const GlitchMode = document.getElementById("Text-GlitcherMode")
+const GlitcherUIs = `
+#Object-1,
+#Object-2,
+#Text-GlitcherMode,
+#Text-StarGlitcher,
+#Bottom-Bar,
+#Bottom-Bar-2,
+#Bottom-Rect,
+#Bottom-Rect-2,
+#GlitcherShards,
+#GlitcherShards2,
+#GlitcherSparkle,
+#GlitcherHexagonBorders,
+#GlitcherHexagonSpiked,
+#Text-GlitcherMode
+`
+let SpinRate = 1
+let delta = 0
+let UI_ENABLED = false
 
-const SpinRate = 1
 const cMathUtils = new cMath()
-
-// This must be called before animations and placing - Note to self for later
-document.querySelectorAll("div, h1, img").forEach((value) => {
-    value.style.display = "block"
-})
+// Create FPS stats
+const FPS_Stats = new Stats()
+// --
 
 // Pre-Init Sizing
 // Object's (Animating UI frames) are not needed here since they rely using relative positioning inside their fps loop.
@@ -118,8 +132,6 @@ UI_V.Vector2(GlitcherHexagonSpiked, {
 document.addEventListener('contextmenu', event => event.preventDefault())
 // ---
 
-let delta = 0
-
 function UI_FPS() {
      setTimeout(() => {
         delta+=1
@@ -168,9 +180,14 @@ function UI_FPS() {
         UI_FPS()
     }, 1)
 }
-
-UI_FPS()
+if (UI_ENABLED) {
+    UI_FPS()
+    document.querySelectorAll(GlitcherUIs).forEach((value) => {
+        value.style.display = "block"
+    })   
+}
 UIGlitcherTheme.ChangeModeOfGlitch(ModeOfGlitch[0])
+document.body.appendChild(FPS_Stats.dom)
 
 export {
     Object_1,
@@ -185,5 +202,6 @@ export {
     GlitcherShards2,
     GlitcherSparkle,
     GlitcherHexagonBorders,
-    GlitcherHexagonSpiked
+    GlitcherHexagonSpiked,
+    FPS_Stats
 }
