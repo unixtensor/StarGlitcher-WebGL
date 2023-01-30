@@ -1,25 +1,22 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls'
-import { CreateImport } from './modules/three/GLTFImport'
+import { CreateImport } from '/modules/three/GLTFImport'
 // Engine
-import { RootObject } from './modules/three/rhpidEngine/rE_Root'
-import {} from './modules/three/rhpidEngine/rE_RootBind'
+import { RootObject, RootMovement } from '/modules/three/rhpidEngine/rE_Root'
+import { tick_Profile } from '/modules/three/rhpidEngine/rE_Tick'
 
-const Renderer = new THREE.WebGLRenderer({
-    antialias: false
-})
-Renderer.setPixelRatio(window.devicePixelRatio)
-Renderer.setSize(window.innerWidth, window.innerHeight)
-document.body.appendChild(Renderer.domElement)
+const WebGL_Renderer = new THREE.WebGLRenderer({antialias: false})
+WebGL_Renderer.setPixelRatio(window.devicePixelRatio)
+WebGL_Renderer.setSize(window.innerWidth, window.innerHeight)
+WebGL_Renderer.domElement.style.zIndex   = 1
+WebGL_Renderer.domElement.style.position = 'absolute'
 
-const Scene  = new THREE.Scene()
-const Camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, .1, 1000)
-
+const Scene        = new THREE.Scene()
+const Camera       = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, .1, 1000)
 const GridHelper   = new THREE.GridHelper(200, 50)
 const AmbientLight = new THREE.AmbientLight(0xffffff)
 const AxesHelper   = new THREE.AxesHelper(20)
-
-const Controls = new OrbitControls(Camera, Renderer.domElement)
+const Controls     = new OrbitControls(Camera, WebGL_Renderer.domElement)
 Controls.enablePan   = false
 Controls.maxDistance = 200
 Controls.minDistance = 5
@@ -34,7 +31,7 @@ const Assets = {
 const DEF_ModeColor = 0xff0000 //Mayhem
 
 async function CreateWing(Color, LeftSided) {
-    const WingGLTF = await GLTFImport.GLTF('/public/3D/gltf/Wing.gltf')
+    const WingGLTF = await GLTFImport.GLTF('/3D/gltf/Wing.gltf')
     const Side = LeftSided && Assets.WingsLeft || Assets.WingsRight
     let WingObject = null
 
@@ -52,7 +49,7 @@ async function CreateWing(Color, LeftSided) {
 }
 
 async function CreateRing(Color) {
-    const RingGLTF = await GLTFImport.GLTF('/public/3D/gltf/Ring.gltf')
+    const RingGLTF = await GLTFImport.GLTF('/3D/gltf/Ring.gltf')
     let RingObject = null
 
     RingGLTF.scene.traverse((Object) => {
@@ -66,23 +63,22 @@ async function CreateRing(Color) {
     }
 }
 
-async function CreateWings() {
-    const Ring  = await CreateRing(DEF_ModeColor)
-    const Wing1 = await CreateWing(DEF_ModeColor)
-    const Wing2 = await CreateWing(DEF_ModeColor)
-    const Wing3 = await CreateWing(DEF_ModeColor)
-    const Wing4 = await CreateWing(DEF_ModeColor, true)
-    const Wing5 = await CreateWing(DEF_ModeColor, true)
-    const Wing6 = await CreateWing(DEF_ModeColor, true)
+async function CreateGlitcherAssets() {
+    const Ring = await CreateRing(DEF_ModeColor)
     Ring.Object.rotation.z = Math.PI/2
     Ring.Object.position.y = 1.5
     Ring.Object.scale.set(3,3,3)
+
+    CreateWing(DEF_ModeColor)
+    CreateWing(DEF_ModeColor)
+    CreateWing(DEF_ModeColor)
+    CreateWing(DEF_ModeColor, true)
+    CreateWing(DEF_ModeColor, true)
+    CreateWing(DEF_ModeColor, true)
 }
-CreateWings()
 
 //Create the mover for the player character
 const Mover = new RootObject(Scene).Create()
-
 
 // --
 
@@ -93,15 +89,18 @@ Scene.add(
 )
 Camera.position.set(-20.4, 4.7, 0.1)
 
-Renderer.setAnimationLoop((deltaTime) => {
+WebGL_Renderer.setAnimationLoop((deltaTime) => {
     Controls.update()
-	Renderer.render(Scene, Camera)
+	WebGL_Renderer.render(Scene, Camera)
 })
 window.addEventListener("resize", () => {
     Camera.aspect = window.innerWidth/window.innerHeight
     Camera.updateProjectionMatrix()
-    Renderer.setSize(window.innerWidth, window.innerHeight)
+    WebGL_Renderer.setSize(window.innerWidth, window.innerHeight)
 })
+
+CreateGlitcherAssets()
+document.body.appendChild(WebGL_Renderer.domElement)
 
 export {
     Assets,

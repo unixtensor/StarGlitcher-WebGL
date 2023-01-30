@@ -1,7 +1,7 @@
-import * as UI_V from './modules/UI/UI-Vector'
-import * as cMath from './modules/cMath'
-import * as UIGlitcherTheme from './modules/UI/UI-GlitcherTheme'
-import { ModeOfGlitch } from './modules/ModesOfGlitch'
+import * as UI_V from '/modules/UI/UI-Vector'
+import * as cMath from '/modules/cMath'
+import * as UIGlitcherTheme from '/modules/UI/UI-GlitcherTheme'
+import { ModeOfGlitch } from '/modules/ModesOfGlitch'
 
 const Object_1 = document.getElementById("Object-1")
 const Object_2 = document.getElementById("Object-2")
