@@ -20,9 +20,35 @@ h1 {
     user-select: none;
 }
 
+.HardwareA {
+    top: 50%;
+    left: 50%;
+    width: 90vw;
+    height: 30vh;
+    transform: translate(-50%,-50%);
+    z-index: 0;
+    user-select: none;
+    pointer-events: none;
+    display: block;
+    position: absolute;
+}
+.HardwareA h1 {
+    font-family: sans-serif;
+    font-size: 50px;
+    color: white;
+    text-align: center;
+    position: relative 
+}
+.HardwareA h2 {
+    font-family: monospace;
+    color: white;
+    text-align: center;
+    position: relative 
+}
 .Anim-Object {
     width: 400px;
     height: 150px;
+    display: none;
 }
 
 #Object-1 {
@@ -31,6 +57,7 @@ h1 {
     right: 0;
     bottom: 0;
     z-index: 5;
+    display: none;
 }
 #Object-2 {
     height: 100px;
@@ -39,15 +66,18 @@ h1 {
     left: 0;
     bottom: 0;
     z-index: 5;
+    display: none;
 }
 #Text-GlitcherMode {
     font-size: 40px;
     color: var(--__NULL_MODE);
     text-shadow: -3px 0 var(--__NULL_MODE_ALT), 0 3px var(--__NULL_MODE_ALT), 3px 0 var(--__NULL_MODE_ALT), 0 -3px var(--__NULL_MODE_ALT);
+    display: none;
 }
 #Text-StarGlitcher {
     color: var(--__NULL_MODE_ALT);
     text-shadow: -3px 0 var(--__NULL_MODE), 0 3px var(--__NULL_MODE), 3px 0 var(--__NULL_MODE), 0 -3px var(--__NULL_MODE);
+    display: none;
 }
 #Bottom-Bar {
     border: 2px solid var(--__NULL_MODE_ALT);
@@ -56,6 +86,7 @@ h1 {
     left: 0;
     height: 150px;
     z-index: 2;
+    display: none;
 }
 #Bottom-Bar-2 {
     border: 2px solid var(--__NULL_MODE);
@@ -64,6 +95,7 @@ h1 {
     left: 0;
     height: 100px;
     z-index: 3;
+    display: none;
 }
 #Bottom-Rect {
     background-color: var(--__NULL_MODE_ALT_a);
@@ -71,6 +103,7 @@ h1 {
     height: 45px;
     width: 45px;
     z-index: 5;
+    display: none;
 }
 #Bottom-Rect-2 {
     background-color: var(--__NULL_MODE_ALT_a);
@@ -78,38 +111,45 @@ h1 {
     height: 90px;
     width: 90px;
     z-index: 4;
+    display: none;
 }
 #GlitcherShards {
     width: 1000px;
     opacity: .2;
     right: 0;
     bottom: 0;
+    z-index: 2;
+    display: none;
 }
 #GlitcherSparkle {
     width: 900px;
     opacity: .2;
     right: 0;
-    bottom: 0
+    bottom: 0;
+    z-index: 2;
+    display: none;
 }
 #GlitcherShards2 {
     width: 800px;
     opacity: 1;
     right: 0;
     bottom: 0;
+    z-index: 2;
+    display: none;
 }
 #GlitcherHexagonBorders {
     width: 700px;
     opacity: .5;
     right: 0;
     bottom: 0;
+    z-index: 2;
+    display: none;
 }
 #GlitcherHexagonSpiked {
     width: 500px;
     opacity: .5;
     right: 0;
     bottom: 0;
-}
-
-div, h1, img {
+    z-index: 2;
     display: none;
 }

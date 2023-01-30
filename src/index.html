@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="/public/Images/favicon.gif" type="image/x-icon">
+    <link rel="shortcut icon" href="/Images/favicon.gif" type="image/x-icon">
     <link rel="stylesheet" href="./UI-ap.css">
     <title>Star Glitcher WebGL</title>
 </head>
@@ -24,21 +24,38 @@
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%,-50%);
-                z-index: 99999;
                 display: block;
                 position: absolute
             }
+            .noscript-d {
+                background-color: black;
+                user-select: auto;
+                pointer-events: auto;
+                width: 100vw;
+                height: 100vh;
+                z-index: 100;
+            }
         </style>
-        <h1>
-            <strong>
-                <u>
-                    <a href="https://www.enable-javascript.com/" target="_blank">
-                        JavaScript must be enabled, upgraded, or supported.
-                    </a>
-                </u>
-            </strong>
-        </h1>
+        <div class="noscript-d">
+            <h1>
+                <strong>
+                    <u>
+                        <a href="https://www.enable-javascript.com/" target="_blank">
+                            JavaScript must be enabled, upgraded, or supported.
+                        </a>
+                    </u>
+                </strong>
+            </h1>
+        </div>
     </noscript>
+    <div class="HardwareA">
+        <h1>
+            <strong>Loading...</strong>
+        </h1>
+        <h2>
+            <strong>If the scene never loads please enable "Hardware Acceleration" in your brower's settings.</strong>
+        </h2>
+    </div>
     <div class="Anim-Object" id="Bottom-Bar"></div>
     <div class="Anim-Object" id="Bottom-Bar-2"></div>
     <div class="Anim-Object" id="Bottom-Rect"></div>
@@ -49,12 +66,12 @@
     <div class="Anim-Object" id="Object-2">
         <h1 id="Text-StarGlitcher">Star Glitcher</h1>
     </div>
-    <img src="/public/Images/UI/Black/GlitcherShards.png" alt="" id="GlitcherShards">
-    <img src="/public/Images/UI/Black/Sparkle.png" alt="" id="GlitcherSparkle">
-    <img src="/public/Images/UI/Black/JSAB_HexagonSpiked.png" alt="" id="GlitcherHexagonSpiked">
-    <img src="/public/Images/UI/Black/JSAB_HexagonBorders.png" alt="" id="GlitcherHexagonBorders">
-    <img src="/public/Images/UI/Black/GlitcherShards.png" alt="" id="GlitcherShards2">
-    <!-- <script src="./UI.js" type="module"></script> -->
+    <img src="/Images/UI/Black/GlitcherShards.png" alt="" id="GlitcherShards">
+    <img src="/Images/UI/Black/Sparkle.png" alt="" id="GlitcherSparkle">
+    <img src="/Images/UI/Black/JSAB_HexagonSpiked.png" alt="" id="GlitcherHexagonSpiked">
+    <img src="/Images/UI/Black/JSAB_HexagonBorders.png" alt="" id="GlitcherHexagonBorders">
+    <img src="/Images/UI/Black/GlitcherShards.png" alt="" id="GlitcherShards2">
     <script src="/GlitcherScene.js" type="module"></script>
+    <script src="./UI.js" type="module"></script>
 </body>
 </html>
