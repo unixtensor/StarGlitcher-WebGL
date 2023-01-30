@@ -1,7 +1,16 @@
 import * as THREE from 'three'
+import { OrbitControls } from 'three/addons/controls/OrbitControls'
 
+export const CameraControls = new OrbitControls(Camera, WebGL_Renderer.domElement)
+CameraControls.enablePan    = false
+CameraControls.maxDistance  = 200
+CameraControls.minDistance  = 5
+
+export const __rhpidEngine_Version = "dev0.1"
 export let Root = null
 export let WalkSpeed = 35
+
+let ROOT_init = false
 
 export class RootObject {
 	constructor(SCENE) {
@@ -15,10 +24,7 @@ export class RootObject {
 				color: 0xa3a2a5, 
 				wireframe: Wireframe === undefined ? false : Wireframe
 			})
-			const Root_Mesh = new THREE.Mesh(Root_Geometry, Material)
-
-			Root = Root_Mesh
-			Root.position.y = 10
+			Root = new THREE.Mesh(Root_Geometry, Material)
 			this.SCENE.add(Root)
 			return Root
 		}
@@ -29,28 +35,43 @@ export class RootObject {
 
 export class RootMovement {
 	constructor(ROOT) {
-		this.ROOT = ROOT
-	}
-	
-	KeyMap = {
-		KeyDown: {
-			w: () => {
-				
-			},
-			a: () => {
+		if (ROOT_init == true) {
+			console.warn("RootMovement is already initialized, using the existing root.")
+			return
+		}
+		ROOT_init = true
+		this.KeyMap = {
+			KeyDown: {
+				w: () => {
+					ROOT.position.z+=1
+				},
+				a: () => {
 
-			},
-			s: () => {
+				},
+				s: () => {
 
+				},
+				d: () => {
+
+				},
+				" ": () => {
+
+				}
 			},
-			d: () => {
+			KeyUp: {
 
 			}
-		},
-		KeyUp: {
-
 		}
+		document.addEventListener("keydown", (ev) => {
+			const f = this.KeyMap.KeyDown[ev.key.toLowerCase()]
+			if (f) f()
+		})
+		document.addEventListener("keyup", (ev) => {
+			const f = this.KeyMap.KeyUp[ev.key.toLowerCase()]
+			if (f) f()	
+		})
 	}
+
 	// Properties
 	WalkSpeed = 35
 	// -----

@@ -1,4 +1,4 @@
-import * as UI from '../../UI'
+import * as UI          from '../../UI'
 import * as FilterColor from './Filter-Color'
 
 export function ChangeModeOfGlitch(DATA_PROPS) {
