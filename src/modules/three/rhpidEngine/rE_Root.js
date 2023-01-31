@@ -41,11 +41,7 @@ export class RootPlayer {
 			CameraControls.enablePan   = false
 			CameraControls.maxDistance = 200
 			CameraControls.minDistance = 5
-			if (Root != null) {
-				this.CAMERA.position.set(Root.position.x,Root.position.y,Root.position.z)
-			} else {
-				Camera.position.set(-20.4, 4.7, 0.1)
-			}
+			this.CAMERA.position.set(-20.4, 4.7, 0.1)
 		}
 		return CameraControls
 	}
@@ -59,12 +55,14 @@ export class RootPlayer {
 		const Binds = new KeyMap(Root, this.CAMERA)
 		
 		document.addEventListener("keydown", (ev) => {
-			const f = Binds.Bindings[ev.key.toLowerCase()]
-			if (f) f()
+			const k = ev.key.toLowerCase()
+			const f = Binds.KeyDown[k]
+			if (f) Binds.KeyDown[k] = true
 		})
 		document.addEventListener("keyup", (ev) => {
-			const f = Binds.Bindings[ev.key.toLowerCase()]
-			if (f) f()	
-		})
+			const k = ev.key.toLowerCase()
+			const f = Binds.KeyDown[k]
+			if (f) Binds.KeyDown[k] = false
+		})	
 	}
 }
