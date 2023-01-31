@@ -2,10 +2,7 @@ import * as THREE        from 'three'
 import { CreateImport }  from '/modules/three/GLTFImport'
 import { FPS_Stats }     from './UI'
 // Engine
-import { 
-    RootObject, 
-    RootMovement, 
-    CameraControls } from '/modules/three/rhpidEngine/rE_Root'
+import { RootPlayer } from '/modules/three/rhpidEngine/rE_Root'
 
 const WebGL_Renderer = new THREE.WebGLRenderer({antialias: false})
 const Scene          = new THREE.Scene()
@@ -15,9 +12,10 @@ const AmbientLight   = new THREE.AmbientLight(0xffffff)
 const AxesHelper     = new THREE.AxesHelper(20)
 
 // Create the mover for the player character
-const RootMover = new RootObject(Scene).Create()
-const RootMove  = new RootMovement(RootMover)
-RootMover.position.y = 10
+const RootMover      = new RootPlayer(Scene, Camera, WebGL_Renderer)
+const RootObject     = RootMover.Create()
+const CameraControls = RootMover.Camera()
+const RootMove       = RootMover.ApplyMovement()
 // --
 
 // Star Glitcher assets
@@ -81,8 +79,6 @@ Scene.add(
     AxesHelper
 )
 CreateGlitcherAssets()
-
-Camera.position.set(-20.4, 4.7, 0.1)
 
 window.addEventListener("resize", () => {
     Camera.aspect = window.innerWidth/window.innerHeight

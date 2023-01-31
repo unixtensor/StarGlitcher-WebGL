@@ -41,6 +41,7 @@ h1 {
 }
 .HardwareA h2 {
     font-family: monospace;
+    font-weight: lighter;
     color: white;
     text-align: center;
     position: relative 
