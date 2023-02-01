@@ -92,9 +92,10 @@ WebGL_Renderer.domElement.style.zIndex   = 1
 WebGL_Renderer.domElement.style.position = 'absolute'
 document.body.appendChild(WebGL_Renderer.domElement)
 
-WebGL_Renderer.setAnimationLoop((deltaTime) => {
+WebGL_Renderer.setAnimationLoop(() => {
+
     CameraControls.update()
-    
+    RootMove.update()
     
 
     WebGL_Renderer.render(Scene, Camera)

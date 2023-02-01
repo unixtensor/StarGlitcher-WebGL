@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls'
-import { KeyMap } from './rE_RootGo'
+import { KeyMap, InputEvent } from './rE_Bind'
 
 export const __rhpidEngine_Version = "dev0.1"
 export let Root = null
@@ -10,6 +10,9 @@ export let start_Origin = 10
 export let WalkSpeed = 35
 
 let ROOT_move_init = false
+let ROOT_binds = null
+
+const Clock = new THREE.Clock()
 
 export class RootPlayer {
 	constructor(SCENE, CAMERA, RENDER) {
@@ -41,7 +44,7 @@ export class RootPlayer {
 			CameraControls.enablePan   = false
 			CameraControls.maxDistance = 200
 			CameraControls.minDistance = 5
-			this.CAMERA.position.set(-20.4, 4.7, 0.1)
+			CameraControls.target = Root === undefined ? new THREE.Vector3() : Root.position
 		}
 		return CameraControls
 	}
@@ -49,20 +52,25 @@ export class RootPlayer {
 	ApplyMovement() {
 		if (ROOT_move_init == true) {
 			console.warn("RootMovement is already initialized, using the existing root.")
-			return
+			return ROOT_binds
 		}
 		ROOT_move_init = true
-		const Binds = new KeyMap(Root, this.CAMERA)
+		ROOT_binds = new KeyMap(Root, this.CAMERA)
 		
 		document.addEventListener("keydown", (ev) => {
 			const k = ev.key.toLowerCase()
-			const f = Binds.KeyDown[k]
-			if (f) Binds.KeyDown[k] = true
+			const f = InputEvent[k]
+			if (f !== undefined && f == false) {
+				InputEvent[k] = true
+			}
 		})
 		document.addEventListener("keyup", (ev) => {
 			const k = ev.key.toLowerCase()
-			const f = Binds.KeyDown[k]
-			if (f) Binds.KeyDown[k] = false
-		})	
+			const f = InputEvent[k]
+			if (f !== undefined) {
+				InputEvent[k] = false
+			}
+		})
+		return ROOT_binds
 	}
 }
