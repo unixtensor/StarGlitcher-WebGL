@@ -1,6 +1,6 @@
-import * as THREE from 'three'
 import { lerp } from 'three/src/math/MathUtils'
 import { WalkSpeed, CameraControls } from './rE_Root'
+import { lookVector, rightVector } from '../threeShared'
 
 export const InputEvent = {
 	w: false,
@@ -8,14 +8,6 @@ export const InputEvent = {
 	s: false,
 	d: false,
 	f: false
-}
-
-function lookVector(Object, Distance) {
-	return new THREE.Vector3(0,0,-Distance).applyQuaternion(Object.quaternion).add(Object.position)
-}
-
-function rightVector(Object, Distance) {
-	return new THREE.Vector3(-Distance,0,0).applyQuaternion(Object.quaternion).add(Object.position)
 }
 
 export class KeyMap {

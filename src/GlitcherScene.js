@@ -27,7 +27,7 @@ const Assets = {
 }
 
 async function CreateWing(Color, LeftSided) {
-    const WingGLTF = await GLTFImport.GLTF('/3D/gltf/Wing.gltf')
+    const WingGLTF = await GLTFImport.GLTF('/3D/Wing.gltf')
     const Side = LeftSided && Assets.WingsLeft || Assets.WingsRight
     let WingObject = null
 
@@ -44,7 +44,7 @@ async function CreateWing(Color, LeftSided) {
 }
 
 async function CreateRing(Color) {
-    const RingGLTF = await GLTFImport.GLTF('/3D/gltf/Ring.gltf')
+    const RingGLTF = await GLTFImport.GLTF('/3D/Ring.gltf')
     let RingObject = null
 
     RingGLTF.scene.traverse((Object) => {
