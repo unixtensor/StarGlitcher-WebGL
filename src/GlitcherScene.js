@@ -1,12 +1,12 @@
-import * as THREE        from 'three'
-import { CreateImport }  from '/modules/three/GLTFImport'
-import { FPS_Stats }     from './UI'
+import * as THREE       from 'three'
+import { CreateImport } from '/modules/three/GLTFImport'
+import { FPS_Stats }    from './UI'
 // Engine
 import { RootPlayer } from '/modules/three/rhpidEngine/rE_Root'
 
 const WebGL_Renderer = new THREE.WebGLRenderer({antialias: false})
 const Scene          = new THREE.Scene()
-const Camera         = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, .1, 1000)
+const Camera         = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, .1, 1000)
 const GridHelper     = new THREE.GridHelper(200, 50)
 const AmbientLight   = new THREE.AmbientLight(0xffffff)
 const AxesHelper     = new THREE.AxesHelper(20)
