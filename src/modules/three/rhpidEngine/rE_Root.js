@@ -63,14 +63,14 @@ export class RootPlayer {
 			if (f !== undefined && f == false) {
 				InputEvent[k] = true
 			}
-		})
+		}, false)
 		document.addEventListener("keyup", (ev) => {
 			const k = ev.key.toLowerCase()
 			const f = InputEvent[k]
 			if (f !== undefined) {
 				InputEvent[k] = false
 			}
-		})
+		}, false)
 		return ROOT_binds
 	}
 }

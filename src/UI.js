@@ -95,7 +95,8 @@ window.addEventListener("resize", () => {
         X: w_x-350,
         Y: w_y-350
     })
-})
+}, false)
+
 BottomBar.style.width   = `${w_x}px`
 BottomBar_2.style.width = `${w_x}px`
 
@@ -134,7 +135,7 @@ UI_V.Vector2(GlitcherHexagonSpiked, {
     Y: w_y-350
 })
 
-document.addEventListener('contextmenu', event => event.preventDefault())
+document.addEventListener('contextmenu', event => event.preventDefault(), false)
 // ---
 
 function UI_FPS() {
