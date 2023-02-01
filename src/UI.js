@@ -1,7 +1,6 @@
 import * as UI_V            from '/modules/UI/UI-Vector'
 import * as UIGlitcherTheme from '/modules/UI/UI-GlitcherTheme'
-import { ModeOfGlitch }     from '/modules/ModesOfGlitch'
-import { cMath }            from '/modules/cMath'
+import { ModeOfGlitch }     from '/modules/UI/ModesOfGlitch'
 import Stats                from 'three/examples/jsm/libs/stats.module'
 
 const Object_1               = document.getElementById("Object-1")
@@ -39,10 +38,16 @@ let SpinRate = 1
 let delta = 0
 let UI_ENABLED = false
 
-const cMathUtils = new cMath()
 // Create FPS stats
 const FPS_Stats = new Stats()
 // --
+
+function lerp(start, end, t) {
+    return start*(1-t)+end*t
+}
+function rad(x) {
+    return x*Math.PI/180
+}
 
 // Pre-Init Sizing
 // Object's (Animating UI frames) are not needed here since they rely using relative positioning inside their fps loop.

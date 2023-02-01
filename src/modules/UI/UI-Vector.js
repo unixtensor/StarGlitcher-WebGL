@@ -1,6 +1,8 @@
-import * as Shared from '../Shared'
-
 export let win_Offset = 3 // Usually a good offset for browser true size is 3
+
+function  s_Circuit(EXPECTED, DEFAULT) {
+    return EXPECTED === undefined ? DEFAULT : EXPECTED
+}
 
 // The function return's have support for Pascal Case and lower camel case.
 
@@ -27,8 +29,8 @@ export function Bounding_Rect(OBJ) {
  * @returns 
  */
 export function Vector2(OBJ, C_DATA) {
-	C_DATA.X = Shared.s_Circuit(C_DATA.X, Bounding_Rect(OBJ).X)
-	C_DATA.Y = Shared.s_Circuit(C_DATA.Y, Bounding_Rect(OBJ).Y)
+	C_DATA.X = s_Circuit(C_DATA.X, Bounding_Rect(OBJ).X)
+	C_DATA.Y = s_Circuit(C_DATA.Y, Bounding_Rect(OBJ).Y)
 
 	OBJ.style.left = `${C_DATA.X}px`
 	OBJ.style.top =  `${C_DATA.Y}px`
@@ -48,7 +50,7 @@ export function Vector2(OBJ, C_DATA) {
  * @returns 
  */
 export function Rotate_RAD(OBJ, R_DATA) {
-	R_DATA.R = Shared.s_Circuit(R_DATA.R, '0')
+	R_DATA.R = s_Circuit(R_DATA.R, '0')
 	
 	OBJ.style.transform = `rotate(${R_DATA.R}rad)`
 
@@ -65,8 +67,8 @@ export function Rotate_RAD(OBJ, R_DATA) {
  * @returns
  */
 export function Vector2rel(OBJ, C_DATA) {
-	C_DATA.X = Shared.s_Circuit(C_DATA.X, Bounding_Rect(OBJ).X)
-	C_DATA.Y = Shared.s_Circuit(C_DATA.Y, Bounding_Rect(OBJ).Y)
+	C_DATA.X = s_Circuit(C_DATA.X, Bounding_Rect(OBJ).X)
+	C_DATA.Y = s_Circuit(C_DATA.Y, Bounding_Rect(OBJ).Y)
 
 	const w_xM = window.innerWidth-win_Offset-C_DATA.X
 	const w_yM = window.innerHeight-win_Offset-C_DATA.Y
