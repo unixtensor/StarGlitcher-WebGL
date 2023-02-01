@@ -1,4 +1,4 @@
-export let ModeOfGlitch = {
+export const ModeOfGlitch = {
     [0]: {
         Name: 'Mayhem',
         PrimaryColor: [50,0,0],
