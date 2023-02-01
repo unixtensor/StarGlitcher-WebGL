@@ -1,21 +1,17 @@
-import * as THREE from 'three'
+import * as Root from './rE_Root'
+import { Vector3 } from 'three'
 import { lerp } from 'three/src/math/MathUtils'
-import { WalkSpeed, CameraControls } from './rE_Root'
 
+/*
+	Engine level movement, not recommended to bind anything else but movement to here;
+	The keys are captured with variable FPS, binding events for single click would be difficult.
+*/
 export const InputEvent = {
 	w: false,
 	a: false,
 	s: false,
 	d: false,
-	f: false
-}
-
-function lookVector(Object, Distance) {
-	return new THREE.Vector3(0,0,-Distance).applyQuaternion(Object.quaternion).add(Object.position)
-}
-
-function rightVector(Object, Distance) {
-	return new THREE.Vector3(-Distance,0,0).applyQuaternion(Object.quaternion).add(Object.position)
+	' ': false
 }
 
 export class KeyMap {
@@ -27,28 +23,24 @@ export class KeyMap {
 	update() {
 		// Root Mover
 		if (InputEvent.w) {
-			this.ROOT.position.lerp(lookVector(this.CAMERA,3),.1)
-			if (CameraControls !== undefined) {
-				CameraControls.target = this.ROOT.position
+			const lookV = new Vector3(0,0,-1).applyQuaternion(this.CAMERA.quaternion)
+			this.ROOT.position.lerp(this.ROOT.position.add(lookV),.1)
+
+			if (Root.CameraControls !== undefined) {
+				Root.CameraControls.target = this.ROOT.position
 			}
 		}
 		if (InputEvent.a) {
-			const c_rv = rightVector(this.CAMERA, this.ROOT.scale.x/2)
-			const s = this.ROOT.position
-			this.ROOT.position.x = lerp(s.x,s.x+c_rv.x+.1/WalkSpeed,.1)
-			this.ROOT.position.z = lerp(s.z,s.z-c_rv.z+.1/WalkSpeed,.1)
+			
 		}
 		if (InputEvent.s) {
-			const c_lv = lookVector(this.CAMERA, this.ROOT.scale.z/2)
-			const s = this.ROOT.position
-			this.ROOT.position.x = lerp(s.x,s.x+c_lv.x-.1/WalkSpeed,.1)
-			this.ROOT.position.z = lerp(s.z,s.z+c_lv.z-.1/WalkSpeed,.1)
+			
 		}
 		if (InputEvent.d) {
 
 		}
-		if (InputEvent.f) {
-			console.log("f!")
+		if (InputEvent[' ']) {
+			console.log("Space Pressed")
 		}
 		// --
 	}
