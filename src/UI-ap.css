@@ -30,7 +30,6 @@ h1 {
     user-select: none;
     pointer-events: none;
     display: block;
-    position: absolute;
 }
 .HardwareA h1 {
     font-family: sans-serif;
