@@ -1,5 +1,5 @@
-import * as Root from './rE_Root'
-import { Vector3 } from 'three'
+import { WalkSpeed } from './rE_Root'
+import { Vector3, Vector2 } from 'three'
 
 /*
 	Engine level movement, not recommended to bind anything else but movement to here;
@@ -22,17 +22,22 @@ export class KeyMap {
 	update() {
 		// Root Mover
 		if (InputEvent.w) {
-		 	const lv = new Vector3().lerp(this.ROOT.position.add(new Vector3(0,0,-1).applyQuaternion(this.CAMERA.quaternion)),.1)
-		 	console.log(lv)
+			// const [rp,ca] = [this.ROOT.position,this.CAMERA.position]
+			// this.CAMERA.position.set(
+			// 	rp.x-ca.x,
+			// 	rp.y-ca.y,
+			// 	rp.z-ca.z,
+			// )
+			this.ROOT.position.lerp(this.ROOT.position.add(new Vector3(0,0,(-1/WalkSpeed)).applyQuaternion(this.CAMERA.quaternion)),.1)
 		}
 		if (InputEvent.a) {
-			this.ROOT.position.lerp(this.ROOT.position.add(new Vector3(-1,0,0).applyQuaternion(this.CAMERA.quaternion)),.1)
+			this.ROOT.position.lerp(this.ROOT.position.add(new Vector3((-1*WalkSpeed),0,(-.5/WalkSpeed)).applyQuaternion(this.CAMERA.quaternion)),.1)
 		}
 		if (InputEvent.s) {
-			this.ROOT.position.lerp(this.ROOT.position.sub(new Vector3(0,0,-1).applyQuaternion(this.CAMERA.quaternion)),.1)
+			this.ROOT.position.lerp(this.ROOT.position.sub(new Vector3(0,0,(-1/WalkSpeed)).applyQuaternion(this.CAMERA.quaternion)),.1)
 		}
 		if (InputEvent.d) {
-			this.ROOT.position.lerp(this.ROOT.position.sub(new Vector3(-1,0,0).applyQuaternion(this.CAMERA.quaternion)),.1)
+			this.ROOT.position.lerp(this.ROOT.position.sub(new Vector3((-1*WalkSpeed),0,(.5/WalkSpeed)).applyQuaternion(this.CAMERA.quaternion)),.1)
 		}
 		if (InputEvent[' ']) {
 			console.log("Space Pressed")

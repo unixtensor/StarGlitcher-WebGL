@@ -93,10 +93,8 @@ WebGL_Renderer.domElement.style.position = 'absolute'
 document.body.appendChild(WebGL_Renderer.domElement)
 
 WebGL_Renderer.setAnimationLoop(() => {
-
-    CameraControls.update()
     RootMove.update()
-    
+    CameraControls.update()
 
     WebGL_Renderer.render(Scene, Camera)
     FPS_Stats.update()
