@@ -12,8 +12,6 @@ export let WalkSpeed = 35
 let ROOT_move_init = false
 let ROOT_binds = null
 
-const Clock = new THREE.Clock()
-
 export class RootPlayer {
 	constructor(SCENE, CAMERA, RENDER) {
 		this.SCENE = SCENE
