@@ -1,6 +1,5 @@
 import * as Root from './rE_Root'
 import { Vector3 } from 'three'
-import { lerp } from 'three/src/math/MathUtils'
 
 /*
 	Engine level movement, not recommended to bind anything else but movement to here;
@@ -23,24 +22,24 @@ export class KeyMap {
 	update() {
 		// Root Mover
 		if (InputEvent.w) {
-			const lookV = new Vector3(0,0,-1).applyQuaternion(this.CAMERA.quaternion)
-			this.ROOT.position.lerp(this.ROOT.position.add(lookV),.1)
-
-			if (Root.CameraControls !== undefined) {
-				Root.CameraControls.target = this.ROOT.position
-			}
+			const lv = this.ROOT.position.add(new Vector3(0,0,-1).applyQuaternion(this.CAMERA.quaternion))
+			this.ROOT.position.x = lv.z
+			this.ROOT.position.z = lv.z
 		}
 		if (InputEvent.a) {
-			
+			this.ROOT.position.lerp(this.ROOT.position.add(new Vector3(-1,0,0).applyQuaternion(this.CAMERA.quaternion)),.1)
 		}
 		if (InputEvent.s) {
-			
+			this.ROOT.position.lerp(this.ROOT.position.sub(new Vector3(0,0,-1).applyQuaternion(this.CAMERA.quaternion)),.1)
 		}
 		if (InputEvent.d) {
-
+			this.ROOT.position.lerp(this.ROOT.position.sub(new Vector3(-1,0,0).applyQuaternion(this.CAMERA.quaternion)),.1)
 		}
 		if (InputEvent[' ']) {
 			console.log("Space Pressed")
+		}
+		if (Root.CameraControls !== undefined) {
+			Root.CameraControls.target = this.ROOT.position
 		}
 		// --
 	}

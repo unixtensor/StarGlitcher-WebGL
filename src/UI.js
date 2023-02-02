@@ -36,7 +36,7 @@ const GlitcherUIs = `
 `
 let SpinRate = 1
 let delta = 0
-let UI_ENABLED = false
+let UI_ENABLED = true
 
 // Create FPS stats
 const FPS_Stats = new Stats()
