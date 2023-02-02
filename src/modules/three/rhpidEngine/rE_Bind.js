@@ -22,9 +22,8 @@ export class KeyMap {
 	update() {
 		// Root Mover
 		if (InputEvent.w) {
-			const lv = this.ROOT.position.add(new Vector3(0,0,-1).applyQuaternion(this.CAMERA.quaternion))
-			this.ROOT.position.x = lv.z
-			this.ROOT.position.z = lv.z
+		 	const lv = new Vector3().lerp(this.ROOT.position.add(new Vector3(0,0,-1).applyQuaternion(this.CAMERA.quaternion)),.1)
+		 	console.log(lv)
 		}
 		if (InputEvent.a) {
 			this.ROOT.position.lerp(this.ROOT.position.add(new Vector3(-1,0,0).applyQuaternion(this.CAMERA.quaternion)),.1)
@@ -37,9 +36,6 @@ export class KeyMap {
 		}
 		if (InputEvent[' ']) {
 			console.log("Space Pressed")
-		}
-		if (Root.CameraControls !== undefined) {
-			Root.CameraControls.target = this.ROOT.position
 		}
 		// --
 	}
