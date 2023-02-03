@@ -23,6 +23,12 @@ export class KeyMap {
 		// Root Mover
 		if (InputEvent.w) {
 			const lookVector = new Vector3(0,0,-.1).applyQuaternion(this.CAMERA.quaternion)
+			// const CamP = this.CAMERA.position
+			// this.CAMERA.position.set(
+			// 	this.ROOT.position.x*CamP.x,
+			// 	CamP.y,
+			// 	this.ROOT.position.z*CamP.z,
+			// )
 			this.ROOT.position.x += lookVector.x
 			this.ROOT.position.z += lookVector.z
 		}
@@ -44,10 +50,10 @@ export class KeyMap {
 		if (InputEvent[' ']) {
 			console.log("Space Pressed")
 		}
+		// --
 
-		if (CameraControls !== undefined) {
+		if (CameraControls != null) {
 			CameraControls.update()
 		}
-		// --
 	}
 }

@@ -1,15 +1,26 @@
 import * as THREE       from 'three'
 import { CreateImport } from '/modules/three/GLTFImport'
 import { FPS_Stats }    from './UI'
+import { Skybox } from './modules/three/Skybox'
 // Engine
-import { RootPlayer } from '/modules/three/rhpidEngine/rE_Root'
+import { RootPlayer, Default_i_Color } from '/modules/three/rhpidEngine/rE_Root'
 
+// ThreeJS dependencies 
 const WebGL_Renderer = new THREE.WebGLRenderer({antialias: false})
 const Scene          = new THREE.Scene()
 const Camera         = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, .1, 1000)
 const GridHelper     = new THREE.GridHelper(200, 50)
 const AmbientLight   = new THREE.AmbientLight(0xffffff)
 const AxesHelper     = new THREE.AxesHelper(20)
+
+const Baseplate_Geometry = new THREE.BoxGeometry(300,3,300)
+const Baseplate_Material = new THREE.MeshStandardMaterial({color:Default_i_Color})
+const Baseplate = new THREE.Mesh(Baseplate_Geometry, Baseplate_Material)
+Baseplate.position.y = -1.5
+
+// Create the skybox
+const SkyBox = new Skybox('/public/Images/Skybox/', Scene).Create('Skybox', 'png')
+//
 
 // Create the mover for the player character
 const RootMover      = new RootPlayer(Scene, Camera, WebGL_Renderer)
@@ -27,7 +38,7 @@ const Assets = {
 }
 
 async function CreateWing(Color, LeftSided) {
-    const WingGLTF = await GLTFImport.GLTF('./public/3D/Wing.gltf')
+    const WingGLTF = await GLTFImport.GLTF('/public/3D/Wing.gltf')
     const Side = LeftSided && Assets.WingsLeft || Assets.WingsRight
     let WingObject = null
 
@@ -44,7 +55,7 @@ async function CreateWing(Color, LeftSided) {
 }
 
 async function CreateRing(Color) {
-    const RingGLTF = await GLTFImport.GLTF('./public/3D/Ring.gltf')
+    const RingGLTF = await GLTFImport.GLTF('/public/3D/Ring.gltf')
     let RingObject = null
 
     RingGLTF.scene.traverse((Object) => {
@@ -76,7 +87,8 @@ async function CreateGlitcherAssets() {
 Scene.add(
     GridHelper,
     AmbientLight,
-    AxesHelper
+    AxesHelper,
+    Baseplate
 )
 CreateGlitcherAssets()
 

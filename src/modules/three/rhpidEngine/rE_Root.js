@@ -3,6 +3,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls'
 import { KeyMap, InputEvent } from './rE_Bind'
 
 export const __rhpidEngine_Version = "dev0.1"
+export let Default_i_Color = 0xa3a2a5
 export let Root = null
 export let CameraControls = null
 
@@ -23,7 +24,7 @@ export class RootPlayer {
 		if (Root == null) {
 			const Root_Geometry = new THREE.BoxGeometry(1.3,3,3)
 			const Material      = new THREE.MeshStandardMaterial({
-				color: 0xa3a2a5, 
+				color: Default_i_Color, 
 				wireframe: Wireframe === undefined ? false : Wireframe
 			})
 			Root = new THREE.Mesh(Root_Geometry, Material)
