@@ -7,7 +7,7 @@ export let Root = null
 export let CameraControls = null
 
 export let start_Origin = 10
-export let WalkSpeed = 35
+export let WalkSpeed = 45
 
 let ROOT_move_init = false
 let ROOT_binds = null
@@ -40,7 +40,7 @@ export class RootPlayer {
 		if (CameraControls == null) {
 			CameraControls = new OrbitControls(this.CAMERA, this.RENDER.domElement)
 			CameraControls.enablePan   = false
-			CameraControls.maxDistance = 200
+			CameraControls.maxDistance = 30
 			CameraControls.minDistance = 5
 			CameraControls.target = Root === undefined ? new THREE.Vector3() : Root.position
 		}

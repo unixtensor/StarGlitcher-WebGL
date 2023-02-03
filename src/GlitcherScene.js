@@ -13,7 +13,7 @@ const AxesHelper     = new THREE.AxesHelper(20)
 
 // Create the mover for the player character
 const RootMover      = new RootPlayer(Scene, Camera, WebGL_Renderer)
-const RootObject     = RootMover.Create()
+const RootObject     = RootMover.Create(1.5)
 const CameraControls = RootMover.Camera()
 const RootMove       = RootMover.ApplyMovement()
 // --
@@ -94,7 +94,6 @@ document.body.appendChild(WebGL_Renderer.domElement)
 
 WebGL_Renderer.setAnimationLoop(() => {
     RootMove.update()
-    CameraControls.update()
 
     WebGL_Renderer.render(Scene, Camera)
     FPS_Stats.update()
