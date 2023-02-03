@@ -7,7 +7,7 @@ export let Root = null
 export let CameraControls = null
 
 export let start_Origin = 10
-export let WalkSpeed = 45
+export let WalkSpeed = 15
 
 let ROOT_move_init = false
 let ROOT_binds = null

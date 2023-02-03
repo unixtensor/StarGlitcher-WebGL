@@ -22,26 +22,24 @@ export class KeyMap {
 	update() {
 		// Root Mover
 		if (InputEvent.w) {
-			const dir = new Vector3(this.ROOT.position.x,0,this.ROOT.position.z)
-			dir.sub(this.CAMERA.position).normalize()
-			this.ROOT.position.x += (WalkSpeed/500)*dir.x
-			this.ROOT.position.z += (WalkSpeed/500)*dir.z
+			const lookVector = new Vector3(0,0,-.1).applyQuaternion(this.CAMERA.quaternion)
+			this.ROOT.position.x += lookVector.x
+			this.ROOT.position.z += lookVector.z
 		}
 		if (InputEvent.a) {
-			const dir = new Vector3(this.ROOT.position.x,0,this.ROOT.position.z)
-			dir.sub(this.CAMERA.position).normalize()
-			this.ROOT.position.x += (WalkSpeed/500)*dir.x
+			const rightVector = new Vector3(-.1,0.0).applyQuaternion(this.CAMERA.quaternion)
+			this.ROOT.position.x += rightVector.x
+			this.ROOT.position.z += rightVector.z
 		}
 		if (InputEvent.s) {
-			const dir = new Vector3(this.ROOT.position.x,0,this.ROOT.position.z)
-			dir.sub(this.CAMERA.position).normalize()
-			this.ROOT.position.x -= (WalkSpeed/500)*dir.x
-			this.ROOT.position.z -= (WalkSpeed/500)*dir.z
+			const lookVector = new Vector3(0,0,-.1).applyQuaternion(this.CAMERA.quaternion)
+			this.ROOT.position.x -= lookVector.x
+			this.ROOT.position.z -= lookVector.z
 		}
 		if (InputEvent.d) {
-			const dir = new Vector3(this.ROOT.position.x,0,this.ROOT.position.z)
-			dir.sub(this.CAMERA.position).normalize().applyQuaternion(this.CAMERA.quaternion)
-			this.ROOT.position.x -= (WalkSpeed/500)*dir.x
+			const rightVector = new Vector3(-.1,0.0).applyQuaternion(this.CAMERA.quaternion)
+			this.ROOT.position.x -= rightVector.x
+			this.ROOT.position.z -= rightVector.z
 		}
 		if (InputEvent[' ']) {
 			console.log("Space Pressed")
