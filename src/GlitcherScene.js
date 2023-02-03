@@ -3,7 +3,7 @@ import { CreateImport } from '/modules/three/GLTFImport'
 import { FPS_Stats }    from './UI'
 import { Skybox } from './modules/three/Skybox'
 // Engine
-import { RootPlayer, Default_i_Color } from '/modules/three/rhpidEngine/rE_Root'
+import { RootPlayer, COLOR_Inst_DEF } from '/modules/three/rhpidEngine/rE_Root'
 
 // ThreeJS dependencies 
 const WebGL_Renderer = new THREE.WebGLRenderer({antialias: false})
@@ -14,7 +14,7 @@ const AmbientLight   = new THREE.AmbientLight(0xffffff)
 const AxesHelper     = new THREE.AxesHelper(20)
 
 const Baseplate_Geometry = new THREE.BoxGeometry(300,3,300)
-const Baseplate_Material = new THREE.MeshStandardMaterial({color:Default_i_Color})
+const Baseplate_Material = new THREE.MeshStandardMaterial({color: COLOR_Inst_DEF})
 const Baseplate = new THREE.Mesh(Baseplate_Geometry, Baseplate_Material)
 Baseplate.position.y = -1.5
 
