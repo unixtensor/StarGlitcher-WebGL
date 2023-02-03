@@ -1,10 +1,9 @@
 /*
     Module that uses a hacky way of getting PNG's to be colored with CSS.
-
     https://stackoverflow.com/questions/42966641/how-to-transform-black-into-any-given-color-using-only-css-filters/43960991#43960991
 */
 
-class Color {
+export class Color {
   constructor(r, g, b) {
     this.set(r, g, b);
   }
@@ -154,7 +153,7 @@ class Color {
   }
 }
 
-class Solver {
+export class Solver {
   constructor(target, baseColor) {
     this.target = target;
     this.targetHSL = target.hsl();
@@ -279,9 +278,4 @@ class Solver {
     }
     return `invert(${fmt(0)}%) sepia(${fmt(1)}%) saturate(${fmt(2)}%) hue-rotate(${fmt(3, 3.6)}deg) brightness(${fmt(4)}%) contrast(${fmt(5)}%)`;
   }
-}
-
-export function ColorPNG(R, G, B) {
-    const pColor = new Color(R, G, B)
-    return new Solver(pColor).solve().filter
 }
