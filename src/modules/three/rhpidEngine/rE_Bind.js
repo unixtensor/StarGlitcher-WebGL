@@ -12,6 +12,7 @@ export const InputEvent = {
 	d: false,
 	' ': false
 }
+export let Control_IgnoreY = false
 
 export class KeyMap {
 	constructor(ROOT, CAMERA) {
@@ -31,21 +32,29 @@ export class KeyMap {
 			// )
 			this.ROOT.position.x += lookVector.x
 			this.ROOT.position.z += lookVector.z
+			if (!Control_IgnoreY)
+				this.ROOT.position.y += lookVector.y
 		}
 		if (InputEvent.a) {
 			const rightVector = new Vector3(-.1,0.0).applyQuaternion(this.CAMERA.quaternion)
 			this.ROOT.position.x += rightVector.x
 			this.ROOT.position.z += rightVector.z
+			if (!Control_IgnoreY)
+				this.ROOT.position.y += rightVector.y
 		}
 		if (InputEvent.s) {
 			const lookVector = new Vector3(0,0,-.1).applyQuaternion(this.CAMERA.quaternion)
 			this.ROOT.position.x -= lookVector.x
 			this.ROOT.position.z -= lookVector.z
+			if (!Control_IgnoreY)
+				this.ROOT.position.y -= lookVector.y
 		}
 		if (InputEvent.d) {
 			const rightVector = new Vector3(-.1,0.0).applyQuaternion(this.CAMERA.quaternion)
 			this.ROOT.position.x -= rightVector.x
 			this.ROOT.position.z -= rightVector.z
+			if (!Control_IgnoreY)
+				this.ROOT.position.y -= rightVector.y
 		}
 		if (InputEvent[' ']) {
 			console.log("Space Pressed")
