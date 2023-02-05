@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import { Matrix3 } from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls'
 import { KeyMap, InputEvent } from './rE_Bind'
 
@@ -23,11 +24,13 @@ export class RootPlayer {
 	Create(start_Origin, Wireframe) {
 		if (Root == null) {
 			const Root_Geometry = new THREE.BoxGeometry(1.3,3,3)
-			const Material      = new THREE.MeshStandardMaterial({
-				color: COLOR_Inst_DEF, 
+			const Material      = new THREE.MeshPhongMaterial({
+				color: Wireframe === (undefined || false) ? COLOR_Inst_DEF : 0xffffff, 
 				wireframe: Wireframe === undefined ? false : Wireframe
 			})
 			Root = new THREE.Mesh(Root_Geometry, Material)
+			Root.castShadow = true
+			Root.receiveShadow = true
 			Root.position.y = start_Origin === undefined ? 10 : start_Origin
 			this.SCENE.add(Root)
 
@@ -35,6 +38,10 @@ export class RootPlayer {
 		}
 		console.warn("Root is already created on the engine level, Skipping. \n Root creation is traced to \"class RootObject.\"")
 		return Root
+	}
+	__ForceRootSaturation() {
+		if (Root != null)
+			Root.material.color.setHex(0xffffff)
 	}
 
 	Camera() {

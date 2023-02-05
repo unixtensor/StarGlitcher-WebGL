@@ -1,6 +1,6 @@
 export let win_Offset = 3 // Usually a good offset for browser true size is 3
 
-function  s_Circuit(EXPECTED, DEFAULT) {
+function s_Circuit(EXPECTED, DEFAULT) {
     return EXPECTED === undefined ? DEFAULT : EXPECTED
 }
 

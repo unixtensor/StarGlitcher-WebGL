@@ -4,19 +4,28 @@ import { FPS_Stats }    from './UI'
 import { Skybox } from './modules/three/Skybox'
 // Engine
 import { RootPlayer, COLOR_Inst_DEF } from '/modules/three/rhpidEngine/rE_Root'
+import { LightEngine } from './modules/three/Lighting'
 
-// ThreeJS dependencies 
+// ThreeJS dependencies
 const WebGL_Renderer = new THREE.WebGLRenderer({antialias: false})
+WebGL_Renderer.shadowMap.enabled = true
+
 const Scene          = new THREE.Scene()
 const Camera         = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, .1, 1000)
 const GridHelper     = new THREE.GridHelper(200, 50)
-const AmbientLight   = new THREE.AmbientLight(0xffffff)
 const AxesHelper     = new THREE.AxesHelper(20)
 
 const Baseplate_Geometry = new THREE.BoxGeometry(300,3,300)
-const Baseplate_Material = new THREE.MeshStandardMaterial({color: COLOR_Inst_DEF})
+const Baseplate_Material = new THREE.MeshPhongMaterial({color: COLOR_Inst_DEF})
 const Baseplate = new THREE.Mesh(Baseplate_Geometry, Baseplate_Material)
+Baseplate.castShadow = true
+Baseplate.receiveShadow = true
 Baseplate.position.y = -1.5
+
+// Lighting
+const Lighting = new LightEngine(Scene).Create({
+    Ambient: {Color: 0xd300db}
+})
 
 // Create the skybox
 const SkyBox = new Skybox('/public/Images/Skybox/', Scene).Create('Skybox', 'png')
@@ -24,9 +33,10 @@ const SkyBox = new Skybox('/public/Images/Skybox/', Scene).Create('Skybox', 'png
 
 // Create the mover for the player character
 const RootMover      = new RootPlayer(Scene, Camera, WebGL_Renderer)
-const RootObject     = RootMover.Create(1.5)
+const RootObject     = RootMover.Create(1.5, false)
 const CameraControls = RootMover.Camera()
 const RootMove       = RootMover.ApplyMovement()
+RootMover.__ForceRootSaturation()
 // --
 
 // Star Glitcher assets
@@ -43,9 +53,13 @@ async function CreateWing(Color, LeftSided) {
     let WingObject = null
 
     WingGLTF.scene.traverse((Object) => {
-        Object.material = new THREE.MeshStandardMaterial({color: Color})
-        Object.position.z = LeftSided && -Side.length-1.7 || Side.length+1.7
-        WingObject = Object
+        if (Object.isMesh) {
+            Object.material = new THREE.MeshPhongMaterial({color: Color})
+            Object.castShadow = true
+            Object.receiveShadow = true
+            Object.position.z = LeftSided && -Side.length-1.7 || Side.length+1.7
+            WingObject = Object
+        }
     })
     Side.push(WingGLTF.scene)
     return {
@@ -59,8 +73,12 @@ async function CreateRing(Color) {
     let RingObject = null
 
     RingGLTF.scene.traverse((Object) => {
-        Object.material = new THREE.MeshStandardMaterial({color: Color})
-        RingObject = Object
+        if (Object.isMesh) {
+            Object.material = new THREE.MeshPhongMaterial({color: Color})
+            Object.castShadow = true
+            Object.receiveShadow = true
+            RingObject = Object
+        }
     })
     Assets.Ring = RingGLTF.scene
     return {
@@ -86,7 +104,6 @@ async function CreateGlitcherAssets() {
 
 Scene.add(
     GridHelper,
-    AmbientLight,
     AxesHelper,
     Baseplate
 )
