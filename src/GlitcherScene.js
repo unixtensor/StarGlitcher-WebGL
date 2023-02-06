@@ -10,10 +10,10 @@ import { LightEngine } from './modules/three/Lighting'
 const WebGL_Renderer = new THREE.WebGLRenderer({antialias: false})
 WebGL_Renderer.shadowMap.enabled = true
 
-const Scene          = new THREE.Scene()
-const Camera         = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, .1, 1000)
-const GridHelper     = new THREE.GridHelper(200, 50)
-const AxesHelper     = new THREE.AxesHelper(20)
+const Scene      = new THREE.Scene()
+const Camera     = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, .1, 1000)
+const GridHelper = new THREE.GridHelper(200, 50)
+const AxesHelper = new THREE.AxesHelper(20)
 
 const Baseplate_Geometry = new THREE.BoxGeometry(300,3,300)
 const Baseplate_Material = new THREE.MeshPhongMaterial({color: COLOR_Inst_DEF})
@@ -21,6 +21,8 @@ const Baseplate = new THREE.Mesh(Baseplate_Geometry, Baseplate_Material)
 Baseplate.castShadow = true
 Baseplate.receiveShadow = true
 Baseplate.position.y = -1.5
+
+Camera.position.set(-13,12,-0.1)
 
 // Lighting
 const Lighting = new LightEngine(Scene).Create({

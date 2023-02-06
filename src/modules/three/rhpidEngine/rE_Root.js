@@ -1,5 +1,4 @@
 import * as THREE from 'three'
-import { Matrix3 } from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls'
 import { KeyMap, InputEvent } from './rE_Bind'
 
@@ -14,6 +13,10 @@ export let WalkSpeed = 15
 let ROOT_move_init = false
 let ROOT_binds = null
 
+function s_Circuit(EXPECTED, DEFAULT) {
+    return EXPECTED === undefined ? DEFAULT : EXPECTED
+}
+
 export class RootPlayer {
 	constructor(SCENE, CAMERA, RENDER) {
 		this.SCENE = SCENE
@@ -26,12 +29,12 @@ export class RootPlayer {
 			const Root_Geometry = new THREE.BoxGeometry(1.3,3,3)
 			const Material      = new THREE.MeshPhongMaterial({
 				color: Wireframe === (undefined || false) ? COLOR_Inst_DEF : 0xffffff, 
-				wireframe: Wireframe === undefined ? false : Wireframe
+				wireframe: s_Circuit(Wireframe, false)
 			})
 			Root = new THREE.Mesh(Root_Geometry, Material)
 			Root.castShadow = true
 			Root.receiveShadow = true
-			Root.position.y = start_Origin === undefined ? 10 : start_Origin
+			Root.position.y = s_Circuit(start_Origin, 10)
 			this.SCENE.add(Root)
 
 			return Root
@@ -44,13 +47,18 @@ export class RootPlayer {
 			Root.material.color.setHex(0xffffff)
 	}
 
-	Camera() {
+	Camera(PRE_OVERRIDES = {}) {
+		const DEF_OVERRIDE = {
+			enablePan: s_Circuit(PRE_OVERRIDES.enablePan, false),
+			maxDistance: s_Circuit(PRE_OVERRIDES.maxDistance, 30),
+			minDistance: s_Circuit(PRE_OVERRIDES.minDistance, 5)
+		}
 		if (CameraControls == null) {
 			CameraControls = new OrbitControls(this.CAMERA, this.RENDER.domElement)
-			CameraControls.enablePan   = false
-			CameraControls.maxDistance = 30
-			CameraControls.minDistance = 5
-			CameraControls.target = Root === undefined ? new THREE.Vector3() : Root.position
+			CameraControls.enablePan   = DEF_OVERRIDE.enablePan
+			CameraControls.maxDistance = DEF_OVERRIDE.maxDistance
+			CameraControls.minDistance = DEF_OVERRIDE.minDistance
+			CameraControls.target = s_Circuit(Root.position, new THREE.Vector3())
 		}
 		return CameraControls
 	}
