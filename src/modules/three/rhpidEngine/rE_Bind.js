@@ -24,14 +24,15 @@ export class KeyMap {
 		// Root Mover
 		if (InputEvent.w) {
 			const lookVector = new Vector3(0,0,-.1).applyQuaternion(this.CAMERA.quaternion)
-			// const CamP = this.CAMERA.position
-			// this.CAMERA.position.set(
-			// 	this.ROOT.position.x*CamP.x,
-			// 	CamP.y,
-			// 	this.ROOT.position.z*CamP.z,
-			// )
+			const ROOT_ObjS = new Vector3()
+			const CAM_ObjS = new Vector3()
+			this.ROOT.getWorldPosition(ROOT_ObjS)
+			this.CAMERA.getWorldPosition(CAM_ObjS)
+
+			this.CAMERA.position.set(ROOT_ObjS.x*CAM_ObjS.x, ROOT_ObjS.y*CAM_ObjS.y, ROOT_ObjS.z*CAM_ObjS.z)
 			this.ROOT.position.x += lookVector.x
 			this.ROOT.position.z += lookVector.z
+
 			if (!Control_IgnoreY)
 				this.ROOT.position.y += lookVector.y
 		}
@@ -39,6 +40,7 @@ export class KeyMap {
 			const rightVector = new Vector3(-.1,0.0).applyQuaternion(this.CAMERA.quaternion)
 			this.ROOT.position.x += rightVector.x
 			this.ROOT.position.z += rightVector.z
+
 			if (!Control_IgnoreY)
 				this.ROOT.position.y += rightVector.y
 		}
@@ -46,6 +48,7 @@ export class KeyMap {
 			const lookVector = new Vector3(0,0,-.1).applyQuaternion(this.CAMERA.quaternion)
 			this.ROOT.position.x -= lookVector.x
 			this.ROOT.position.z -= lookVector.z
+
 			if (!Control_IgnoreY)
 				this.ROOT.position.y -= lookVector.y
 		}
@@ -53,6 +56,7 @@ export class KeyMap {
 			const rightVector = new Vector3(-.1,0.0).applyQuaternion(this.CAMERA.quaternion)
 			this.ROOT.position.x -= rightVector.x
 			this.ROOT.position.z -= rightVector.z
+
 			if (!Control_IgnoreY)
 				this.ROOT.position.y -= rightVector.y
 		}
