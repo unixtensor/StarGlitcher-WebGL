@@ -12,7 +12,7 @@ export const InputEvent = {
 	d: false,
 	' ': false
 }
-export let Control_IgnoreY = false
+export let Control_IgnoreY = true
 
 export class KeyMap {
 	constructor(ROOT, CAMERA) {
@@ -20,7 +20,7 @@ export class KeyMap {
 		this.CAMERA = CAMERA
 	}
 
-	update() { wkaosgka
+	update() {
 		// Root Mover
 		if (InputEvent.w) {
 			const lookVector = new Vector3(0,0,-.1).applyQuaternion(this.CAMERA.quaternion)
@@ -29,7 +29,7 @@ export class KeyMap {
 			this.ROOT.getWorldPosition(ROOT_ObjS)
 			this.CAMERA.getWorldPosition(CAM_ObjS)
 
-			this.CAMERA.position.set(ROOT_ObjS.x*CAM_ObjS.x, ROOT_ObjS.y*CAM_ObjS.y, ROOT_ObjS.z*CAM_ObjS.z)
+			this.CAMERA.position.set(this.CAMERA.position.x-this.ROOT.position.x, this.ROOT.position.y-this.CAMERA.position.y, this.CAMERA.position.z-this.ROOT.position.z)
 			this.ROOT.position.x += lookVector.x
 			this.ROOT.position.z += lookVector.z
 

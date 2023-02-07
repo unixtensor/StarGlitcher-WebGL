@@ -1,7 +1,8 @@
-import * as UI_V            from '/modules/UI/UI-Vector'
-import * as UIGlitcherTheme from '/modules/UI/UI-GlitcherTheme'
-import { ModeOfGlitch }     from '/modules/UI/ModesOfGlitch'
-import Stats                from 'three/examples/jsm/libs/stats.module'
+import Stats                  from 'three/examples/jsm/libs/stats.module'
+import { Clock }              from 'three'
+import { ChangeModeOfGlitch } from '/modules/UI/UI-GlitcherTheme'
+import { ModeOfGlitch }       from '/modules/UI/ModesOfGlitch'
+import * as UI_V              from '/modules/UI/UI-Vector'
 
 const Object_1               = document.getElementById("Object-1")
 const Object_2               = document.getElementById("Object-2")
@@ -21,6 +22,7 @@ const GlitchMode             = document.getElementById("Text-GlitcherMode")
 const GlitcherUIs = `
 #Object-1,
 #Object-2,
+#Object-3,
 #Text-GlitcherMode,
 #Text-StarGlitcher,
 #Bottom-Bar,
@@ -36,11 +38,12 @@ const GlitcherUIs = `
 `
 let SpinRate = 1
 let delta = 0
-let UI_ENABLED = false
+let UI_ENABLED = true
 
 // Create FPS stats
 const FPS_Stats = new Stats()
 // --
+const Tick = new Clock()
 
 function lerp(start, end, t) {
     return start*(1-t)+end*t
@@ -184,7 +187,7 @@ function UI_FPS() {
             R: rad(-(delta*SpinRate)/6)
         })
         UI_FPS()
-    }, 1)
+    }, 1*Tick.getDelta())
 }
 if (UI_ENABLED) {
     UI_FPS()
@@ -192,7 +195,7 @@ if (UI_ENABLED) {
         value.style.display = "block"
     })   
 }
-UIGlitcherTheme.ChangeModeOfGlitch(ModeOfGlitch[0])
+ChangeModeOfGlitch(ModeOfGlitch.StarGlitcher_Mode[0])
 document.body.appendChild(FPS_Stats.dom)
 
 export {
