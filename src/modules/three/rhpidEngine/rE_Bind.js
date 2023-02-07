@@ -20,7 +20,7 @@ export class KeyMap {
 		this.CAMERA = CAMERA
 	}
 
-	update() {
+	update() { wkaosgka
 		// Root Mover
 		if (InputEvent.w) {
 			const lookVector = new Vector3(0,0,-.1).applyQuaternion(this.CAMERA.quaternion)
