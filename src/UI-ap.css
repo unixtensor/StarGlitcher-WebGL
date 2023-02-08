@@ -2,7 +2,9 @@
     --__NULL_MODE:     rgb(0,0,0);
     --__NULL_MODE_a:   rgb(0,0,0,.5);
     --__NULL_MODE_ALT: rgb(255,255,255);
-    --__NULL_MODE_ALT_a: rgba(255,255,255,.5)
+    --__NULL_MODE_ALT_a: rgba(255,255,255,.5);
+    --PrimaryFonts:   'Press Start 2P', sans-serif;
+    --SecondaryFonts: 'Zekton', 'Michroma', sans-serif;
 }
 html, body {
     background-color: black;
@@ -15,7 +17,7 @@ div, img {
     pointer-events: none;
 }
 h1 {
-    font-family: 'Press Start 2P', sans-serif;
+    font-family: var(--PrimaryFonts);
     text-align: center;
     user-select: none;
 }
@@ -77,7 +79,7 @@ h1 {
     display: none;
 }
 #Text-GlitcherStyle {
-    font-family: 'Michroma', sans-serif;
+    font-family: var(--SecondaryFonts);
     font-weight: bold;
     color: var(--__NULL_MODE_ALT);
     text-shadow: -3px 0 var(--__NULL_MODE), 0 3px var(--__NULL_MODE), 3px 0 var(--__NULL_MODE), 0 -3px var(--__NULL_MODE);
