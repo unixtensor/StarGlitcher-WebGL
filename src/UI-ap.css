@@ -69,11 +69,18 @@ h1 {
     display: none;
 }
 #Object-3 {
-    
+    height: 80px;
+    width: 400px;
     left: 0;
     bottom: 0;
     z-index: 5;
     display: none;
+}
+#Text-GlitcherStyle {
+    font-family: 'Michroma', sans-serif;
+    font-weight: bold;
+    color: var(--__NULL_MODE_ALT);
+    text-shadow: -3px 0 var(--__NULL_MODE), 0 3px var(--__NULL_MODE), 3px 0 var(--__NULL_MODE), 0 -3px var(--__NULL_MODE);
 }
 #Text-GlitcherMode {
     font-size: 40px;
@@ -82,8 +89,8 @@ h1 {
     display: none;
 }
 #Text-StarGlitcher {
-    color: var(--__NULL_MODE_ALT);
-    text-shadow: -3px 0 var(--__NULL_MODE), 0 3px var(--__NULL_MODE), 3px 0 var(--__NULL_MODE), 0 -3px var(--__NULL_MODE);
+    color: var(--__NULL_MODE);
+    text-shadow: -3px 0 var(--__NULL_MODE_ALT), 0 3px var(--__NULL_MODE_ALT), 3px 0 var(--__NULL_MODE_ALT), 0 -3px var(--__NULL_MODE_ALT);
     display: none;
 }
 #Bottom-Bar {

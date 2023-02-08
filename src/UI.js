@@ -6,8 +6,10 @@ import * as UI_V              from '/modules/UI/UI-Vector'
 
 const Object_1               = document.getElementById("Object-1")
 const Object_2               = document.getElementById("Object-2")
+const Object_3               = document.getElementById("Object-3")
 const Text_GlitcherMode      = document.getElementById("Text-GlitcherMode")
 const Text_StarGlitcher      = document.getElementById("Text-StarGlitcher")
+const Text_GlitcherStyle     = document.getElementById("Text-GlitcherStyle")
 const BottomBar              = document.getElementById("Bottom-Bar")
 const BottomBar_2            = document.getElementById("Bottom-Bar-2")
 const Bottom_Rect            = document.getElementById("Bottom-Rect")
@@ -25,6 +27,7 @@ const GlitcherUIs = `
 #Object-3,
 #Text-GlitcherMode,
 #Text-StarGlitcher,
+#Text-GlitcherStyle
 #Bottom-Bar,
 #Bottom-Bar-2,
 #Bottom-Rect,
@@ -33,8 +36,7 @@ const GlitcherUIs = `
 #GlitcherShards2,
 #GlitcherSparkle,
 #GlitcherHexagonBorders,
-#GlitcherHexagonSpiked,
-#Text-GlitcherMode
+#GlitcherHexagonSpiked
 `
 let SpinRate = 1
 let delta = 0
@@ -98,6 +100,9 @@ window.addEventListener("resize", () => {
         X: w_x-350,
         Y: w_y-350
     })
+    UI_V.Vector2(Object_3, {
+        Y: w_y-BottomBar.offsetHeight-165
+    })
 }, false)
 
 BottomBar.style.width   = `${w_x}px`
@@ -136,6 +141,9 @@ UI_V.Vector2(GlitcherHexagonBorders, {
 UI_V.Vector2(GlitcherHexagonSpiked, {
     X: w_x-350,
     Y: w_y-350
+})
+UI_V.Vector2(Object_3, {
+    Y: w_y-BottomBar.offsetHeight-165
 })
 
 document.addEventListener('contextmenu', event => event.preventDefault(), false)
@@ -192,8 +200,8 @@ function UI_FPS() {
 if (UI_ENABLED) {
     UI_FPS()
     document.querySelectorAll(GlitcherUIs).forEach((value) => {
-        value.style.display = "block"
-    })   
+        value.style.display = "block" 
+    })
 }
 ChangeModeOfGlitch(ModeOfGlitch.StarGlitcher_Mode[0])
 document.body.appendChild(FPS_Stats.dom)
@@ -201,8 +209,10 @@ document.body.appendChild(FPS_Stats.dom)
 export {
     Object_1,
     Object_2,
+    Object_3,
     Text_GlitcherMode,
     Text_StarGlitcher,
+    Text_GlitcherStyle,
     BottomBar,
     BottomBar_2,
     Bottom_Rect,

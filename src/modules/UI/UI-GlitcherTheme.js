@@ -22,9 +22,11 @@ export function ChangeModeOfGlitch(DATA_PROPS) {
     UI.Bottom_Rect_2.style.backgroundColor = SecondaryColor_Alpha
     UI.Text_GlitcherMode.style.color       = PrimeColor
     UI.Text_GlitcherMode.style.textShadow  = `-3px 0 ${SecondaryColor}, 0 3px ${SecondaryColor}, 3px 0 ${SecondaryColor}, 0 -3px ${SecondaryColor}`
-    UI.Text_StarGlitcher.style.color       = SecondaryColor
-    UI.Text_StarGlitcher.style.textShadow  = `-3px 0 ${PrimeColor}, 0 3px ${PrimeColor}, 3px 0 ${PrimeColor}, 0 -3px ${PrimeColor}`
-
+    UI.Text_StarGlitcher.style.color       = PrimeColor
+    UI.Text_StarGlitcher.style.textShadow  = `-3px 0 ${SecondaryColor}, 0 3px ${SecondaryColor}, 3px 0 ${SecondaryColor}, 0 -3px ${SecondaryColor}`
+    UI.Text_GlitcherStyle.style.color      = SecondaryColor
+    UI.Text_GlitcherStyle.style.textShadow = `-3px 0 ${PrimeColor}, 0 3px ${PrimeColor}, 3px 0 ${PrimeColor}, 0 -3px ${PrimeColor}`
+    
     UI.Text_GlitcherMode.innerHTML = DATA_PROPS.Name.toUpperCase()
 
     // Turn PNG's colorful
