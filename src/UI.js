@@ -6,10 +6,8 @@ import * as UI_V              from '/modules/UI/UI-Vector'
 
 const Object_1               = document.getElementById("Object-1")
 const Object_2               = document.getElementById("Object-2")
-const Object_3               = document.getElementById("Object-3")
 const Text_GlitcherMode      = document.getElementById("Text-GlitcherMode")
 const Text_StarGlitcher      = document.getElementById("Text-StarGlitcher")
-const Text_GlitcherStyle     = document.getElementById("Text-GlitcherStyle")
 const BottomBar              = document.getElementById("Bottom-Bar")
 const BottomBar_2            = document.getElementById("Bottom-Bar-2")
 const Bottom_Rect            = document.getElementById("Bottom-Rect")
@@ -24,11 +22,9 @@ const GlitchMode             = document.getElementById("Text-GlitcherMode")
 const GlitcherUIs = `
 #Object-1,
 #Object-2,
-#Object-3,
 #Text-GlitcherMode,
 #Text-StarGlitcher,
-#Text-GlitcherStyle
-#Bottom-Bar,
+#Bottom-Bar, 
 #Bottom-Bar-2,
 #Bottom-Rect,
 #Bottom-Rect-2,
@@ -42,17 +38,10 @@ let SpinRate = 1
 let delta = 0
 let UI_ENABLED = true
 
-// Create FPS stats
-const FPS_Stats = new Stats()
-// --
+const FPS_Stats = new Stats() // Create FPS stats
 const Tick = new Clock()
-
-function lerp(start, end, t) {
-    return start*(1-t)+end*t
-}
-function rad(x) {
-    return x*Math.PI/180
-}
+const rad = (x) => x*Math.PI/180
+const lerp = (start,end,t) => start*(1-t)+end*t
 
 // Pre-Init Sizing
 // Object's (Animating UI frames) are not needed here since they rely using relative positioning inside their fps loop.
@@ -100,9 +89,6 @@ window.addEventListener("resize", () => {
         X: w_x-350,
         Y: w_y-350
     })
-    UI_V.Vector2(Object_3, {
-        Y: w_y-BottomBar.offsetHeight-165
-    })
 }, false)
 
 BottomBar.style.width   = `${w_x}px`
@@ -116,11 +102,11 @@ UI_V.Vector2(BottomBar_2, {
 })
 UI_V.Vector2(Bottom_Rect, {
     X: w_x/2.03,
-    Y: w_y-BottomBar.offsetHeight-165
+    Y: w_y-BottomBar.offsetHeight*1.1
 })
 UI_V.Vector2(Bottom_Rect_2, {
     X: w_x/2.07,
-    Y: w_y-BottomBar.offsetHeight-200
+    Y: w_y-BottomBar.offsetHeight*1.3
 })
 UI_V.Vector2(GlitcherShards, {
     X: w_x-600,
@@ -141,9 +127,6 @@ UI_V.Vector2(GlitcherHexagonBorders, {
 UI_V.Vector2(GlitcherHexagonSpiked, {
     X: w_x-350,
     Y: w_y-350
-})
-UI_V.Vector2(Object_3, {
-    Y: w_y-BottomBar.offsetHeight-165
 })
 
 document.addEventListener('contextmenu', event => event.preventDefault(), false)
@@ -209,10 +192,8 @@ document.body.appendChild(FPS_Stats.dom)
 export {
     Object_1,
     Object_2,
-    Object_3,
     Text_GlitcherMode,
     Text_StarGlitcher,
-    Text_GlitcherStyle,
     BottomBar,
     BottomBar_2,
     Bottom_Rect,

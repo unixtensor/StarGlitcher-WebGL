@@ -3,8 +3,6 @@
     --__NULL_MODE_a:   rgb(0,0,0,.5);
     --__NULL_MODE_ALT: rgb(255,255,255);
     --__NULL_MODE_ALT_a: rgba(255,255,255,.5);
-    --PrimaryFonts:   'Press Start 2P', sans-serif;
-    --SecondaryFonts: 'Zekton', 'Michroma', sans-serif;
 }
 html, body {
     background-color: black;
@@ -17,7 +15,7 @@ div, img {
     pointer-events: none;
 }
 h1 {
-    font-family: var(--PrimaryFonts);
+    font-family: 'Press Start 2P', sans-serif;
     text-align: center;
     user-select: none;
 }
@@ -65,14 +63,6 @@ h1 {
     height: 100px;
     width: 500px;
     right: 0;
-    left: 0;
-    bottom: 0;
-    z-index: 5;
-    display: none;
-}
-#Object-3 {
-    height: 80px;
-    width: 400px;
     left: 0;
     bottom: 0;
     z-index: 5;

@@ -24,12 +24,13 @@ export class KeyMap {
 		// Root Mover
 		if (InputEvent.w) {
 			const lookVector = new Vector3(0,0,-.1).applyQuaternion(this.CAMERA.quaternion)
-			const ROOT_ObjS = new Vector3()
 			const CAM_ObjS = new Vector3()
-			this.ROOT.getWorldPosition(ROOT_ObjS)
 			this.CAMERA.getWorldPosition(CAM_ObjS)
-
-			this.CAMERA.position.set(this.CAMERA.position.x-this.ROOT.position.x, this.ROOT.position.y-this.CAMERA.position.y, this.CAMERA.position.z-this.ROOT.position.z)
+			this.CAMERA.position.set(
+				CAM_ObjS.x+new Vector3(0,0,-.1).x,
+				CAM_ObjS.y+new Vector3(0,0,-.1).y,
+				CAM_ObjS.z+new Vector3(0,0,-.1).z
+			)
 			this.ROOT.position.x += lookVector.x
 			this.ROOT.position.z += lookVector.z
 
