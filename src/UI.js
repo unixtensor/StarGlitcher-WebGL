@@ -18,7 +18,6 @@ const GlitcherSparkle        = document.getElementById("GlitcherSparkle")
 const GlitcherHexagonBorders = document.getElementById("GlitcherHexagonBorders")
 const GlitcherHexagonSpiked  = document.getElementById("GlitcherHexagonSpiked")
 const GlitchMode             = document.getElementById("Text-GlitcherMode")
-
 const GlitcherUIs = `
 #Object-1,
 #Object-2,
@@ -42,7 +41,6 @@ const FPS_Stats = new Stats() // Create FPS stats
 const Tick = new Clock()
 const rad = (x) => x*Math.PI/180
 const lerp = (start,end,t) => start*(1-t)+end*t
-
 // Pre-Init Sizing
 // Object's (Animating UI frames) are not needed here since they rely using relative positioning inside their fps loop.
 let w_x = window.innerWidth-UI_V.win_Offset

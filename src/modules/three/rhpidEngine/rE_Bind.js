@@ -26,11 +26,7 @@ export class KeyMap {
 			const lookVector = new Vector3(0,0,-.1).applyQuaternion(this.CAMERA.quaternion)
 			const CAM_ObjS = new Vector3()
 			this.CAMERA.getWorldPosition(CAM_ObjS)
-			this.CAMERA.position.set(
-				CAM_ObjS.x+new Vector3(0,0,-.1).x,
-				CAM_ObjS.y+new Vector3(0,0,-.1).y,
-				CAM_ObjS.z+new Vector3(0,0,-.1).z
-			)
+			this.CAMERA.position.set(this.CAMERA.position.add(new Vector3(0,0,-.1)))
 			this.ROOT.position.x += lookVector.x
 			this.ROOT.position.z += lookVector.z
 
