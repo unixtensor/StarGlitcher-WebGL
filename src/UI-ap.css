@@ -68,9 +68,19 @@ h1 {
     z-index: 5;
     display: none;
 }
-#Text-GlitcherStyle {
-    font-family: var(--SecondaryFonts);
+#Object-3 {
+    height: 50px;
+    width: 300px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 5;
+    display: none;
+}
+#Text-SongTitle {
+    font-family: 'Press Start 2P', sans-serif;
     font-weight: bold;
+    font-size: 20px;
     color: var(--__NULL_MODE_ALT);
     text-shadow: -3px 0 var(--__NULL_MODE), 0 3px var(--__NULL_MODE), 3px 0 var(--__NULL_MODE), 0 -3px var(--__NULL_MODE);
 }

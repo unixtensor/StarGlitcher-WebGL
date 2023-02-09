@@ -6,8 +6,10 @@ import * as UI_V              from '/modules/UI/UI-Vector'
 
 const Object_1               = document.getElementById("Object-1")
 const Object_2               = document.getElementById("Object-2")
+const Object_3               = document.getElementById("Object-3")
 const Text_GlitcherMode      = document.getElementById("Text-GlitcherMode")
 const Text_StarGlitcher      = document.getElementById("Text-StarGlitcher")
+const Text_SongTitle         = document.getElementById("Text-SongTitle")
 const BottomBar              = document.getElementById("Bottom-Bar")
 const BottomBar_2            = document.getElementById("Bottom-Bar-2")
 const Bottom_Rect            = document.getElementById("Bottom-Rect")
@@ -21,8 +23,10 @@ const GlitchMode             = document.getElementById("Text-GlitcherMode")
 const GlitcherUIs = `
 #Object-1,
 #Object-2,
+#Object-3,
 #Text-GlitcherMode,
 #Text-StarGlitcher,
+#Text-SongTitle,
 #Bottom-Bar, 
 #Bottom-Bar-2,
 #Bottom-Rect,
@@ -35,100 +39,73 @@ const GlitcherUIs = `
 `
 let SpinRate = 1
 let delta = 0
-let UI_ENABLED = true
+let UI_ENABLED = false
 
 const FPS_Stats = new Stats() // Create FPS stats
 const Tick = new Clock()
 const rad = (x) => x*Math.PI/180
 const lerp = (start,end,t) => start*(1-t)+end*t
-// Pre-Init Sizing
-// Object's (Animating UI frames) are not needed here since they rely using relative positioning inside their fps loop.
+
 let w_x = window.innerWidth-UI_V.win_Offset
 let w_y = window.innerHeight-UI_V.win_Offset
-
-window.addEventListener("resize", () => {
-	w_x = window.innerWidth-UI_V.win_Offset
-	w_y = window.innerHeight-UI_V.win_Offset
-
-	BottomBar.style.width   = `${w_x}px`
+function GlitchUI() {
+    // Pre-Init Sizing
+    // Object's (Animating UI frames) are not needed here since they rely using relative positioning inside their fps loop.
+    function static_UI_Vectors() {
+        UI_V.Vector2(BottomBar, {
+            Y: w_y-50,
+        })
+        UI_V.Vector2(BottomBar_2, {
+            Y: w_y-140
+        })
+        UI_V.Vector2(Bottom_Rect, {
+            X: w_x/2.03,
+            Y: w_y-BottomBar.offsetHeight*1.1
+        })
+        UI_V.Vector2(Bottom_Rect_2, {
+            X: w_x/2.07,
+            Y: w_y-BottomBar.offsetHeight*1.3
+        })
+        UI_V.Vector2(GlitcherShards, {
+            X: w_x-600,
+            Y: w_y-580
+        })
+        UI_V.Vector2(GlitcherShards2, {
+            X: w_x-500,
+            Y: w_y-480
+        })
+        UI_V.Vector2(GlitcherSparkle, {
+            X: w_x-550,
+            Y: w_y-550
+        })
+        UI_V.Vector2(GlitcherHexagonBorders, {
+            X: w_x-450,
+            Y: w_y-450
+        })
+        UI_V.Vector2(GlitcherHexagonSpiked, {
+            X: w_x-350,
+            Y: w_y-350
+        })
+        UI_V.Vector2(Object_3, {
+            X: w_x-w_x+20,
+            Y: w_y-BottomBar.offsetHeight
+        })
+        UI_V.Rotate_RAD(Object_3, {
+            R: rad(6)
+        })
+    }
+    BottomBar.style.width   = `${w_x}px`
     BottomBar_2.style.width = `${w_x}px`
+    static_UI_Vectors()
 
-    UI_V.Vector2(BottomBar, {
-        Y: w_y-50,
-    })
-    UI_V.Vector2(BottomBar_2, {
-        Y: w_y-140
-    })
-    UI_V.Vector2(Bottom_Rect, {
-        X: w_x/2.03,
-        Y: w_y-BottomBar.offsetHeight*1.1
-    })
-    UI_V.Vector2(Bottom_Rect_2, {
-        X: w_x/2.07,
-        Y: w_y-BottomBar.offsetHeight*1.3
-    })
-    UI_V.Vector2(GlitcherShards, {
-        X: w_x-600,
-        Y: w_y-580
-    })
-    UI_V.Vector2(GlitcherShards2, {
-        X: w_x-500,
-        Y: w_y-480
-    })
-    UI_V.Vector2(GlitcherSparkle, {
-        X: w_x-550,
-        Y: w_y-550
-    })
-    UI_V.Vector2(GlitcherHexagonBorders, {
-        X: w_x-450,
-        Y: w_y-450
-    })
-    UI_V.Vector2(GlitcherHexagonSpiked, {
-        X: w_x-350,
-        Y: w_y-350
-    })
-}, false)
-
-BottomBar.style.width   = `${w_x}px`
-BottomBar_2.style.width = `${w_x}px`
-
-UI_V.Vector2(BottomBar, {
-    Y: w_y-50,
-})
-UI_V.Vector2(BottomBar_2, {
-    Y: w_y-140
-})
-UI_V.Vector2(Bottom_Rect, {
-    X: w_x/2.03,
-    Y: w_y-BottomBar.offsetHeight*1.1
-})
-UI_V.Vector2(Bottom_Rect_2, {
-    X: w_x/2.07,
-    Y: w_y-BottomBar.offsetHeight*1.3
-})
-UI_V.Vector2(GlitcherShards, {
-    X: w_x-600,
-    Y: w_y-580
-})
-UI_V.Vector2(GlitcherShards2, {
-    X: w_x-500,
-    Y: w_y-480
-})
-UI_V.Vector2(GlitcherSparkle, {
-    X: w_x-550,
-    Y: w_y-550
-})
-UI_V.Vector2(GlitcherHexagonBorders, {
-    X: w_x-450,
-    Y: w_y-450
-})
-UI_V.Vector2(GlitcherHexagonSpiked, {
-    X: w_x-350,
-    Y: w_y-350
-})
-
-document.addEventListener('contextmenu', event => event.preventDefault(), false)
-// ---
+    window.addEventListener("resize", () => {
+        w_x = window.innerWidth-UI_V.win_Offset
+        w_y = window.innerHeight-UI_V.win_Offset
+        BottomBar.style.width   = `${w_x}px`
+        BottomBar_2.style.width = `${w_x}px`
+        static_UI_Vectors()
+    }, false)
+}
 
 function UI_FPS() {
      setTimeout(() => {
@@ -147,6 +124,9 @@ function UI_FPS() {
         })
         UI_V.Rotate_RAD(Object_2, {
             R: rad(3*Math.sin(delta/200))
+        })
+        UI_V.Rotate_RAD(Object_3, {
+            R: rad(6+Math.sin(delta/150)*1.8)
         })
         UI_V.Rotate_RAD(BottomBar, {
             R: rad(.8*Math.cos(delta/120))
@@ -178,20 +158,23 @@ function UI_FPS() {
         UI_FPS()
     }, 1*Tick.getDelta())
 }
+
 if (UI_ENABLED) {
+    document.querySelectorAll(GlitcherUIs).forEach((value) => value.style.display = "block")
+    GlitchUI()
     UI_FPS()
-    document.querySelectorAll(GlitcherUIs).forEach((value) => {
-        value.style.display = "block" 
-    })
+    ChangeModeOfGlitch(ModeOfGlitch.StarGlitcher_Mode[0])
 }
-ChangeModeOfGlitch(ModeOfGlitch.StarGlitcher_Mode[0])
 document.body.appendChild(FPS_Stats.dom)
+document.addEventListener('contextmenu', event => event.preventDefault(), false)
 
 export {
     Object_1,
     Object_2,
+    Object_3,
     Text_GlitcherMode,
     Text_StarGlitcher,
+    Text_SongTitle,
     BottomBar,
     BottomBar_2,
     Bottom_Rect,

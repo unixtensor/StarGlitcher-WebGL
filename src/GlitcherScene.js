@@ -25,9 +25,7 @@ Baseplate.position.y = -1.5
 Camera.position.set(-13,12,-0.1)
 
 // Lighting
-const Lighting = new LightEngine(Scene).Create({
-    Ambient: {Color: 0xd300db}
-})
+const Lighting = new LightEngine(Scene).Create()
 
 // Create the skybox
 const SkyBox = new Skybox('/public/Images/Skybox/', Scene).Create('Skybox', 'png')

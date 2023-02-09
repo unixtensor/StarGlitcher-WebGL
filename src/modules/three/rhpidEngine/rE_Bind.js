@@ -24,12 +24,15 @@ export class KeyMap {
 		// Root Mover
 		if (InputEvent.w) {
 			const lookVector = new Vector3(0,0,-.1).applyQuaternion(this.CAMERA.quaternion)
-			const CAM_ObjS = new Vector3()
-			this.CAMERA.getWorldPosition(CAM_ObjS)
-			this.CAMERA.position.set(this.CAMERA.position.add(new Vector3(0,0,-.1)))
+
 			this.ROOT.position.x += lookVector.x
 			this.ROOT.position.z += lookVector.z
-
+			this.CAMERA.position.set(
+				this.ROOT.position.x+(this.CAMERA.position.x-this.ROOT.position.x)/2,
+				this.ROOT.position.y+(this.CAMERA.position.y-this.ROOT.position.y)/2,
+				this.ROOT.position.z+(this.CAMERA.position.z-this.ROOT.position.z)/2
+			)
+			console.log(this.ROOT.position.x+(this.CAMERA.position.x-this.ROOT.position.x))
 			if (!Control_IgnoreY)
 				this.ROOT.position.y += lookVector.y
 		}
@@ -38,6 +41,7 @@ export class KeyMap {
 			this.ROOT.position.x += rightVector.x
 			this.ROOT.position.z += rightVector.z
 
+			console.log(this.CAMERA.rotation.x)
 			if (!Control_IgnoreY)
 				this.ROOT.position.y += rightVector.y
 		}
@@ -62,8 +66,7 @@ export class KeyMap {
 		}
 		// --
 
-		if (CameraControls != null) {
+		if (CameraControls != null)
 			CameraControls.update()
-		}
 	}
 }
