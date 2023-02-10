@@ -70,7 +70,7 @@ h1 {
 }
 #Object-3 {
     height: 50px;
-    width: 300px;
+    width: 400px;
     right: 0;
     left: 0;
     bottom: 0;
@@ -78,9 +78,10 @@ h1 {
     display: none;
 }
 #Text-SongTitle {
-    font-family: 'Press Start 2P', sans-serif;
+    font-family: 'Zekton', sans-serif;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 25px;
+    text-align: left;
     color: var(--__NULL_MODE_ALT);
     text-shadow: -3px 0 var(--__NULL_MODE), 0 3px var(--__NULL_MODE), 3px 0 var(--__NULL_MODE), 0 -3px var(--__NULL_MODE);
 }

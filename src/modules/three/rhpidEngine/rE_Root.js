@@ -35,6 +35,7 @@ export class RootPlayer {
 			Root.castShadow = true
 			Root.receiveShadow = true
 			Root.position.y = s_Circuit(start_Origin, 10)
+			Root.add(this.CAMERA)
 			this.SCENE.add(Root)
 
 			return Root
@@ -50,8 +51,8 @@ export class RootPlayer {
 	Camera(PRE_OVERRIDES = {}) {
 		const DEF_OVERRIDE = {
 			enablePan: s_Circuit(PRE_OVERRIDES.enablePan, false),
-			maxDistance: s_Circuit(PRE_OVERRIDES.maxDistance, 30),
-			minDistance: s_Circuit(PRE_OVERRIDES.minDistance, 5)
+			maxDistance: s_Circuit(PRE_OVERRIDES.maxDistance, 100),
+			minDistance: s_Circuit(PRE_OVERRIDES.minDistance, 3)
 		}
 		if (CameraControls == null) {
 			CameraControls = new OrbitControls(this.CAMERA, this.RENDER.domElement)

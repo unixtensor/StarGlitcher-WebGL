@@ -87,8 +87,8 @@ function GlitchUI() {
             Y: w_y-350
         })
         UI_V.Vector2(Object_3, {
-            X: w_x-w_x+20,
-            Y: w_y-BottomBar.offsetHeight
+            X: w_x-w_x+40,
+            Y: w_y-BottomBar.offsetHeight+10
         })
         UI_V.Rotate_RAD(Object_3, {
             R: rad(6)
@@ -126,7 +126,7 @@ function UI_FPS() {
             R: rad(3*Math.sin(delta/200))
         })
         UI_V.Rotate_RAD(Object_3, {
-            R: rad(6+Math.sin(delta/150)*1.8)
+            R: rad(6+Math.cos(delta/150)*2)
         })
         UI_V.Rotate_RAD(BottomBar, {
             R: rad(.8*Math.cos(delta/120))
