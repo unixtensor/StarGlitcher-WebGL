@@ -1,43 +1,38 @@
 import * as THREE       from 'three'
 import { CreateImport } from '/modules/three/GLTFImport'
 import { FPS_Stats }    from './UI'
-import { Skybox } from './modules/three/Skybox'
+import { Skybox }       from './modules/three/Skybox'
 // Engine
-import { RootPlayer, COLOR_Inst_DEF } from '/modules/three/rhpidEngine/rE_Root'
+import { rE_RootPlayer, rE_COLOR_Inst_DEF } from '/modules/three/rhpidEngine/rE_Root'
 import { LightEngine } from './modules/three/Lighting'
 
 // ThreeJS dependencies
 const WebGL_Renderer = new THREE.WebGLRenderer({antialias: false})
 WebGL_Renderer.shadowMap.enabled = true
 
-const Scene      = new THREE.Scene()
-const Camera     = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, .1, 1000)
-const GridHelper = new THREE.GridHelper(200, 50)
-const AxesHelper = new THREE.AxesHelper(20)
-
+const Scene              = new THREE.Scene()
+const Camera             = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, .1, 1000)
 const Baseplate_Geometry = new THREE.BoxGeometry(300,3,300)
-const Baseplate_Material = new THREE.MeshPhongMaterial({color: COLOR_Inst_DEF})
-const Baseplate = new THREE.Mesh(Baseplate_Geometry, Baseplate_Material)
-Baseplate.castShadow = true
-Baseplate.receiveShadow = true
-Baseplate.position.y = -1.5
+const Baseplate_Material = new THREE.MeshPhongMaterial({color: rE_COLOR_Inst_DEF})
+const Baseplate          = new THREE.Mesh(Baseplate_Geometry, Baseplate_Material)
 
-Camera.position.set(-13,12,-0.1)
-
-// Lighting
+// Create the environment
 const Lighting = new LightEngine(Scene).Create()
-
-// Create the skybox
-const SkyBox = new Skybox('/public/Images/Skybox/', Scene).Create('Skybox', 'png')
-//
+const SkyBox   = new Skybox('/public/Images/Skybox/', Scene).Create('Skybox', 'png')
 
 // Create the mover for the player character
-const RootMover      = new RootPlayer(Scene, Camera, WebGL_Renderer)
+const RootMover      = new rE_RootPlayer(Scene, Camera, WebGL_Renderer)
 const RootObject     = RootMover.Create(1.5, false)
 const CameraControls = RootMover.Camera()
 const RootMove       = RootMover.ApplyMovement()
+
 RootMover.__ForceRootSaturation()
-// --
+Baseplate.castShadow = true
+Baseplate.receiveShadow = true
+Baseplate.position.y = -1.5
+Camera.position.set(-13,12,-0.1)
+
+const Clock = new THREE.Clock()
 
 // Star Glitcher assets
 const GLTFImport = new CreateImport(Scene)
@@ -46,7 +41,6 @@ const Assets = {
     WingsRight: [],
     Ring: null
 }
-
 async function CreateWing(Color, LeftSided) {
     const WingGLTF = await GLTFImport.GLTF('/public/3D/Wing.gltf')
     const Side = LeftSided && Assets.WingsLeft || Assets.WingsRight
@@ -67,7 +61,6 @@ async function CreateWing(Color, LeftSided) {
         Object: WingObject
     }
 }
-
 async function CreateRing(Color) {
     const RingGLTF = await GLTFImport.GLTF('/public/3D/Ring.gltf')
     let RingObject = null
@@ -86,7 +79,6 @@ async function CreateRing(Color) {
         Object: RingObject
     }
 }
-
 async function CreateGlitcherAssets() {
     const DEF_ModeColor = 0xff0000 //Mayhem
     const Ring = await CreateRing(DEF_ModeColor)
@@ -102,12 +94,16 @@ async function CreateGlitcherAssets() {
     CreateWing(DEF_ModeColor, true)
 }
 
-Scene.add(
-    GridHelper,
-    AxesHelper,
-    Baseplate
-)
+Scene.add(Baseplate)
 CreateGlitcherAssets()
+
+WebGL_Renderer.setAnimationLoop((delta) => {
+    const deltaTime = Clock.getDelta()
+
+    RootMove.update(deltaTime)
+    WebGL_Renderer.render(Scene, Camera)
+    FPS_Stats.update()
+})
 
 window.addEventListener("resize", () => {
     Camera.aspect = window.innerWidth/window.innerHeight
@@ -120,13 +116,6 @@ WebGL_Renderer.setSize(window.innerWidth, window.innerHeight)
 WebGL_Renderer.domElement.style.zIndex   = 1
 WebGL_Renderer.domElement.style.position = 'absolute'
 document.body.appendChild(WebGL_Renderer.domElement)
-
-WebGL_Renderer.setAnimationLoop((delta) => {
-    RootMove.update()
-
-    WebGL_Renderer.render(Scene, Camera)
-    FPS_Stats.update()
-})
 
 export {
     Assets,
