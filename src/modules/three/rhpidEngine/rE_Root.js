@@ -4,12 +4,14 @@ import { rE_KeyMap, InputEvent } from './rE_Bind'
 
 export const __rhpidEngine_Version = "dev0.1"
 export let rE_COLOR_Inst_DEF = 0xa3a2a5
-export let rE_Root = null
 export let rE_CameraControls = null
 
-export let start_Origin = 10
-export let WalkSpeed = 10
-export let JumpHeight = 50
+export let rE_Root = null
+export const rE_Root_PROPERTIES = {
+	WalkSpeed: 10,
+	JumpHeight: 50,
+	HipHeight: 1.5
+}
 
 let ROOT_move_init = false
 let ROOT_binds = null
@@ -25,23 +27,23 @@ export class rE_RootPlayer {
 		this.RENDER = RENDER
 	}
 
-	Create(start_Origin, Wireframe) {
+	Create(Wireframe = false) {
 		if (rE_Root == null) {
 			const Root_Geometry = new THREE.BoxGeometry(1.3,3,3)
 			const Material      = new THREE.MeshPhongMaterial({
-				color: Wireframe === (undefined || false) ? rE_COLOR_Inst_DEF : 0xffffff, 
-				wireframe: s_Circuit(Wireframe, false)
+				color: Wireframe == false ? rE_COLOR_Inst_DEF : 0xffffff, 
+				wireframe: Wireframe
 			})
 			rE_Root = new THREE.Mesh(Root_Geometry, Material)
 			rE_Root.castShadow = true
 			rE_Root.receiveShadow = true
-			rE_Root.position.y = s_Circuit(start_Origin, 10)
+			rE_Root.position.y = rE_Root_PROPERTIES.HipHeight
 			rE_Root.add(this.CAMERA)
 			this.SCENE.add(rE_Root)
 
 			return rE_Root
 		}
-		console.warn("Root is already created on the engine level, Skipping. \n Root creation is traced to \"class RootObject.\"")
+		console.warn("Root is already created on the engine level, Skipping.")
 		return rE_Root
 	}
 	__ForceRootSaturation() {

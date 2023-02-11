@@ -22,7 +22,7 @@ const SkyBox   = new Skybox('/public/Images/Skybox/', Scene).Create('Skybox', 'p
 
 // Create the mover for the player character
 const RootMover      = new rE_RootPlayer(Scene, Camera, WebGL_Renderer)
-const RootObject     = RootMover.Create(1.5, false)
+const RootObject     = RootMover.Create(false)
 const CameraControls = RootMover.Camera()
 const RootMove       = RootMover.ApplyMovement()
 
@@ -41,7 +41,7 @@ const Assets = {
     WingsRight: [],
     Ring: null
 }
-async function CreateWing(Color, LeftSided) {
+async function CreateWing(Color = 0xffffff, LeftSided) {
     const WingGLTF = await GLTFImport.GLTF('/public/3D/Wing.gltf')
     const Side = LeftSided && Assets.WingsLeft || Assets.WingsRight
     let WingObject = null
@@ -61,7 +61,7 @@ async function CreateWing(Color, LeftSided) {
         Object: WingObject
     }
 }
-async function CreateRing(Color) {
+async function CreateRing(Color = 0xffffff) {
     const RingGLTF = await GLTFImport.GLTF('/public/3D/Ring.gltf')
     let RingObject = null
 

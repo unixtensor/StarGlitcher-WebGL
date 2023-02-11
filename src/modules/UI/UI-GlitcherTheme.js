@@ -4,7 +4,7 @@ import * as FilterColor from './Filter-Color'
 const pColor = FilterColor.Color
 const pSolver = FilterColor.Solver
 
-export function ChangeModeOfGlitch(DATA_PROPS) {
+export function ChangeModeOfGlitch(DATA_PROPS = {PrimaryColor:0xffffff,SecondaryColor:0x00000}) {
     const P_Color = DATA_PROPS.PrimaryColor
     const S_Color = DATA_PROPS.SecondaryColor
     const PrimeColor_Alpha     = `rgba(${P_Color[0]}, ${P_Color[1]}, ${P_Color[2]}, .5)`
