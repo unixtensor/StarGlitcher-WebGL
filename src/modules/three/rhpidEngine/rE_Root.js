@@ -28,13 +28,11 @@ export class rE_RootPlayer {
 	Create(Wireframe = false) {
 		if (rE_Root == null) {
 			const Root_Geometry = new THREE.BoxGeometry(1.3,3,3)
-			const Material      = new THREE.MeshPhongMaterial({
+			const Material = new THREE.MeshBasicMaterial({
 				color: Wireframe == false ? rE_COLOR_Inst_DEF : 0xffffff, 
 				wireframe: Wireframe
 			})
 			rE_Root = new THREE.Mesh(Root_Geometry, Material)
-			rE_Root.castShadow = true
-			rE_Root.receiveShadow = true
 			rE_Root.position.y = rE_Root_PROPERTIES.HipHeight
 			rE_Root.add(this.CAMERA)
 			this.SCENE.add(rE_Root)

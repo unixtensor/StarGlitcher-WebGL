@@ -9,9 +9,8 @@ import {
 export let Skybox_Mesh = null
 
 export class Skybox {
-	constructor(PATH, SCENE) {
+	constructor(PATH) {
 		this.PATH = PATH
-		this.SCENE = SCENE
 	}
 
 	Create(IMAGE_NAME, FORMAT) {
@@ -34,8 +33,7 @@ export class Skybox {
 			Materials[i].side = BackSide
 		}
 		const Skybox_Geometry = new BoxGeometry(1e3,1e3,1e3)
-		Skybox_Mesh = new Mesh(Skybox_Geometry, Materials)
-		this.SCENE.add(Skybox_Mesh)
+		const Skybox_Mesh = new Mesh(Skybox_Geometry, Materials)
 
 		return Skybox_Mesh
 	}
