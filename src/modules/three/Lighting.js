@@ -27,14 +27,6 @@ export class LightEngine {
 		// DirectionalLight.shadow.camera.left = 50
 		// DirectionalLight.shadow.camera.right = -50
 
-		this.SCENE.add(
-			AmbientLight,
-			// DirectionalLight,
-			// new THREE.DirectionalLightHelper(DirectionalLight, 3),
-			// new THREE.CameraHelper(DirectionalLight.shadow.camera),
-		)
-		return {
-			
-		}
+		return {Sources: [AmbientLight]}
 	}
 }

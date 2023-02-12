@@ -51,22 +51,22 @@ export class rE_KeyMap {
 				this.ROOT.position.y -= RIGHT_Direction.y*deltaTime
 		}
 		if (InputEvent[' '] && Control_IgnoreY) {
-			const [JumpHeight, HipHeight, Gravity] = [rE_Root_PROPERTIES.JumpHeight, rE_Root_PROPERTIES.HipHeight, Physics_PROPERTIES.Gravity]
-			const MAX_PHYS_Height = JumpHeight*JumpHeight/Gravity
-			const MIN_PHYS_Height = Math.log(JumpHeight)/Math.log(JumpHeight)
+			// const [JumpHeight, HipHeight, Gravity] = [rE_Root_PROPERTIES.JumpHeight, rE_Root_PROPERTIES.HipHeight, Physics_PROPERTIES.Gravity]
+			// const MAX_PHYS_Height = JumpHeight*JumpHeight/Gravity
+			// const MIN_PHYS_Height = Math.log(JumpHeight)/Math.log(JumpHeight)
 			
-			const FrameTime = 60
-			let JU_i = 0
-			const JumpY = async (i) => setTimeout(() => this.ROOT.position.y = this.ROOT.position.y*(1-.1)+(HipHeight+i/FrameTime)*.1, Gravity*i)
+			// const FrameTime = 60
+			// let JU_i = 0
+			// const JumpY = async (i) => setTimeout(() => this.ROOT.position.y = this.ROOT.position.y*(1-.1)+(HipHeight+i/FrameTime)*.1, Gravity*i)
 
-			do {
-				JumpY(JU_i)
-				JU_i++
-			} while (JU_i<=MAX_PHYS_Height*FrameTime)
-			do {
-				JumpY(JU_i)
-				JU_i--			
-			} while (JU_i>=MIN_PHYS_Height)
+			// do {
+			// 	JumpY(JU_i)
+			// 	JU_i++
+			// } while (JU_i<=MAX_PHYS_Height*FrameTime)
+			// do {
+			// 	JumpY(JU_i)
+			// 	JU_i--			
+			// } while (JU_i>=MIN_PHYS_Height)
 		}
 		// --
 
