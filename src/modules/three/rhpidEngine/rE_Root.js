@@ -16,9 +16,7 @@ export const rE_Root_PROPERTIES = {
 let ROOT_move_init = false
 let ROOT_binds = null
 
-function s_Circuit(EXPECTED, DEFAULT) {
-    return EXPECTED === undefined ? DEFAULT : EXPECTED
-}
+const s_Circuit = (EXPECTED, DEFAULT) => EXPECTED === undefined ? DEFAULT : EXPECTED
 
 export class rE_RootPlayer {
 	constructor(SCENE, CAMERA, RENDER) {

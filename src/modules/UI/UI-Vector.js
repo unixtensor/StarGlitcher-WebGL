@@ -1,8 +1,6 @@
 export let win_Offset = 3 // Usually a good offset for browser true size is 3
 
-function s_Circuit(EXPECTED, DEFAULT) {
-    return EXPECTED === undefined ? DEFAULT : EXPECTED
-}
+const s_Circuit = (EXPECTED, DEFAULT) => EXPECTED === undefined ? DEFAULT : EXPECTED
 
 // The function return's have support for Pascal Case and lower camel case.
 

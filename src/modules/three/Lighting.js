@@ -2,9 +2,7 @@ import * as THREE from 'three'
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js'
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 
-function s_Circuit(EXPECTED, DEFAULT) {
-    return EXPECTED === undefined ? DEFAULT : EXPECTED
-}
+const s_Circuit = (EXPECTED, DEFAULT) => EXPECTED === undefined ? DEFAULT : EXPECTED
 
 export class LightEngine {
 	constructor(SCENE) {
