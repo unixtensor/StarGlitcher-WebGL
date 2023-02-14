@@ -4,15 +4,21 @@ import {
 	Mesh,
 	Vector3
 } from 'three'
-import { rE_COLOR_Inst_DEF, rE_Root } from './rE_Root'
+import { rE_COLOR_Inst_DEF, rE_ROOT } from './rE_Root'
 
 export const CharacterMesh = {
 	Head: null,
-	Root: null,
+	Torso: null,
 	LeftArm: null,
 	RightArm: null,
 	LeftLeg: null,
-	RightLeg: null
+	RightLeg: null,
+
+	RIG_Unions: {
+		RJ: null, NK: null,
+		LS: null, RS: null,
+		LH: null, RH: null
+	}
 }
 
 const s_Circuit = (EXPECTED, DEFAULT) => EXPECTED === undefined ? DEFAULT : EXPECTED
@@ -41,7 +47,7 @@ export class Union {
 			this.Part0.position.z+this.PC0.z+C0.z-this.Part1.position.z+this.PC1.z
 		]
 		this.Part0.position.set(C0x,C0y,C0z)
-		return Vector3(C0x,C0y,C0z)
+		return new Vector3(C0x,C0y,C0z)
 	}
 	C1(C1 = new Vector3()) {
 		const [C1x,C1y,C1z] = [
@@ -50,15 +56,11 @@ export class Union {
 			this.Part1.position.z+this.PC1.z+C1.z
 		]
 		this.Part1.position.set(C1x,C1y,C1z)
-		return Vector3(C1x,C1y,C1z)
+		return new Vector3(C1x,C1y,C1z)
 	}
 }
 
 export class CharacterRig {
-	constructor(ROOT) {
-		this.ROOT = ROOT
-	}
-
 	Create(RIG_COLORS = {}) {
 		const DEF_RIG_COLORS = {
 			Head: s_Circuit(RIG_COLORS.Head, rE_COLOR_Inst_DEF),
@@ -69,14 +71,24 @@ export class CharacterRig {
 			RightLeg: s_Circuit(RIG_COLORS.RightLeg, rE_COLOR_Inst_DEF)
 		}
 
-		const Torso = CreateLimb([1.3,3,3], DEF_RIG_COLORS.Torso)
-		const LeftLeg = CreateLimb([1.3,3,3/2], DEF_RIG_COLORS.LeftLeg)
-		LeftLeg.position.y = 5
+		CharacterMesh.Head = CreateLimb([2,3/2,3/1.5], DEF_RIG_COLORS.Head)
+		CharacterMesh.Torso = CreateLimb([1.3,3,3], DEF_RIG_COLORS.Torso)
+		CharacterMesh.LeftLeg = CreateLimb([1.3,3,3/2], DEF_RIG_COLORS.LeftLeg)
+		CharacterMesh.RightLeg = CreateLimb([1.3,3,3/2], DEF_RIG_COLORS.RightLeg)
+		CharacterMesh.LeftArm = CreateLimb([1.3,3,3/2], DEF_RIG_COLORS.LeftArm)
+		CharacterMesh.RightArm = CreateLimb([1.3,3,3/2], DEF_RIG_COLORS.RightArm)
 
-		return {Limbs: [Torso, LeftLeg]}
+		CharacterMesh.RIG_Unions.RJ = new Union(CharacterMesh.Torso, rE_ROOT.MESH)
+		CharacterMesh.RIG_Unions.NK = new Union()
+		CharacterMesh.RIG_Unions.LS = new Union()
+		CharacterMesh.RIG_Unions.RS = new Union()
+		CharacterMesh.RIG_Unions.LH = new Union()
+		CharacterMesh.RIG_Unions.RH = new Union()
+
+		return {Limbs: [CharacterMesh.Head, CharacterMesh.Torso, CharacterMesh.LeftLeg, CharacterMesh.RightLeg, CharacterMesh.LeftArm, CharacterMesh.RightArm]}
 	}
 
 	Body_Unions_update() {
-
+		CharacterMesh.RIG_Unions.RJ.C1()
 	}
 }

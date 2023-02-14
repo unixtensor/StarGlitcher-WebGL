@@ -25,12 +25,12 @@ const Lighting = new LightEngine(Scene).Create()
 const SkyBox   = new Skybox('/public/Images/Skybox/', Scene).Create('Skybox', 'png')
 
 // Create the mover for the player character
-const RootMover      = new rE_RootPlayer(Scene, Camera, WebGL_Renderer)
+const RootMover      = new rE_RootPlayer(Camera, WebGL_Renderer)
 const RootObject     = RootMover.Create(true)
 const CameraControls = RootMover.Camera()
 const RootMove       = RootMover.ApplyMovement()
 // Character
-const CharacterNew = new CharacterRig(RootObject)
+const CharacterNew = new CharacterRig()
 const Character    = CharacterNew.Create()
 
 const Clock = new THREE.Clock()
@@ -99,8 +99,9 @@ async function CreateGlitcherAssets() {
 Scene.add(
     Baseplate,
     SkyBox,
+    RootObject,
+    ...Character.Limbs,
     ...Lighting.Sources,
-    ...Character.Limbs
 )
 CreateGlitcherAssets()
 Camera.position.set(-13,12,-0.1)
@@ -109,6 +110,8 @@ WebGL_Renderer.setAnimationLoop((delta) => {
     const deltaTime = Clock.getDelta()
 
     RootMove.update(deltaTime)
+    CharacterNew.Body_Unions_update()
+
     WebGL_Renderer.render(Scene, Camera)
     FPS_Stats.update()
 })
