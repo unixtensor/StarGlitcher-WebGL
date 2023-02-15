@@ -24,7 +24,6 @@ export const CharacterMesh = {
 export let RIG = null
 
 const s_Circuit = (EXPECTED, DEFAULT) => EXPECTED === undefined ? DEFAULT : EXPECTED
-const rad = (x) => x*Math.PI/180
 
 function CreateLimb(Geometry, Color) {
 	const Limb_Geometry = new BoxGeometry(...Geometry)
@@ -97,7 +96,7 @@ export class CharacterRig {
 			CharacterMesh.RIG_Joints.LS.C0()
 			CharacterMesh.RIG_Joints.RS.C0()
 			CharacterMesh.RIG_Joints.LH.C0()
-			CharacterMesh.RIG_Joints.RH.C0()	
+			CharacterMesh.RIG_Joints.RH.C0()
 		} else {
 			console.warn("A character must be initialized before ")
 		}

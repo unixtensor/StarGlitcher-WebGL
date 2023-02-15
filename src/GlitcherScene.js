@@ -3,6 +3,7 @@ import { CreateImport } from '/modules/three/GLTFImport'
 import { FPS_Stats }    from './UI'
 import { Skybox }       from './modules/three/Skybox'
 import { LightEngine }  from './modules/three/Lighting'
+import { Animations }   from './modules/three/Animations'
 // Engine
 import { rE_RootPlayer } from '/modules/three/rhpidEngine/rE_Root'
 import { CharacterRig, CharacterMesh }  from './modules/three/rhpidEngine/rE_Character'
@@ -110,7 +111,8 @@ WebGL_Renderer.setAnimationLoop((delta) => {
     const deltaTime = Clock.getDelta()
 
     RootMove.update(deltaTime)
-    CharacterNew.Joints_update()
+    CharacterNew.Joints_update(delta)
+    Animations.Idle(delta)
 
     WebGL_Renderer.render(Scene, Camera)
     FPS_Stats.update()
