@@ -17,7 +17,7 @@ export const rE_ROOT = {
 		WalkSpeed: 10,
 		JumpHeight: 50,
 		HipHeight: (H) => H || 4.5,
-		Color: (C) => C || rE_COLOR_Inst_DEF
+		Color: (C) => C || rE_COLOR_Inst_DEF //Debugging purposes
 	}
 }
 
