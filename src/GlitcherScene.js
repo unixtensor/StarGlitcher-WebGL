@@ -2,10 +2,10 @@ import * as THREE       from 'three'
 import { CreateImport } from '/modules/three/GLTFImport'
 import { FPS_Stats }    from './UI'
 import { Skybox }       from './modules/three/Skybox'
+import { LightEngine }  from './modules/three/Lighting'
 // Engine
 import { rE_RootPlayer } from '/modules/three/rhpidEngine/rE_Root'
-import { LightEngine }   from './modules/three/Lighting'
-import { CharacterRig }  from './modules/three/rhpidEngine/rE_Character'
+import { CharacterRig, CharacterMesh }  from './modules/three/rhpidEngine/rE_Character'
 
 // ThreeJS dependencies
 const WebGL_Renderer = new THREE.WebGLRenderer({antialias: false})
@@ -110,7 +110,7 @@ WebGL_Renderer.setAnimationLoop((delta) => {
     const deltaTime = Clock.getDelta()
 
     RootMove.update(deltaTime)
-    CharacterNew.Body_Unions_update()
+    CharacterNew.Joints_update()
 
     WebGL_Renderer.render(Scene, Camera)
     FPS_Stats.update()
