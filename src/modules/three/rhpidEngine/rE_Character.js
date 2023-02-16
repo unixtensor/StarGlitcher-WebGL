@@ -49,10 +49,15 @@ export class Union {
 			this.Part0.position.x+this.C1.x+C0_OFFSET.x,
 			this.Part0.position.y+this.C1.y+C0_OFFSET.y,
 			this.Part0.position.z+this.C1.z+C0_OFFSET.z
-		).applyQuaternion(this.Part0.quaternion).applyEuler(this.C1_EULER).applyEuler(C0_EULER)
-		
+		)
+		const COU0 = new Euler(
+			this.C1_EULER.x+C0_EULER.x,
+			this.C1_EULER.y+C0_EULER.y,
+			this.C1_EULER.z+C0_EULER.z
+		)
 		this.Part1.position.set(CON0.x,CON0.y,CON0.z)
-		return CON0
+		this.Part1.rotation.set(COU0.x,COU0.y,COU0.z)
+		return [CON0, COU0]
 	}
 }
 
@@ -98,7 +103,7 @@ export class CharacterRig {
 			CharacterMesh.RIG_Joints.RH.C0()
 			CharacterMesh.RIG_Joints.RJ.C0()
 		} else {
-			console.warn("A character must be initialized before ")
+			console.warn("A character must be initialized before calling \"Joints_update()\".")
 		}
 	}
 }
