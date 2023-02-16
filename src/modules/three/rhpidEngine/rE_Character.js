@@ -91,12 +91,12 @@ export class CharacterRig {
 
 	Joints_update() {
 		if (RIG != null) {
-			CharacterMesh.RIG_Joints.RJ.C0()
 			CharacterMesh.RIG_Joints.NK.C0()
 			CharacterMesh.RIG_Joints.LS.C0()
 			CharacterMesh.RIG_Joints.RS.C0()
 			CharacterMesh.RIG_Joints.LH.C0()
 			CharacterMesh.RIG_Joints.RH.C0()
+			CharacterMesh.RIG_Joints.RJ.C0()
 		} else {
 			console.warn("A character must be initialized before ")
 		}
