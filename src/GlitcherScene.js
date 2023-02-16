@@ -1,12 +1,12 @@
 import * as THREE       from 'three'
-import { CreateImport } from '/modules/three/GLTFImport'
 import { FPS_Stats }    from './UI'
 import { Skybox }       from './modules/three/Skybox'
 import { LightEngine }  from './modules/three/Lighting'
 import { Animations }   from './modules/three/Animations'
+import { Wings } from './modules/three/Wings'
 // Engine
 import { rE_RootPlayer } from '/modules/three/rhpidEngine/rE_Root'
-import { CharacterRig, CharacterMesh }  from './modules/three/rhpidEngine/rE_Character'
+import { CharacterRig }  from './modules/three/rhpidEngine/rE_Character'
 
 // ThreeJS dependencies
 const WebGL_Renderer = new THREE.WebGLRenderer({antialias: false})
@@ -30,71 +30,15 @@ const RootMover      = new rE_RootPlayer(Camera, WebGL_Renderer)
 const RootObject     = RootMover.Create(true)
 const CameraControls = RootMover.Camera()
 const RootMove       = RootMover.ApplyMovement()
+
 // Character
 const CharacterNew = new CharacterRig()
 const Character    = CharacterNew.Create()
 
+// Wing Assets
+
 const Clock = new THREE.Clock()
 
-// Star Glitcher assets
-const GLTFImport = new CreateImport(Scene)
-const Assets = {
-    WingsLeft: [],
-    WingsRight: [],
-    Ring: null
-}
-async function CreateWing(Color = 0xffffff, LeftSided) {
-    const WingGLTF = await GLTFImport.GLTF('/public/3D/Wing.gltf')
-    const Side = LeftSided && Assets.WingsLeft || Assets.WingsRight
-    let WingObject = null
-
-    WingGLTF.scene.traverse((Object) => {
-        if (Object.isMesh) {
-            Object.material = new THREE.MeshPhongMaterial({color: Color})
-            Object.castShadow = true
-            Object.receiveShadow = true
-            Object.position.z = LeftSided && -Side.length-1.7 || Side.length+1.7
-            WingObject = Object
-        }
-    })
-    Side.push(WingGLTF.scene)
-    return {
-        GLTF: WingGLTF,
-        Object: WingObject
-    }
-}
-async function CreateRing(Color = 0xffffff) {
-    const RingGLTF = await GLTFImport.GLTF('/public/3D/Ring.gltf')
-    let RingObject = null
-
-    RingGLTF.scene.traverse((Object) => {
-        if (Object.isMesh) {
-            Object.material = new THREE.MeshPhongMaterial({color: Color})
-            Object.castShadow = true
-            Object.receiveShadow = true
-            RingObject = Object
-        }
-    })
-    Assets.Ring = RingGLTF.scene
-    return {
-        GLTF: RingGLTF,
-        Object: RingObject
-    }
-}
-async function CreateGlitcherAssets() {
-    const DEF_ModeColor = 0xff0000 //Mayhem
-    const Ring = await CreateRing(DEF_ModeColor)
-    Ring.Object.rotation.z = Math.PI/2
-    Ring.Object.position.y = 1.5
-    Ring.Object.scale.set(3,3,3)
-
-    CreateWing(DEF_ModeColor)
-    CreateWing(DEF_ModeColor)
-    CreateWing(DEF_ModeColor)
-    CreateWing(DEF_ModeColor, true)
-    CreateWing(DEF_ModeColor, true)
-    CreateWing(DEF_ModeColor, true)
-}
 
 // Add all Mesh's and visual data to the workspace
 Scene.add(
