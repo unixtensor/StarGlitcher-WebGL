@@ -47,7 +47,9 @@ const Character    = CharacterNew.Create()
 Scene.add(...Character.Limbs)
 
 WebGL_Renderer.setAnimationLoop((delta) => {
-	CharacterNew.Joints_update() //Keep the character together with the root
+	CharacterNew.RootJoint_update() //Update the root first
+	//Animations can play here before "Joints_update()" (Recommended)
+	CharacterNew.Joints_update() //Update the rest of the body parts
 	...
 })
 ```
