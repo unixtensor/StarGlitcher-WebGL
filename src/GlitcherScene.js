@@ -3,10 +3,10 @@ import { FPS_Stats }    from './UI'
 import { Skybox }       from './modules/three/Skybox'
 import { LightEngine }  from './modules/three/Lighting'
 import { Animations }   from './modules/three/Animations'
-import { WingAssets, Wings }        from './modules/three/Wings'
+import { Wings }        from './modules/three/Wings'
 // Engine
 import { rE_RootPlayer } from '/modules/three/rhpidEngine/rE_Root'
-import { CharacterRig, CharacterMesh }  from './modules/three/rhpidEngine/rE_Character'
+import { CharacterRig }  from './modules/three/rhpidEngine/rE_Character'
 
 // ThreeJS dependencies
 const WebGL_Renderer = new THREE.WebGLRenderer({antialias: false})
@@ -33,11 +33,13 @@ const RootMove       = RootMover.ApplyMovement()
 
 // Character
 const CharacterNew = new CharacterRig()
-const Character    = CharacterNew.Create()
+const Character    = CharacterNew.Create({
+    Torso: 0xff275b
+})
 
 // Wing Assets
 const CharWings = new Wings()
-CharWings.GlitcherWings()
+const GlitcherAssets = CharWings.GlitcherWings()
 
 const Clock = new THREE.Clock()
 
@@ -47,10 +49,10 @@ Scene.add(
     SkyBox,
     RootObject,
     ...Character.Limbs,
-    ...WingAssets.Left,
-    ...WingAssets.Right,
     ...Lighting.Sources,
 )
+GlitcherAssets.then((v) => Scene.add(...v)).catch((r) => console.error("Couldn't load the GlitcherAssets,", r))
+
 Camera.position.set(-13,12,-0.1)
 
 WebGL_Renderer.setAnimationLoop((delta) => {
@@ -60,6 +62,7 @@ WebGL_Renderer.setAnimationLoop((delta) => {
     
     CharacterNew.Joints_update()
     CharWings.Wing_Unions_update()
+
     Animations.Idle(delta)
 
     WebGL_Renderer.render(Scene, Camera)

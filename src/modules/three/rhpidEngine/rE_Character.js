@@ -21,7 +21,6 @@ export const CharacterMesh = {
 		LH: null, RH: null
 	}
 }
-export let RIG = null
 
 const s_Circuit = (EXPECTED, DEFAULT) => EXPECTED === undefined ? DEFAULT : EXPECTED
 
@@ -49,23 +48,23 @@ export class Union {
 			this.Part0.position.x+this.C1.x+C0_OFFSET.x,
 			this.Part0.position.y+this.C1.y+C0_OFFSET.y,
 			this.Part0.position.z+this.C1.z+C0_OFFSET.z
-		)
+		).applyQuaternion(this.Part0.quaternion)
 		const COU0 = new Euler(
-			this.C1_EULER.x+C0_EULER.x,
-			this.C1_EULER.y+C0_EULER.y,
-			this.C1_EULER.z+C0_EULER.z
+			this.Part0.rotation.x-this.C1_EULER.x-C0_EULER.x,
+			this.Part0.rotation.y-this.C1_EULER.y-C0_EULER.y,
+			this.Part0.rotation.z-this.C1_EULER.z-C0_EULER.z
 		)
 		this.Part1.position.set(CON0.x,CON0.y,CON0.z)
-		this.Part1.rotation.set(COU0.x,COU0.y,COU0.z)
+		this.Part1.rotation.set(CON0.x,CON0.y,CON0.z)
 		return [CON0, COU0]
 	}
 }
 
 export class CharacterRig {
 	Create(RIG_COLORS = {}) {
-		if (RIG != null) {
+		if (CharacterMesh.Torso != null) {
 			console.warn("Character is already initialized.")
-			return RIG
+			return CharacterMesh.Torso
 		}
 		const DEF_RIG_COLORS = {
 			Head: s_Circuit(RIG_COLORS.Head, rE_COLOR_Inst_DEF),
@@ -90,12 +89,11 @@ export class CharacterRig {
 		CharacterMesh.RIG_Joints.LH = new Union(CharacterMesh.Torso, CharacterMesh.LeftLeg, new Vector3(0,-3,.7))
 		CharacterMesh.RIG_Joints.RH = new Union(CharacterMesh.Torso, CharacterMesh.RightLeg, new Vector3(0,-3,-.7))
 
-		RIG = {Limbs: [CharacterMesh.Head, CharacterMesh.Torso, CharacterMesh.LeftLeg, CharacterMesh.RightLeg, CharacterMesh.LeftArm, CharacterMesh.RightArm]}
-		return RIG
+		return {Limbs: [CharacterMesh.Head, CharacterMesh.Torso, CharacterMesh.LeftLeg, CharacterMesh.RightLeg, CharacterMesh.LeftArm, CharacterMesh.RightArm]}
 	}
 
 	Joints_update() {
-		if (RIG != null) {
+		if (CharacterMesh.Torso != null) {
 			CharacterMesh.RIG_Joints.NK.C0()
 			CharacterMesh.RIG_Joints.LS.C0()
 			CharacterMesh.RIG_Joints.RS.C0()
