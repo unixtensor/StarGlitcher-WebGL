@@ -4,7 +4,7 @@ import {
 	Mesh,
 	Vector3,
     Euler,
-    Matrix4
+    // Matrix4
 } from 'three'
 import { rE_COLOR_Inst_DEF, rE_ROOT } from './rE_Root'
 
@@ -45,28 +45,26 @@ export class Union {
 	}
 
 	C0(C0_OFFSET = new Vector3(), C0_EULER = new Euler()) {
-		this.Part0.updateMatrixWorld()
-		this.Part1.updateMatrixWorld()
+		// this.Part0.updateMatrixWorld()
+		// this.Part1.updateMatrixWorld()
 		
-		const [P0_rot, P1_rot] = [new Matrix4(), new Matrix4()]
-		const [P0_E, P1_E] = [
-			new Euler().setFromRotationMatrix(P0_rot), 
-			new Euler().setFromRotationMatrix(P1_rot)
-		]
+		// const [P0_rot, P1_rot] = [new Matrix4(), new Matrix4()]
+		// const [P0_E, P1_E] = [
+		// 	new Euler().setFromRotationMatrix(P0_rot), 
+		// 	new Euler().setFromRotationMatrix(P1_rot)
+		// ]
 		const CON0 = new Vector3(
 			this.Part0.position.x+this.C1.x+C0_OFFSET.x,
 			this.Part0.position.y+this.C1.y+C0_OFFSET.y,
 			this.Part0.position.z+this.C1.z+C0_OFFSET.z
-		).applyQuaternion(this.Part0.quaternion)
+		)
 		const COU0 = new Euler(
 			this.Part0.rotation.x+this.C1_EULER.x+C0_EULER.x,
 			this.Part0.rotation.y+this.C1_EULER.y+C0_EULER.y,
 			this.Part0.rotation.z+this.C1_EULER.z+C0_EULER.z
 		)
 		this.Part1.position.set(CON0.x,CON0.y,CON0.z)
-		this.Part1.rotation.set(COU0.x,COU0.y,COU0.z)
-	
-		console.log(P0_E)
+		this.Part1.rotation.set(COU0.x+this.Part0.rotation.x,COU0.y+this.Part0.rotation.y,COU0.z+this.Part0.rotation.z)
 
 		return [CON0, COU0]
 	}
