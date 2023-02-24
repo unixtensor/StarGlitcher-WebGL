@@ -1,5 +1,5 @@
 import * as THREE       from 'three'
-import { FPS_Stats }    from './UI'
+import { FPS_Stats }    from './UI-Engine'
 import { Skybox }       from './modules/three/Skybox'
 import { LightEngine }  from './modules/three/Lighting'
 import { Animations }   from './modules/three/Animations'
