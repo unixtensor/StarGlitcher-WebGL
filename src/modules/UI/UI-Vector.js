@@ -1,6 +1,4 @@
-export let win_Offset = 3 // Usually a good offset for browser true size is 3
-
-const s_Circuit = (EXPECTED, DEFAULT) => EXPECTED === undefined ? DEFAULT : EXPECTED
+export let win_Offset = 3 // Usually a good offset for the browser's true size is 3
 
 // The function return's have support for Pascal Case and lower camel case.
 
@@ -26,10 +24,7 @@ export function Bounding_Rect(OBJ) {
  * @param {Object} C_DATA   - Coordinate/Vector DATA, where in space will the element appear? {NEW_X: ?, NEW_Y: ?} (Placed in absolute)
  * @returns 
  */
-export function Vector2(OBJ, C_DATA) {
-	C_DATA.X = s_Circuit(C_DATA.X, Bounding_Rect(OBJ).X)
-	C_DATA.Y = s_Circuit(C_DATA.Y, Bounding_Rect(OBJ).Y)
-
+export function Vector2(OBJ, C_DATA = {X:Bounding_Rect(OBJ).X, Y:Bounding_Rect(OBJ).Y}) {
 	OBJ.style.left = `${C_DATA.X}px`
 	OBJ.style.top =  `${C_DATA.Y}px`
     OBJ.style.setProperty("position", "absolute", "important")
@@ -47,10 +42,8 @@ export function Vector2(OBJ, C_DATA) {
  * @param {Object} R_DATA   - Rotation DATA in radians. {RAD: ?}
  * @returns 
  */
-export function Rotate_RAD(OBJ, R_DATA) {
-	R_DATA.R = s_Circuit(R_DATA.R, '0')
-	
-	OBJ.style.transform = `rotate(${R_DATA.R}rad)`
+export function Rotate_RAD(OBJ, R_DATA = {R:'0'}) {
+    OBJ.style.transform = `rotate(${R_DATA.R}rad)`
 
 	return {
         R: R_DATA.R, r: R_DATA.R
@@ -64,11 +57,8 @@ export function Rotate_RAD(OBJ, R_DATA) {
  * @param {Object} C_DATA   - Coordinate/Vector DATA, where in space will the element appear? {NEW_X: ?, NEW_Y: ?} (Placed relative with the browser size [∆-win_Offset=3])
  * @returns
  */
-export function Vector2rel(OBJ, C_DATA) {
-	C_DATA.X = s_Circuit(C_DATA.X, Bounding_Rect(OBJ).X)
-	C_DATA.Y = s_Circuit(C_DATA.Y, Bounding_Rect(OBJ).Y)
-
-	const w_xM = window.innerWidth-win_Offset-C_DATA.X
+export function Vector2rel(OBJ, C_DATA = {X:Bounding_Rect(OBJ).X, Y:Bounding_Rect(OBJ).Y}) {
+    const w_xM = window.innerWidth-win_Offset-C_DATA.X
 	const w_yM = window.innerHeight-win_Offset-C_DATA.Y
 	OBJ.style.left = `${w_xM}px`
 	OBJ.style.top  = `${w_yM}px`
