@@ -22,29 +22,31 @@ export class rE_KeyMap {
 	}
 
 	update(deltaTime = 1) {
+		const Forward_vel = -(Math.abs(Math.min(rE_ROOT.PROPERTIES.WalkSpeed,100)))
+
 		if (InputEvent.w) {
-			const FORWARD_Direction = new Vector3(0,0,-(Math.abs(Math.min(rE_ROOT.PROPERTIES.WalkSpeed,100)))).applyQuaternion(this.CAMERA.quaternion)
+			const FORWARD_Direction = new Vector3(0,0,Forward_vel).applyQuaternion(this.CAMERA.quaternion)
 			this.ROOT.position.x += FORWARD_Direction.x*deltaTime
 			this.ROOT.position.z += FORWARD_Direction.z*deltaTime
 			if (!Control_IgnoreY)
 				this.ROOT.position.y += FORWARD_Direction.y*deltaTime
 		}
 		if (InputEvent.a) {
-			const RIGHT_Direction = new Vector3(-(Math.abs(Math.min(rE_ROOT.PROPERTIES.WalkSpeed,100))),0).applyQuaternion(this.CAMERA.quaternion)
+			const RIGHT_Direction = new Vector3(Forward_vel,0,0).applyQuaternion(this.CAMERA.quaternion)
 			this.ROOT.position.x += RIGHT_Direction.x*deltaTime
 			this.ROOT.position.z += RIGHT_Direction.z*deltaTime
 			if (!Control_IgnoreY)
 				this.ROOT.position.y += RIGHT_Direction.y*deltaTime
 		}
 		if (InputEvent.s) {
-			const FORWARD_Direction = new Vector3(0,0,-(Math.abs(Math.min(rE_ROOT.PROPERTIES.WalkSpeed,100)))).applyQuaternion(this.CAMERA.quaternion)
+			const FORWARD_Direction = new Vector3(0,0,Forward_vel).applyQuaternion(this.CAMERA.quaternion)
 			this.ROOT.position.x -= FORWARD_Direction.x*deltaTime
 			this.ROOT.position.z -= FORWARD_Direction.z*deltaTime
 			if (!Control_IgnoreY)
 				this.ROOT.position.y -= FORWARD_Direction.y*deltaTime
 		}
 		if (InputEvent.d) {
-			const RIGHT_Direction = new Vector3(-(Math.abs(Math.min(rE_ROOT.PROPERTIES.WalkSpeed,100))),0,0).applyQuaternion(this.CAMERA.quaternion)
+			const RIGHT_Direction = new Vector3(Forward_vel,0,0).applyQuaternion(this.CAMERA.quaternion)
 			this.ROOT.position.x -= RIGHT_Direction.x*deltaTime
 			this.ROOT.position.z -= RIGHT_Direction.z*deltaTime
 			if (!Control_IgnoreY)

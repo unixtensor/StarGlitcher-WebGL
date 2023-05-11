@@ -1,8 +1,11 @@
-import { MeshPhongMaterial } from 'three'
+import { Euler, MeshPhongMaterial, Vector3 } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { Union, CharacterMesh } from "./rhpidEngine/rE_Character"
 
 const GLTF_Loader = new GLTFLoader()
+
+const s_Circuit = (EXPECTED, DEFAULT) => EXPECTED === undefined ? DEFAULT : EXPECTED
+const rad = (x) => x*Math.PI/180
 
 export const WingAssets = {
     Left: [],
@@ -48,28 +51,39 @@ async function CreateRing(Color = 0xffffff) {
             RingObject = Object
         }
     })
+    WingAssets.Ring = RingObject
     return RingObject
 }
 
 export class Wings {
-    async GlitcherWings() {
-        WingAssets.Ring = await CreateRing(0xff0000)
-        WingAssets.Left.push(await CreateRing(0xff0000, true))
-        WingAssets.Left.push(await CreateRing(0xff0000, true))
-        WingAssets.Left.push(await CreateRing(0xff0000, true))
-        WingAssets.Right.push(await CreateRing(0xff0000))
-        WingAssets.Right.push(await CreateRing(0xff0000))
-        WingAssets.Right.push(await CreateRing(0xff0000))
-    
-       // WingAssets.Ring.rotation.x = Math.PI/2
+    async GlitcherWings(Wing_start_Colors) {
+        const pre_Color = s_Circuit(Wing_start_Colors, 0xff0000)
+
+        await CreateRing(pre_Color)
+        await CreateWing(pre_Color, true)
+        await CreateWing(pre_Color, true)
+        await CreateWing(pre_Color, true)
+        await CreateWing(pre_Color)
+        await CreateWing(pre_Color)
+        await CreateWing(pre_Color)
+
         WingAssets.Ring.scale.set(3,3,3)
-        WingAssets.Union.RingC0 = new Union(CharacterMesh.Torso, WingAssets.Ring)
+
+        WingAssets.Union.RingC0 = new Union(CharacterMesh.Torso, WingAssets.Ring, new Vector3(-1.5,1,0), new Euler(0,0,rad(90)))
+        WingAssets.Union.WingLC01 = new Union(WingAssets.Ring, WingAssets.Left[0], new Vector3(0,0,2.7), new Euler(rad(90),0,0))
+        WingAssets.Union.WingLC02 = new Union(WingAssets.Ring, WingAssets.Left[1], new Vector3(0,0,4.7), new Euler(rad(90),0,0))
+        WingAssets.Union.WingLC03 = new Union(WingAssets.Ring, WingAssets.Left[2], new Vector3(0,0,6.7), new Euler(rad(90),0,0))
         
+
         return [WingAssets.Ring, ...WingAssets.Left, ...WingAssets.Right]
     }
 
     Wing_Unions_update() {
-        if (WingAssets.Union.RingC0 != null)
-           WingAssets.Union.RingC0.C0()
+        if (WingAssets.Union.RingC0 != null) {
+            WingAssets.Union.RingC0.C0()
+            WingAssets.Union.WingLC01.C0()
+            WingAssets.Union.WingLC02.C0()
+            WingAssets.Union.WingLC03.C0()
+        } 
     }
 }

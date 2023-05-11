@@ -35,8 +35,13 @@ function CreateLimb(Geometry, Color) {
 	return Limb_Mesh
 }
 
-// C0 and C1 in this system are referencing to "Connect0" and "Connect1"
-export class Union {
+/**
+ * Union (Part0, Part1, C1, C1_Euler)
+ * C0 (C0_OFFSET, C0_EULER)
+ * You CANNOT use ThreeJS properties to update the object when using a Union, for rotation and position refer to Union arguments 3, position & 4, euler rotation.
+ * @returns
+ */
+export class Union { // C0 and C1 in this system are referencing to "Connect0" and "Connect1"
 	constructor(Part0, Part1, C1 = new Vector3(), C1_EULER = new Euler()) {
 		this.Part0 = Part0
 		this.Part1 = Part1
