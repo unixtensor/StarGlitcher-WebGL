@@ -14,7 +14,7 @@ export const WingAssets = {
     Union: {
         RingC0: null,
         WingLC01: null, WingLC02: null, WingLC03: null,
-        WingRC01: null, WingRC02: null, WingRC02: null
+        WingRC01: null, WingRC02: null, WingRC03: null
     },
 }
 
@@ -73,7 +73,9 @@ export class Wings {
         WingAssets.Union.WingLC01 = new Union(WingAssets.Ring, WingAssets.Left[0], new Vector3(0,0,2.7), new Euler(rad(90),0,0))
         WingAssets.Union.WingLC02 = new Union(WingAssets.Ring, WingAssets.Left[1], new Vector3(0,0,4.7), new Euler(rad(90),0,0))
         WingAssets.Union.WingLC03 = new Union(WingAssets.Ring, WingAssets.Left[2], new Vector3(0,0,6.7), new Euler(rad(90),0,0))
-        
+        WingAssets.Union.WingRC01 = new Union(WingAssets.Ring, WingAssets.Right[0], new Vector3(0,0,-2.7), new Euler(rad(90),0,0))
+        WingAssets.Union.WingRC02 = new Union(WingAssets.Ring, WingAssets.Right[1], new Vector3(0,0,-4.7), new Euler(rad(90),0,0))
+        WingAssets.Union.WingRC03 = new Union(WingAssets.Ring, WingAssets.Right[2], new Vector3(0,0,-6.7), new Euler(rad(90),0,0))
 
         return [WingAssets.Ring, ...WingAssets.Left, ...WingAssets.Right]
     }
@@ -84,6 +86,9 @@ export class Wings {
             WingAssets.Union.WingLC01.C0()
             WingAssets.Union.WingLC02.C0()
             WingAssets.Union.WingLC03.C0()
+            WingAssets.Union.WingRC01.C0()
+            WingAssets.Union.WingRC02.C0()
+            WingAssets.Union.WingRC03.C0()
         } 
     }
 }
