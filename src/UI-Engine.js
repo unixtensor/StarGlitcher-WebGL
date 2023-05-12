@@ -39,7 +39,7 @@ const GlitcherUIs = `
 `
 let SpinRate = 1.2
 let delta = 0
-let UI_ENABLED = false
+let UI_ENABLED = true
 
 const FPS_Stats = new Stats() // Create FPS stats
 const Tick = new Clock()

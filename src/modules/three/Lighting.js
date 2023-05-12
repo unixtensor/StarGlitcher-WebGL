@@ -7,7 +7,7 @@ const s_Circuit = (EXPECTED, DEFAULT) => EXPECTED === undefined ? DEFAULT : EXPE
 export class LightEngine {
 	constructor(SCENE) {
 		this.SCENE = SCENE
-	}
+	}	
 
 	Create(DATA_PROPS = {}) {
 		// Property structure as shown and its defaults:
@@ -19,13 +19,13 @@ export class LightEngine {
 		}
 
 		const AmbientLight = new THREE.AmbientLight(PROPS.Color, PROPS.Intensity)
-		// const DirectionalLight = new THREE.DirectionalLight(0xffffff, .5)
-		// DirectionalLight.position.set(50,300,50)
-		// DirectionalLight.castShadow = true
-		// DirectionalLight.shadow.camera.top = 50
-		// DirectionalLight.shadow.camera.bottom = -50
-		// DirectionalLight.shadow.camera.left = 50
-		// DirectionalLight.shadow.camera.right = -50
+		const DirectionalLight = new THREE.DirectionalLight(0xffffff, .7)
+		DirectionalLight.position.set(50,300,50)
+		DirectionalLight.castShadow = true
+		DirectionalLight.shadow.camera.top = 50
+		DirectionalLight.shadow.camera.bottom = -50
+		DirectionalLight.shadow.camera.left = 50
+		DirectionalLight.shadow.camera.right = -50
 
 		return {Sources: [AmbientLight]}
 	}

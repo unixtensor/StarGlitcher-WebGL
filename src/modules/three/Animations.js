@@ -7,7 +7,7 @@ const vlerp = (Vector, Alpha) => new Vector3().lerp(Vector, Alpha)
 
 export const Animations = {
 	Idle: (delta) => { //Use Arguments!
-		// Joints.RJ.C0(vlerp(new Vector3(3*Math.cos(delta/500),3*Math.sin(delta/500),0), .5), new Euler())
+		//Joints.RJ.C0(vlerp(new Vector3(0,3*Math.cos(delta/1000),0), .5), new Euler(), .5)
 		
 	}
 }
