@@ -15,12 +15,12 @@ export class Skybox {
 
 	Create(IMAGE_NAME, FORMAT) {
 		const Materials = []
-		const texture_ft = new TextureLoader().load(this.PATH+`${IMAGE_NAME}Ft.${FORMAT}`)
-		const texture_bk = new TextureLoader().load(this.PATH+`${IMAGE_NAME}Bk.${FORMAT}`)
-		const texture_up = new TextureLoader().load(this.PATH+`${IMAGE_NAME}Up.${FORMAT}`)
-		const texture_dn = new TextureLoader().load(this.PATH+`${IMAGE_NAME}Dn.${FORMAT}`)
-		const texture_rt = new TextureLoader().load(this.PATH+`${IMAGE_NAME}Rt.${FORMAT}`)
-		const texture_lf = new TextureLoader().load(this.PATH+`${IMAGE_NAME}Lf.${FORMAT}`)
+		const texture_ft = new TextureLoader().load(this.PATH+IMAGE_NAME+"Ft."+FORMAT)
+		const texture_bk = new TextureLoader().load(this.PATH+IMAGE_NAME+"Bk."+FORMAT)
+		const texture_up = new TextureLoader().load(this.PATH+IMAGE_NAME+"Up."+FORMAT)
+		const texture_dn = new TextureLoader().load(this.PATH+IMAGE_NAME+"Dn."+FORMAT)
+		const texture_rt = new TextureLoader().load(this.PATH+IMAGE_NAME+"Rt."+FORMAT)
+		const texture_lf = new TextureLoader().load(this.PATH+IMAGE_NAME+"Lf."+FORMAT)
 
 		Materials.push(new MeshBasicMaterial({map:texture_ft}))
 		Materials.push(new MeshBasicMaterial({map:texture_bk}))

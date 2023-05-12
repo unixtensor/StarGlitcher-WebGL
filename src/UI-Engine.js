@@ -27,7 +27,7 @@ const GlitcherUIs = `
 #Text-GlitcherMode,
 #Text-StarGlitcher,
 #Text-SongTitle,
-#Bottom-Bar, 
+#Bottom-Bar,
 #Bottom-Bar-2,
 #Bottom-Rect,
 #Bottom-Rect-2,
@@ -39,7 +39,7 @@ const GlitcherUIs = `
 `
 let SpinRate = 1.2
 let delta = 0
-let UI_ENABLED = true
+let UI_ENABLED = false
 
 const FPS_Stats = new Stats() // Create FPS stats
 const Tick = new Clock()

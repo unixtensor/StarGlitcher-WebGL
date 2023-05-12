@@ -2,8 +2,8 @@ import * as THREE       from 'three'
 import { FPS_Stats }    from './UI-Engine'
 import { Skybox }       from './modules/three/Skybox'
 import { LightEngine }  from './modules/three/Lighting'
-import { Animations }   from './modules/three/Animations'
 import { Wings }        from './modules/three/Wings'
+import { Animations }   from './modules/three/Animations'
 // Engine
 import { rE_RootPlayer } from '/modules/three/rhpidEngine/rE_Root'
 import { CharacterRig }  from './modules/three/rhpidEngine/rE_Character'
@@ -40,6 +40,8 @@ const Character    = CharacterNew.Create({
 // Wing Assets
 const CharWings = new Wings()
 const GlitcherAssets = CharWings.GlitcherWings()
+// Wait for the gltf interpreter to build the wings
+await GlitcherAssets
 
 const Clock = new THREE.Clock()
 
@@ -57,13 +59,15 @@ Camera.position.set(-13,12,-0.1)
 
 WebGL_Renderer.setAnimationLoop((delta) => {
     const deltaTime = Clock.getDelta()
+    const AnimMan = new Animations(deltaTime)
 
     RootMove.update(deltaTime)
     
     CharacterNew.Joints_update()
     CharWings.Wing_Unions_update()
 
-    Animations.Idle(delta)
+    AnimMan.Rig().Idle()
+    AnimMan.Wings()
 
     WebGL_Renderer.render(Scene, Camera)
     FPS_Stats.update()
