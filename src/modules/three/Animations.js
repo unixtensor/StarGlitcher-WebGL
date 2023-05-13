@@ -7,7 +7,8 @@ const WingJoints = WingAssets.Union
 
 const rad = (x) => x*Math.PI/180
 const vlerp = (Vector, Alpha) => new Vector3().lerp(Vector, Alpha)
-const elerp = (Euler_v, Alpha) => new Euler().lerp(Euler_v, Alpha)
+// :(
+// const elerp = (Euler_v, Alpha) => new Euler().lerp(Euler_v, Alpha)
 
 const AnimationTypes = (_this) => {
 	return {
