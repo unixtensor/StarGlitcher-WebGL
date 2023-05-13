@@ -41,7 +41,7 @@ const Character    = CharacterNew.Create({
 const CharWings = new Wings()
 const GlitcherAssets = CharWings.GlitcherWings()
 // Wait for the gltf interpreter to build the wings
-await GlitcherAssets
+await GlitcherAssets //Ye, currently makes firefox hang for ~8-7 seconds no idea why, maybe a better alt to this?s
 
 const Clock = new THREE.Clock()
 
@@ -59,14 +59,14 @@ Camera.position.set(-13,12,-0.1)
 
 WebGL_Renderer.setAnimationLoop((delta) => {
     const deltaTime = Clock.getDelta()
-    const AnimMan = new Animations(deltaTime)
+    const AnimMan = new Animations(deltaTime, delta)
 
     RootMove.update(deltaTime)
     
     CharacterNew.Joints_update()
     CharWings.Wing_Unions_update()
 
-    AnimMan.Rig().Idle()
+    AnimMan.Rig("Mayhem").Idle()
     AnimMan.Wings()
 
     WebGL_Renderer.render(Scene, Camera)

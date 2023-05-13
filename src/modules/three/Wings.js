@@ -1,6 +1,7 @@
 import { Euler, MeshPhongMaterial, Vector3 } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import { Union, CharacterMesh } from "./rhpidEngine/rE_Character"
+import { CharacterMesh } from "./rhpidEngine/rE_Character"
+import { Union } from './rhpidEngine/rE_Instances'
 
 const GLTF_Loader = new GLTFLoader()
 
