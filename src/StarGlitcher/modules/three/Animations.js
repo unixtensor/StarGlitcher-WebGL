@@ -33,7 +33,7 @@ const Animations = class {
 	}
 
 	Wings() {
-		const V = new Vector3(2*Math.cos(this.delta/WingDelta)-2, (-Math.cos(this.delta/WingDelta)*1.8),0)
+		const V = new Vector3(2*Math.cos(this.delta/WingDelta)-2, -Math.cos(this.delta/WingDelta)*1.8,0)
 		const V_i = new Vector3(2*Math.cos(this.delta/WingDelta)-2, 1.2+(-Math.cos(this.delta/WingDelta)*1.5),0)
 
 		WingJoints.WingLC03.C0(vlerp(V,.8), new Euler(rad((15*Math.cos(this.delta/WingDelta)-20)-10), rad(15*Math.cos(this.delta/WingDelta)-15), rad(-15*Math.cos(this.delta/WingDelta))))

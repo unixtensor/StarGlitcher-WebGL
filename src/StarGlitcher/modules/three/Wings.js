@@ -3,12 +3,18 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { CharacterMesh } from "./rhpidEngine/rE_Character"
 import { Union } from './rhpidEngine/rE_Instances'
 
-const GLTF_Loader = new GLTFLoader()
-
 const s_Circuit = (EXPECTED, DEFAULT) => EXPECTED === undefined ? DEFAULT : EXPECTED
 const rad = (x) => x*Math.PI/180
 
-export const WingAssets = {
+const GLTF_Loader = new GLTFLoader()
+const GLTF_cache = {
+    Wing: null, 
+    Ring: null,
+    Ring2: null, 
+    Tornado: null,
+}
+
+const WingAssets = {
     Left: [],
     Right: [],
     Ring: null,
@@ -19,44 +25,46 @@ export const WingAssets = {
     },
 }
 
-async function GLTF(GLTF_FILE) {
-    return new Promise((resolve, _) => GLTF_Loader.load(GLTF_FILE, (gltf_obj) => resolve(gltf_obj))).catch((reason) => console.error(reason))
+//hi
+const GLTF = async (GLTF_FILE) => new Promise((resolve, _) => GLTF_Loader.load(GLTF_FILE, (gltf_obj) => resolve(gltf_obj))).catch((reason) => console.error(reason))
+
+const load_into_gltf_cache = async (cache_req_type, gltf_path) => {
+    if (GLTF_cache[cache_req_type] == null) {
+        const GLTF_to_three = await GLTF(gltf_path)
+
+        GLTF_to_three.scene.traverse((g_data) => {
+            if (g_data.isMesh) {
+                g_data.castShadow = true
+                g_data.receiveShadow = true
+                GLTF_cache[cache_req_type] = g_data
+            }
+        })
+    }
 }
 
-async function CreateWing(Color = 0xffffff, LeftSided) {
-    const WingGLTF = await GLTF('/3D/Wing.gltf')
-    const Side = LeftSided && WingAssets.Left || WingAssets.Right
-    let WingObject = null
+const CreateWing = async (Color = 0xffffff, LeftSided) => {
+    await load_into_gltf_cache("Wing", "../../../public/3D/Wing.gltf")
 
-    WingGLTF.scene.traverse((Object) => {
-        if (Object.isMesh) {
-            Object.material = new MeshPhongMaterial({color: Color})
-            Object.castShadow = true
-            Object.receiveShadow = true
-            WingObject = Object
-        }
-    })
+    const WingObject = GLTF_cache.Wing.clone()
+    WingObject.material = new MeshPhongMaterial({color: Color})
+
+    const Side = LeftSided && WingAssets.Left || WingAssets.Right
     Side.push(WingObject)
+
     return WingObject
 }
 
-async function CreateRing(Color = 0xffffff) {
-    const RingGLTF = await GLTF('/3D/Ring.gltf')
-    let RingObject = null
+const CreateRing = async (Color = 0xfffff) => {
+    await load_into_gltf_cache("Ring", "../../../public/3D/Ring.gltf")
 
-    RingGLTF.scene.traverse((Object) => {
-        if (Object.isMesh) {
-            Object.material = new MeshPhongMaterial({color: Color})
-            Object.castShadow = true
-            Object.receiveShadow = true
-            RingObject = Object
-        }
-    })
+    const RingObject = GLTF_cache.Ring.clone()
+    RingObject.material = new MeshPhongMaterial({color: Color})
+
     WingAssets.Ring = RingObject
     return RingObject
 }
 
-export class Wings {
+const Wings = class {
     async GlitcherWings(Wing_start_Colors) {
         const pre_Color = s_Circuit(Wing_start_Colors, 0xff0000)
 
@@ -92,4 +100,9 @@ export class Wings {
             WingAssets.Union.WingRC03.C0()
         } 
     }
+}
+
+export {
+    Wings,
+    WingAssets
 }

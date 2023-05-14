@@ -5,7 +5,7 @@ import { LightEngine }  from './modules/three/Lighting'
 import { Wings }        from './modules/three/Wings'
 import { Animations }   from './modules/three/Animations'
 // Engine
-import { rE_RootPlayer } from '/modules/three/rhpidEngine/rE_Root'
+import { rE_RootPlayer } from './modules/three/rhpidEngine/rE_Root'
 import { CharacterRig }  from './modules/three/rhpidEngine/rE_Character'
 
 // ThreeJS dependencies
@@ -23,7 +23,7 @@ Baseplate.position.y = -1.5
 
 // Create the environment
 const Lighting = new LightEngine(Scene).Create()
-const SkyBox   = new Skybox('/Images/Skybox/', Scene).Create('Skybox', 'png')
+const SkyBox   = new Skybox('../public/Images/Skybox/', Scene).Create('Skybox', 'png')
 
 // Create the mover for the player character
 const RootMover      = new rE_RootPlayer(Camera, WebGL_Renderer)
@@ -86,3 +86,7 @@ WebGL_Renderer.domElement.style.position = 'absolute'
 document.body.appendChild(WebGL_Renderer.domElement)
 
 Start_GlitchUI()
+
+export {
+    Character
+}

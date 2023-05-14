@@ -1,7 +1,7 @@
 import Stats                  from 'three/examples/jsm/libs/stats.module'
-import { ChangeModeOfGlitch } from '/modules/GlitchMode'
-import { ModeOfGlitch }       from '/modules/UI/ModesOfGlitch'
-import * as UI_V              from '/modules/UI/UI-Vector'
+import { ChangeModeOfGlitch } from './modules/GlitchMode'
+import { ModeOfGlitch }       from './modules/UI/ModesOfGlitch'
+import * as UI_V              from './modules/UI/UI-Vector'
 
 const Object_1               = document.getElementById("Object-1")
 const Object_2               = document.getElementById("Object-2")

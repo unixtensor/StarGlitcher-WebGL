@@ -19,6 +19,9 @@ h1 {
     text-align: center;
     user-select: none;
 }
+img {
+    display: none;
+}
 
 .HardwareA {
     top: 50%;
