@@ -1,10 +1,10 @@
-import * as UI          from '../../UI-Engine'
-import * as FilterColor from './Filter-Color'
+import * as UI          from '../UI-Engine'
+import * as FilterColor from './UI/Filter-Color'
 
 const pColor = FilterColor.Color
 const pSolver = FilterColor.Solver
 
-export function ChangeModeOfGlitch(DATA_PROPS = {PrimaryColor:0xffffff,SecondaryColor:0x00000}) {
+const ChangeModeOfGlitch = (DATA_PROPS = {PrimaryColor:0xffffff, SecondaryColor:0x00000}) => {
     const P_Color = DATA_PROPS.PrimaryColor
     const S_Color = DATA_PROPS.SecondaryColor
     const PrimeColor_Alpha     = `rgba(${P_Color[0]}, ${P_Color[1]}, ${P_Color[2]}, .5)`
@@ -39,4 +39,10 @@ export function ChangeModeOfGlitch(DATA_PROPS = {PrimaryColor:0xffffff,Secondary
     UI.GlitcherSparkle.style.filter        = S_Color_filter
     UI.GlitcherHexagonBorders.style.filter = S_Color_filter
     UI.GlitcherHexagonSpiked.style.filter  = P_Color_filter
+
+    
+}
+
+export {
+    ChangeModeOfGlitch
 }

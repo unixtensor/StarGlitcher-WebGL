@@ -1,5 +1,5 @@
 import * as THREE       from 'three'
-import { FPS_Stats }    from './UI-Engine'
+import { FPS_Stats, Start_GlitchUI }    from './UI-Engine'
 import { Skybox }       from './modules/three/Skybox'
 import { LightEngine }  from './modules/three/Lighting'
 import { Wings }        from './modules/three/Wings'
@@ -41,7 +41,7 @@ const Character    = CharacterNew.Create({
 const CharWings = new Wings()
 const GlitcherAssets = CharWings.GlitcherWings()
 // Wait for the gltf interpreter to build the wings
-await GlitcherAssets //Ye, currently makes firefox hang for ~8-7 seconds no idea why, maybe a better alt to this?s
+await GlitcherAssets
 
 const Clock = new THREE.Clock()
 
@@ -84,3 +84,5 @@ WebGL_Renderer.setSize(window.innerWidth, window.innerHeight)
 WebGL_Renderer.domElement.style.zIndex   = 1
 WebGL_Renderer.domElement.style.position = 'absolute'
 document.body.appendChild(WebGL_Renderer.domElement)
+
+Start_GlitchUI()

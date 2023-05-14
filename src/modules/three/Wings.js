@@ -68,7 +68,7 @@ export class Wings {
         await CreateWing(pre_Color)
         await CreateWing(pre_Color)
 
-        WingAssets.Ring.scale.set(3,3,3)
+        WingAssets.Ring.scale.set(3,1,3)
 
         WingAssets.Union.RingC0 = new Union(CharacterMesh.Torso, WingAssets.Ring, new Vector3(-1.5,1,0), new Euler(0,0,rad(90)))
         WingAssets.Union.WingLC01 = new Union(WingAssets.Ring, WingAssets.Left[0], new Vector3(0,0,2.7), new Euler(rad(90),0,0))

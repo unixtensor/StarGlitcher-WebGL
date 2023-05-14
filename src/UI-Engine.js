@@ -1,6 +1,5 @@
 import Stats                  from 'three/examples/jsm/libs/stats.module'
-import { Clock }              from 'three'
-import { ChangeModeOfGlitch } from '/modules/UI/UI-GlitcherTheme'
+import { ChangeModeOfGlitch } from '/modules/GlitchMode'
 import { ModeOfGlitch }       from '/modules/UI/ModesOfGlitch'
 import * as UI_V              from '/modules/UI/UI-Vector'
 
@@ -42,7 +41,6 @@ let delta = 0
 let UI_ENABLED = true
 
 const FPS_Stats = new Stats() // Create FPS stats
-const Tick = new Clock()
 const rad = (x) => x*Math.PI/180
 const lerp = (start,end,t) => start*(1-t)+end*t
 
@@ -156,14 +154,16 @@ function UI_FPS() {
             R: rad(-(delta*SpinRate)/6)
         })
         UI_FPS()
-    }, 1*Tick.getDelta())
+    }, 1)
 }
 
-if (UI_ENABLED) {
-    document.querySelectorAll(GlitcherUIs).forEach((value) => value.style.display = "block")
-    GlitchUI()
-    UI_FPS()
-    ChangeModeOfGlitch(ModeOfGlitch.StarGlitcher_Mode[0])
+const Start_GlitchUI = () => {
+    if (UI_ENABLED) {
+        document.querySelectorAll(GlitcherUIs).forEach((value) => value.style.display = "block")
+        GlitchUI()
+        UI_FPS()
+        ChangeModeOfGlitch(ModeOfGlitch.StarGlitcher_Mode[0])
+    }
 }
 document.body.appendChild(FPS_Stats.dom)
 document.addEventListener('contextmenu', event => event.preventDefault(), false)
@@ -184,5 +184,6 @@ export {
     GlitcherSparkle,
     GlitcherHexagonBorders,
     GlitcherHexagonSpiked,
-    FPS_Stats
+    FPS_Stats,
+    Start_GlitchUI
 }
