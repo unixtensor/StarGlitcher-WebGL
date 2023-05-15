@@ -3,9 +3,6 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { CharacterMesh } from "./rhpidEngine/rE_Character"
 import { Union } from './rhpidEngine/rE_Instances'
 
-const s_Circuit = (EXPECTED, DEFAULT) => EXPECTED === undefined ? DEFAULT : EXPECTED
-const rad = (x) => x*Math.PI/180
-
 const GLTF_Loader = new GLTFLoader()
 const GLTF_cache = {
     Wing: null, 
@@ -64,17 +61,17 @@ const CreateRing = async (Color = 0xfffff) => {
     return RingObject
 }
 
-const Wings = class {
-    async GlitcherWings(Wing_start_Colors) {
-        const pre_Color = s_Circuit(Wing_start_Colors, 0xff0000)
+const rad = (x) => x*Math.PI/180
 
-        await CreateRing(pre_Color)
-        await CreateWing(pre_Color, true)
-        await CreateWing(pre_Color, true)
-        await CreateWing(pre_Color, true)
-        await CreateWing(pre_Color)
-        await CreateWing(pre_Color)
-        await CreateWing(pre_Color)
+const Wings = class {
+    async GlitcherWings(Wing_start_Colors = 0xff0000) {
+        await CreateRing(Wing_start_Colors)
+        await CreateWing(Wing_start_Colors, true)
+        await CreateWing(Wing_start_Colors, true)
+        await CreateWing(Wing_start_Colors, true)
+        await CreateWing(Wing_start_Colors)
+        await CreateWing(Wing_start_Colors)
+        await CreateWing(Wing_start_Colors)
 
         WingAssets.Ring.scale.set(3,1,3)
 
