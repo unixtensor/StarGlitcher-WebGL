@@ -1,38 +1,34 @@
 <!DOCTYPE html>
+<!--Its not pretty here-->
 <html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=0">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:title" content="Star Glitcher">
     <meta property="og:description" content='The popular "Star Glitcher" script on ROBLOX remade from scratch on the Web using HTML, CSS, JS, and ThreeJS.'>
     <meta content="#FF0000" data-react-helmet="true" name="theme-color">
     <meta name="author" content="interpreterK">
+    <title>Star Glitcher WebGL</title>
+    <link rel="shortcut icon" href="/Images/favicon.gif" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="./public/Images/favicon.gif" type="image/x-icon">
-    <link rel="stylesheet" href="./UI-ap.css">
-    <title>Star Glitcher WebGL</title>
+    <link rel="stylesheet" href="./scss/main.scss">
 </head>
 <body>
+    <script src="./StarGlitcher/glitch-html.js" type="module"></script>
     <noscript>
         <style>
-            html, body {background-color: black}
-            u {text-decoration-thickness: 1px}
             a {color: white}
             h1 {
-                font-family: sans-serif;
-                color: white;
                 text-align: center;
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%,-50%);
-                display: block;
                 position: absolute
             }
             .noscript-d {
-                background-color: black;
                 user-select: auto;
                 pointer-events: auto;
                 width: 100vw;
@@ -41,15 +37,7 @@
             }
         </style>
         <div class="noscript-d">
-            <h1>
-                <strong>
-                    <u>
-                        <a href="https://www.enable-javascript.com/" target="_blank">
-                            JavaScript must be enabled, upgraded, or supported.
-                        </a>
-                    </u>
-                </strong>
-            </h1>
+            <h1><strong><u><a href="https://www.enable-javascript.com/" target="_blank">JavaScript must be enabled, upgraded, or supported.</a></u></strong></h1>
         </div>
     </noscript>
     <div class="HardwareA">
@@ -60,24 +48,28 @@
             <strong>If the scene never load's please enable "Hardware Acceleration" in your browser settings or check the browser developer tools console for any errors.</strong>
         </h2>
     </div>
-    <div class="Anim-Object" id="Bottom-Bar"></div>
-    <div class="Anim-Object" id="Bottom-Bar-2"></div>
-    <div class="Anim-Object" id="Bottom-Rect"></div>
-    <div class="Anim-Object" id="Bottom-Rect-2"></div>
-    <div class="Anim-Object" id="Object-1">
-        <h1 id="Text-GlitcherMode">Glitcher Mode</h1>
-    </div>
-    <div class="Anim-Object" id="Object-2">
-        <h1 id="Text-StarGlitcher">Star Glitcher</h1>
-    </div>
-    <div class="Anim-Object" id="Object-3">
-        <h1 id="Text-SongTitle">Artist - Music (Remix)</h1>
-    </div>
-    <img src="./public/Images/UI/GlitcherShards.png" alt="" id="GlitcherShards">
-    <img src="./public/Images/UI/Sparkle.png" alt="" id="GlitcherSparkle">
-    <img src="./public/Images/UI/JSAB_HexagonSpiked.png" alt="" id="GlitcherHexagonSpiked">
-    <img src="./public/Images/UI/JSAB_HexagonBorders.png" alt="" id="GlitcherHexagonBorders">
-    <img src="./public/Images/UI/GlitcherShards.png" alt="" id="GlitcherShards2">
+
+    <glitcher_bar>
+        <div class="Anim-Object" id="Bottom-Bar"></div>
+        <div class="Anim-Object" id="Bottom-Bar-2"></div>
+        <div class="Anim-Object" id="Bottom-Rect"></div>
+        <div class="Anim-Object" id="Bottom-Rect-2"></div>
+        <div class="Anim-Object" id="Object-1">
+            <h1 id="Text-GlitcherMode">Glitcher Mode</h1>
+        </div>
+        <div class="Anim-Object" id="Object-2">
+            <h1 id="Text-StarGlitcher">Star Glitcher</h1>
+        </div>
+        <div class="Anim-Object" id="Object-3">
+            <h1 id="Text-SongTitle">Artist - Music (Remix)</h1>
+        </div>
+        <img src="/Images/UI/GlitcherShards.png" alt="" id="GlitcherShards">
+        <img src="/Images/UI/Sparkle.png" alt="" id="GlitcherSparkle">
+        <img src="/Images/UI/JSAB_HexagonSpiked.png" alt="" id="GlitcherHexagonSpiked">
+        <img src="/Images/UI/JSAB_HexagonBorders.png" alt="" id="GlitcherHexagonBorders">
+        <img src="/Images/UI/GlitcherShards.png" alt="" id="GlitcherShards2">
+    </glitcher_bar>
+
     <script type="module">
         import { __rhpidEngine_Version } from './StarGlitcher/modules/three/rhpidEngine/rE_Root'
         console.log("Welcome to the StarGlitcher WebGL Website.\n\n- Author: interpreterK\n- Project Repo: https://github.com/interpreterK/StarGlitcher-WebGL\n\nSeeing any errors? Report it here: https://github.com/interpreterK/StarGlitcher-WebGL/issues\n\n-- Debug Info:\n rhpidEngine Version:", __rhpidEngine_Version)

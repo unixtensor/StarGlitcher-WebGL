@@ -1,4 +1,4 @@
-export let win_Offset = 3 // Usually a good offset for the browser's true size is 3
+let win_Offset = 3 // Usually a good offset for the browser's true size is 3
 
 // The function return's have support for Pascal Case and lower camel case.
 
@@ -8,7 +8,7 @@ export let win_Offset = 3 // Usually a good offset for the browser's true size i
  * @param {HTMLElement} OBJ - An HTML Element, should always be a div. 
  * @returns 
  */
-export function Bounding_Rect(OBJ) {
+const Bounding_Rect = (OBJ) => {
     const Rect = OBJ.getBoundingClientRect()
 	return {
 		X: Rect.x, x: Rect.x,
@@ -24,7 +24,7 @@ export function Bounding_Rect(OBJ) {
  * @param {Object} C_DATA   - Coordinate/Vector DATA, where in space will the element appear? {NEW_X: ?, NEW_Y: ?} (Placed in absolute)
  * @returns 
  */
-export function Vector2(OBJ, C_DATA = {X:Bounding_Rect(OBJ).X, Y:Bounding_Rect(OBJ).Y}) {
+const Vector2 = (OBJ, C_DATA = {X:Bounding_Rect(OBJ).X, Y:Bounding_Rect(OBJ).Y}) => {
 	OBJ.style.left = `${C_DATA.X}px`
 	OBJ.style.top =  `${C_DATA.Y}px`
     OBJ.style.setProperty("position", "absolute", "important")
@@ -42,7 +42,7 @@ export function Vector2(OBJ, C_DATA = {X:Bounding_Rect(OBJ).X, Y:Bounding_Rect(O
  * @param {Object} R_DATA   - Rotation DATA in radians. {RAD: ?}
  * @returns 
  */
-export function Rotate_RAD(OBJ, R_DATA = {R:'0'}) {
+const Rotate_RAD = (OBJ, R_DATA = {R:'0'}) => {
     OBJ.style.transform = `rotate(${R_DATA.R}rad)`
 
 	return {
@@ -57,7 +57,7 @@ export function Rotate_RAD(OBJ, R_DATA = {R:'0'}) {
  * @param {Object} C_DATA   - Coordinate/Vector DATA, where in space will the element appear? {NEW_X: ?, NEW_Y: ?} (Placed relative with the browser size [∆-win_Offset=3])
  * @returns
  */
-export function Vector2rel(OBJ, C_DATA = {X:Bounding_Rect(OBJ).X, Y:Bounding_Rect(OBJ).Y}) {
+const Vector2rel = (OBJ, C_DATA = {X:Bounding_Rect(OBJ).X, Y:Bounding_Rect(OBJ).Y}) => {
     const w_xM = window.innerWidth-win_Offset-C_DATA.X
 	const w_yM = window.innerHeight-win_Offset-C_DATA.Y
 	OBJ.style.left = `${w_xM}px`
@@ -68,4 +68,11 @@ export function Vector2rel(OBJ, C_DATA = {X:Bounding_Rect(OBJ).X, Y:Bounding_Rec
         X: w_xM, x: w_xM,
         Y: w_yM, y: w_yM
     }
+}
+
+export {
+    win_Offset,
+    Vector2,
+    Vector2rel,
+    Rotate_RAD
 }

@@ -40,7 +40,7 @@ const load_into_gltf_cache = async (cache_req_type, gltf_path) => {
 }
 
 const CreateWing = async (Color = 0xffffff, LeftSided) => {
-    await load_into_gltf_cache("Wing", "../../../public/3D/Wing.gltf")
+    await load_into_gltf_cache("Wing", "/3D/Wing.gltf")
 
     const WingObject = GLTF_cache.Wing.clone()
     WingObject.material = new MeshPhongMaterial({color: Color})
@@ -52,7 +52,7 @@ const CreateWing = async (Color = 0xffffff, LeftSided) => {
 }
 
 const CreateRing = async (Color = 0xfffff) => {
-    await load_into_gltf_cache("Ring", "../../../public/3D/Ring.gltf")
+    await load_into_gltf_cache("Ring", "/3D/Ring.gltf")
 
     const RingObject = GLTF_cache.Ring.clone()
     RingObject.material = new MeshPhongMaterial({color: Color})

@@ -46,10 +46,11 @@ const lerp = (start,end,t) => start*(1-t)+end*t
 
 let w_x = window.innerWidth-UI_V.win_Offset
 let w_y = window.innerHeight-UI_V.win_Offset
-function GlitchUI() {
+
+const GlitchUI = () => {
     // Pre-Init Sizing
     // Object's (Animating UI frames) are not needed here since they rely using relative positioning inside their fps loop.
-    function static_UI_Vectors() {
+    const static_UI_Vectors = () => {
         UI_V.Vector2(BottomBar, {
             Y: w_y-50,
         })
@@ -105,7 +106,7 @@ function GlitchUI() {
     }, false)
 }
 
-function UI_FPS() {
+const UI_FPS = () => {
      setTimeout(() => {
         delta+=1
         const l = GlitchMode.innerHTML.length
@@ -153,7 +154,9 @@ function UI_FPS() {
         UI_V.Rotate_RAD(GlitcherHexagonSpiked, {
             R: rad(-(delta*SpinRate)/6)
         })
-        UI_FPS()
+
+        if (UI_ENABLED) 
+            UI_FPS()
     }, 1)
 }
 
@@ -165,6 +168,11 @@ const Start_GlitchUI = () => {
         ChangeModeOfGlitch(ModeOfGlitch.StarGlitcher_Mode[0])
     }
 }
+
+const Hide_GlitchUI = () => {
+    document.querySelectorAll(GlitcherUIs).forEach((value) => value.style.display = "none")
+}
+
 document.body.appendChild(FPS_Stats.dom)
 document.addEventListener('contextmenu', event => event.preventDefault(), false)
 
@@ -185,5 +193,6 @@ export {
     GlitcherHexagonBorders,
     GlitcherHexagonSpiked,
     FPS_Stats,
-    Start_GlitchUI
+    Start_GlitchUI,
+    Hide_GlitchUI
 }

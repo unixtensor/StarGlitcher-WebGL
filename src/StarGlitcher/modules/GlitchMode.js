@@ -30,6 +30,7 @@ const ChangeModeOfGlitch = (DATA_PROPS = {PrimaryColor:0xffffff, SecondaryColor:
     UI.Text_GlitcherMode.innerHTML = DATA_PROPS.Name.toUpperCase()
 
     // Turn PNG's colorful
+    // Take notes, CSS
     // Uncaught ReferenceError: can't access lexical declaration 'Color' before initialization
     const P_Color_filter = new pSolver(new pColor(P_Color[0], P_Color[1], P_Color[2])).solve().filter
     const S_Color_filter = new pSolver(new pColor(S_Color[0], S_Color[1], S_Color[2])).solve().filter

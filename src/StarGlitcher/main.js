@@ -1,9 +1,9 @@
 import * as THREE       from 'three'
-import { FPS_Stats, Start_GlitchUI }    from './UI-Engine'
 import { Skybox }       from './modules/three/Skybox'
 import { LightEngine }  from './modules/three/Lighting'
 import { Wings }        from './modules/three/Wings'
 import { Animations }   from './modules/three/Animations'
+import { FPS_Stats, Start_GlitchUI }    from './UI-Engine'
 // Engine
 import { rE_RootPlayer } from './modules/three/rhpidEngine/rE_Root'
 import { CharacterRig }  from './modules/three/rhpidEngine/rE_Character'
@@ -40,52 +40,57 @@ const Character    = CharacterNew.Create({
 // Wing Assets
 const CharWings = new Wings()
 const GlitcherAssets = CharWings.GlitcherWings()
-// Wait for the gltf interpreter to build the wings
-await GlitcherAssets
 
-const Clock = new THREE.Clock()
+const start_glitcher = async () => {
+    // Wait for the gltf interpreter to build the wings
+    await GlitcherAssets
 
-// Add all Mesh's and visual data to the workspace
-Scene.add(
-    Baseplate,
-    SkyBox,
-    RootObject,
-    ...Character.Limbs,
-    ...Lighting.Sources,
-)
-GlitcherAssets.then((v) => Scene.add(...v)).catch((r) => console.error("Couldn't load the GlitcherAssets,", r))
+    const Clock = new THREE.Clock()
 
-Camera.position.set(-13,12,-0.1)
+    // Add all Mesh's and visual data to the workspace
+    Scene.add(
+        Baseplate,
+        SkyBox,
+        RootObject,
+        ...Character.Limbs,
+        ...Lighting.Sources,
+    )
+    GlitcherAssets.then((v) => Scene.add(...v)).catch((r) => console.error("Couldn't load the GlitcherAssets,", r))
 
-WebGL_Renderer.setAnimationLoop((delta) => {
-    const deltaTime = Clock.getDelta()
-    const AnimMan = new Animations(deltaTime, delta)
+    Camera.position.set(-13,12,-0.1)
 
-    RootMove.update(deltaTime)
-    
-    CharacterNew.Joints_update()
-    CharWings.Wing_Unions_update()
+    WebGL_Renderer.setAnimationLoop((delta) => {
+        const deltaTime = Clock.getDelta()
+        const AnimMan = new Animations(deltaTime, delta)
 
-    AnimMan.Rig("Mayhem").Idle()
-    AnimMan.Wings()
+        RootMove.update(deltaTime)
+        
+        CharacterNew.Joints_update()
+        CharWings.Wing_Unions_update()
 
-    WebGL_Renderer.render(Scene, Camera)
-    FPS_Stats.update()
-})
+        AnimMan.Rig("Mayhem").Idle()
+        AnimMan.Wings()
 
-window.addEventListener("resize", () => {
-    Camera.aspect = window.innerWidth/window.innerHeight
-    Camera.updateProjectionMatrix()
+        WebGL_Renderer.render(Scene, Camera)
+        FPS_Stats.update()
+    })
+
+    window.addEventListener("resize", () => {
+        Camera.aspect = window.innerWidth/window.innerHeight
+        Camera.updateProjectionMatrix()
+        WebGL_Renderer.setSize(window.innerWidth, window.innerHeight)
+    }, false)
+
+    WebGL_Renderer.setPixelRatio(window.devicePixelRatio)
     WebGL_Renderer.setSize(window.innerWidth, window.innerHeight)
-}, false)
+    WebGL_Renderer.domElement.style.zIndex   = 1
+    WebGL_Renderer.domElement.style.position = 'absolute'
+    document.body.appendChild(WebGL_Renderer.domElement)
 
-WebGL_Renderer.setPixelRatio(window.devicePixelRatio)
-WebGL_Renderer.setSize(window.innerWidth, window.innerHeight)
-WebGL_Renderer.domElement.style.zIndex   = 1
-WebGL_Renderer.domElement.style.position = 'absolute'
-document.body.appendChild(WebGL_Renderer.domElement)
+    Start_GlitchUI()
+}
 
-Start_GlitchUI()
+start_glitcher()
 
 export {
     Character
