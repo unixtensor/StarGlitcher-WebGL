@@ -5,8 +5,10 @@ import { Wings }        from './modules/three/Wings'
 import { Animations }   from './modules/three/Animations'
 import { FPS_Stats, Start_GlitchUI }    from './UI-Engine'
 // Engine
-import { rE_RootPlayer } from './modules/three/rhpidEngine/rE_Root'
+import { rE_RootPlayer, __rhpidEngine_Version } from './modules/three/rhpidEngine/rE_Root'
 import { CharacterRig }  from './modules/three/rhpidEngine/rE_Character'
+
+console.log("Welcome to the StarGlitcher WebGL Website.\n\n- Author: interpreterK\n- Project Repo: https://github.com/interpreterK/StarGlitcher-WebGL\n\nSeeing any errors? Report it here: https://github.com/interpreterK/StarGlitcher-WebGL/issues\n\n-- Debug Info:\n rhpidEngine Version:", __rhpidEngine_Version)
 
 // ThreeJS dependencies
 const WebGL_Renderer = new THREE.WebGLRenderer({antialias: false})

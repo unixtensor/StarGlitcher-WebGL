@@ -5,113 +5,119 @@ $--__NULL_MODE_a:     #00000080;
 $--__NULL_MODE_ALT:   #ffffff;
 $--__NULL_MODE_ALT_a: #ffffff80;
 
-#Object-1 {
-    right: 0;
-    bottom: 0;
-    height: 80px;
-    width: 1000px;
-    z-index: 5;
-}
-#Object-2 {
-    height: 100px;
-    width: 500px;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    z-index: 5;
-}
-#Object-3 {
-    height: 50px;
-    width: 400px;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    z-index: 5;
-}
-#Text-SongTitle {
-    @include global.text-outline($--__NULL_MODE);
-
-    font: {
-        family: var(--Zekton, sans-serif);
-        weight: bold;
-        size: 25px;
+glitcher_bar {
+    > :is(#Object-1, #Object-2, #Object-3, #Bottom-Rect) {
+        z-index: 5;
     }
-    text-align: left;
-    color: $--__NULL_MODE_ALT;
-}
-#Text-GlitcherMode {
-    @include global.text-outline($--__NULL_MODE_ALT);
+    > :is(#Bottom-Bar, #GlitcherShards, #GlitcherSparkle, #GlitcherShards2, #GlitcherHexagonBorders, #GlitcherHexagonSpiked) {
+        z-index: 2;
+    }
+    > #Bottom-Bar-2 {
+        z-index: 3;
+    }
+    > #Bottom-Rect-2 {
+        z-index: 4;
+    }
 
-    font-size: 40px;
-    color: $--__NULL_MODE;
-}
-#Text-StarGlitcher {
-    @include global.text-outline($--__NULL_MODE_ALT);
+    > #Object-1 {
+        right: 0;
+        bottom: 0;
+        height: 80px;
+        width: 1000px;
 
-    color: $--__NULL_MODE;
-}
-#Bottom-Bar {
-    border: 2px solid $--__NULL_MODE_ALT;
-    background-color: $--__NULL_MODE_a;
-    bottom: 0;
-    left: 0;
-    height: 150px;
-    z-index: 2;
-}
-#Bottom-Bar-2 {
-    border: 2px solid $--__NULL_MODE;
-    background-color: $--__NULL_MODE_ALT_a;
-    bottom: 0;
-    left: 0;
-    height: 100px;
-    z-index: 3;
-}
-#Bottom-Rect {
-    background-color: $--__NULL_MODE_ALT_a;
-    border: 3px solid $--__NULL_MODE;
-    height: 45px;
-    width: 45px;
-    z-index: 5;
-}
-#Bottom-Rect-2 {
-    background-color: $--__NULL_MODE_ALT_a;
-    border: 3px solid $--__NULL_MODE;
-    height: 90px;
-    width: 90px;
-    z-index: 4;
-}
-#GlitcherShards {
-    width: 1000px;
-    opacity: .2;
-    right: 0;
-    bottom: 0;
-    z-index: 2;
-}
-#GlitcherSparkle {
-    width: 900px;
-    opacity: .2;
-    right: 0;
-    bottom: 0;
-    z-index: 2;
-}
-#GlitcherShards2 {
-    width: 800px;
-    opacity: 1;
-    right: 0;
-    bottom: 0;
-    z-index: 2;
-}
-#GlitcherHexagonBorders {
-    width: 700px;
-    opacity: .5;
-    right: 0;
-    bottom: 0;
-    z-index: 2;
-}
-#GlitcherHexagonSpiked {
-    width: 500px;
-    opacity: .5;
-    right: 0;
-    bottom: 0;
-    z-index: 2;
+        > #Text-GlitcherMode {
+            @include global.text-outline($--__NULL_MODE_ALT);
+
+            font-size: 40px;
+            color: $--__NULL_MODE;
+        }
+    }
+    > #Object-2 {
+        height: 100px;
+        width: 500px;
+        right: 0;
+        left: 0;
+        bottom: 0;
+
+        > #Text-StarGlitcher {
+            @include global.text-outline($--__NULL_MODE_ALT);
+
+            color: $--__NULL_MODE;
+        }
+    }
+    > #Object-3 {
+        height: 50px;
+        width: 400px;
+        right: 0;
+        left: 0;
+        bottom: 0;
+
+        > #Text-SongTitle {
+            @include global.text-outline($--__NULL_MODE);
+
+            font: {
+                family: var(--Zekton, sans-serif);
+                weight: bold;
+                size: 25px;
+            }
+            text-align: left;
+            color: $--__NULL_MODE_ALT;
+        }
+    }
+    > #Bottom-Bar {
+        border: 2px solid $--__NULL_MODE_ALT;
+        background-color: $--__NULL_MODE_a;
+        bottom: 0;
+        left: 0;
+        height: 150px;
+    }
+    > #Bottom-Bar-2 {
+        border: 2px solid $--__NULL_MODE;
+        background-color: $--__NULL_MODE_ALT_a;
+        bottom: 0;
+        left: 0;
+        height: 100px;
+    }
+    > #Bottom-Rect {
+        background-color: $--__NULL_MODE_ALT_a;
+        border: 3px solid $--__NULL_MODE;
+        height: 45px;
+        width: 45px;
+    }
+    > #Bottom-Rect-2 {
+        background-color: $--__NULL_MODE_ALT_a;
+        border: 3px solid $--__NULL_MODE;
+        height: 90px;
+        width: 90px;
+    }
+    > #GlitcherShards {
+        width: 1000px;
+        opacity: .2;
+        right: 0;
+        bottom: 0;
+    }
+    > #GlitcherSparkle {
+        width: 900px;
+        opacity: .2;
+        right: 0;
+        bottom: 0;
+    }
+    > #GlitcherShards2 {
+        width: 800px;
+        opacity: 1;
+        right: 0;
+        bottom: 0;
+    }
+    > #GlitcherHexagonBorders {
+        width: 700px;
+        opacity: .5;
+        right: 0;
+        bottom: 0;
+    }
+    > #GlitcherHexagonSpiked {
+        width: 500px;
+        opacity: .5;
+        right: 0;
+        bottom: 0;
+    }
 }

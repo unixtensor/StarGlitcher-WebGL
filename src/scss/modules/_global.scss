@@ -34,14 +34,14 @@ img {
     //Tell the browser to optimize these, all though it does basically nothing
     will-change: top, left, right, bottom, transform;
 }
-.Anim-Object {
+body .Anim-Object {
     width: 400px;
     height: 150px;
     display: none;
 }
 
 //Init black screen when loading
-.HardwareA {
+body > div {
     left: 50%;
     top: 50%;
     width: 90vw;

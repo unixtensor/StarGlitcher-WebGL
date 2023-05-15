@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-<!--Its not pretty here-->
 <html>
+<!--
+    Its not pretty here,
+    StarGlitcher WebGL,
+    -interpreterK, https://github.com/interpreterK/StarGlitcher-WebGL
+-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=0">
@@ -13,7 +17,7 @@
     <link rel="shortcut icon" href="/Images/favicon.gif" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
     <link rel="stylesheet" href="./scss/main.scss">
 </head>
 <body>
@@ -40,7 +44,7 @@
             <h1><strong><u><a href="https://www.enable-javascript.com/" target="_blank">JavaScript must be enabled, upgraded, or supported.</a></u></strong></h1>
         </div>
     </noscript>
-    <div class="HardwareA">
+    <div>
         <h1>
             <strong>Loading...</strong>
         </h1>
@@ -48,7 +52,6 @@
             <strong>If the scene never load's please enable "Hardware Acceleration" in your browser settings or check the browser developer tools console for any errors.</strong>
         </h2>
     </div>
-
     <glitcher_bar>
         <div class="Anim-Object" id="Bottom-Bar"></div>
         <div class="Anim-Object" id="Bottom-Bar-2"></div>
@@ -69,11 +72,6 @@
         <img src="/Images/UI/JSAB_HexagonBorders.png" alt="" id="GlitcherHexagonBorders">
         <img src="/Images/UI/GlitcherShards.png" alt="" id="GlitcherShards2">
     </glitcher_bar>
-
-    <script type="module">
-        import { __rhpidEngine_Version } from './StarGlitcher/modules/three/rhpidEngine/rE_Root'
-        console.log("Welcome to the StarGlitcher WebGL Website.\n\n- Author: interpreterK\n- Project Repo: https://github.com/interpreterK/StarGlitcher-WebGL\n\nSeeing any errors? Report it here: https://github.com/interpreterK/StarGlitcher-WebGL/issues\n\n-- Debug Info:\n rhpidEngine Version:", __rhpidEngine_Version)
-    </script>
     <script src="./StarGlitcher/main.js" type="module"></script>
 </body>
 </html>
