@@ -34,7 +34,6 @@ const Animations = class {
 
 	Wings() {
 		const V = new Vector3(2*Math.cos(this.delta/WingDelta)-2, -Math.cos(this.delta/WingDelta)*1.8,0)
-		const V_i = new Vector3(2*Math.cos(this.delta/WingDelta)-2, 1.2+(-Math.cos(this.delta/WingDelta)*1.5),0)
 
 		WingJoints.WingLC03.C0(vlerp(V,.8), new Euler(rad((15*Math.cos(this.delta/WingDelta)-20)-10), rad(15*Math.cos(this.delta/WingDelta)-15), rad(-15*Math.cos(this.delta/WingDelta))))
 		
@@ -42,6 +41,11 @@ const Animations = class {
 
 		WingJoints.WingLC01.C0(vlerp(V,.2), new Euler(rad((3*Math.cos(this.delta/WingDelta)-8)-3), rad(15*Math.cos(this.delta/WingDelta)-15), rad(-15*Math.cos(this.delta/WingDelta))))
 
+		WingJoints.WingRC03.C0(vlerp(V,.8), new Euler(rad((15*Math.cos(this.delta/WingDelta)-20)-10), rad(15*Math.cos(this.delta/WingDelta)-15), rad(15*Math.cos(this.delta/WingDelta))))
+
+		WingJoints.WingRC02.C0(vlerp(V,.4))
+
+		WingJoints.WingRC01.C0(vlerp(V,.2))
 	}
 }
 

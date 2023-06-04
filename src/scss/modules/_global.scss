@@ -31,7 +31,7 @@ img {
 }
 
 .Anim-Object, img, h1 {
-    //Tell the browser to optimize these, all though it does basically nothing
+    //Tell the browser to optimize these, all though it may basically do nothing
     will-change: top, left, right, bottom, transform;
 }
 body .Anim-Object {
@@ -41,7 +41,7 @@ body .Anim-Object {
 }
 
 //Init black screen when loading
-body > div {
+body > #Hardware {
     left: 50%;
     top: 50%;
     width: 90vw;

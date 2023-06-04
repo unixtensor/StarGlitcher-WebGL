@@ -2,6 +2,7 @@ import { Euler, MeshPhongMaterial, Vector3 } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { CharacterMesh } from "./rhpidEngine/rE_Character"
 import { Union } from './rhpidEngine/rE_Instances'
+import { GTLF_models } from './gltf_models'
 
 const GLTF_Loader = new GLTFLoader()
 const GLTF_cache = {
@@ -25,10 +26,11 @@ const WingAssets = {
 //hi
 const GLTF = async (GLTF_FILE) => new Promise((resolve, _) => GLTF_Loader.load(GLTF_FILE, (gltf_obj) => resolve(gltf_obj))).catch((reason) => console.error(reason))
 
+//Help firefox specifically, load this faster by using a cache system or .clone onto the cached object
 const load_into_gltf_cache = async (cache_req_type, gltf_path) => {
     if (GLTF_cache[cache_req_type] == null) {
         const GLTF_to_three = await GLTF(gltf_path)
-
+        
         GLTF_to_three.scene.traverse((g_data) => {
             if (g_data.isMesh) {
                 g_data.castShadow = true
@@ -40,7 +42,7 @@ const load_into_gltf_cache = async (cache_req_type, gltf_path) => {
 }
 
 const CreateWing = async (Color = 0xffffff, LeftSided) => {
-    await load_into_gltf_cache("Wing", "/3D/Wing.gltf")
+    await load_into_gltf_cache("Wing", GTLF_models.Wing)
 
     const WingObject = GLTF_cache.Wing.clone()
     WingObject.material = new MeshPhongMaterial({color: Color})
@@ -52,7 +54,7 @@ const CreateWing = async (Color = 0xffffff, LeftSided) => {
 }
 
 const CreateRing = async (Color = 0xfffff) => {
-    await load_into_gltf_cache("Ring", "/3D/Ring.gltf")
+    await load_into_gltf_cache("Ring", GTLF_models.Ring)
 
     const RingObject = GLTF_cache.Ring.clone()
     RingObject.material = new MeshPhongMaterial({color: Color})

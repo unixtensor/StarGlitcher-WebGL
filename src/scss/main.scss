@@ -5,11 +5,14 @@ $--__NULL_MODE_a:     #00000080;
 $--__NULL_MODE_ALT:   #ffffff;
 $--__NULL_MODE_ALT_a: #ffffff80;
 
-glitcher_bar {
+glitcher > glitcher_bar {
     > :is(#Object-1, #Object-2, #Object-3, #Bottom-Rect) {
         z-index: 5;
     }
-    > :is(#Bottom-Bar, #GlitcherShards, #GlitcherSparkle, #GlitcherShards2, #GlitcherHexagonBorders, #GlitcherHexagonSpiked) {
+    > :is(
+        #Bottom-Bar, #GlitcherShards, #GlitcherSparkle, 
+        #GlitcherShards2, #GlitcherHexagonBorders, #GlitcherHexagonSpiked
+    ) {
         z-index: 2;
     }
     > #Bottom-Bar-2 {
