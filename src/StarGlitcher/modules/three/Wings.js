@@ -2,13 +2,12 @@ import { Euler, MeshPhongMaterial, Vector3 } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { CharacterMesh } from "./rhpidEngine/rE_Character"
 import { Union } from './rhpidEngine/rE_Instances'
-import { GTLF_models } from './gltf_models'
 
 const GLTF_Loader = new GLTFLoader()
 const GLTF_cache = {
-    Wing: null, 
+    Wing: null,
     Ring: null,
-    Ring2: null, 
+    Ring2: null,
     Tornado: null,
 }
 
@@ -30,7 +29,7 @@ const GLTF = async (GLTF_FILE) => new Promise((resolve, _) => GLTF_Loader.load(G
 const load_into_gltf_cache = async (cache_req_type, gltf_path) => {
     if (GLTF_cache[cache_req_type] == null) {
         const GLTF_to_three = await GLTF(gltf_path)
-        
+
         GLTF_to_three.scene.traverse((g_data) => {
             if (g_data.isMesh) {
                 g_data.castShadow = true
@@ -42,7 +41,7 @@ const load_into_gltf_cache = async (cache_req_type, gltf_path) => {
 }
 
 const CreateWing = async (Color = 0xffffff, LeftSided) => {
-    await load_into_gltf_cache("Wing", GTLF_models.Wing)
+    await load_into_gltf_cache("Wing", "/public/Assets/Wing.gltf")
 
     const WingObject = GLTF_cache.Wing.clone()
     WingObject.material = new MeshPhongMaterial({color: Color})
@@ -54,7 +53,7 @@ const CreateWing = async (Color = 0xffffff, LeftSided) => {
 }
 
 const CreateRing = async (Color = 0xfffff) => {
-    await load_into_gltf_cache("Ring", GTLF_models.Ring)
+    await load_into_gltf_cache("Ring", "/public/Assets/Ring.gltf")
 
     const RingObject = GLTF_cache.Ring.clone()
     RingObject.material = new MeshPhongMaterial({color: Color})
@@ -97,7 +96,7 @@ const Wings = class {
             WingAssets.Union.WingRC01.C0()
             WingAssets.Union.WingRC02.C0()
             WingAssets.Union.WingRC03.C0()
-        } 
+        }
     }
 }
 

@@ -155,7 +155,7 @@ const UI_FPS = () => {
             R: rad(-(delta*SpinRate)/6)
         })
 
-        if (UI_ENABLED) 
+        if (UI_ENABLED)
             UI_FPS()
     }, 1)
 }
